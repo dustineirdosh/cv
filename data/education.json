@@ -1,0 +1,36 @@
+{
+  "education": [
+    {
+      "id": "edu_001",
+      "degree": "PhD",
+      "field": "Biology Education",
+      "institution": "Friedrich Schiller University of Jena",
+      "location": "Jena, Germany",
+      "year_awarded": 2022,
+      "grade": "Magna Cum Laude (1,1)",
+      "host_institution": {
+        "name": "Department of Comparative Cultural Psychology, Max Planck Institute for Evolutionary Anthropology",
+        "location": "Leipzig, Germany"
+      },
+      "focus": "Teaching human behavior and evolution as interdisciplinary themes"
+    },
+    {
+      "id": "edu_002",
+      "degree": "M.Sc.",
+      "field": "International Food Business & Consumer Science",
+      "institution": "University of Kassel",
+      "location": "Witzenhausen, Germany",
+      "year_awarded": 2015,
+      "focus": "Education for Sustainable Development (ESD)"
+    },
+    {
+      "id": "edu_003",
+      "degree": "B.A.",
+      "field": "Human Ecology",
+      "institution": "College of the Atlantic",
+      "location": "Bar Harbor, Maine, USA",
+      "year_awarded": 2004,
+      "focus": "Sustainability education and community development"
+    }
+  ]
+}

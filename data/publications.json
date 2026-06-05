@@ -1,0 +1,295 @@
+{
+  "publications": [
+    {
+      "id": "pub_001",
+      "type": "journal_article",
+      "year": 2023,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum: A Design Study of a Pre-Service Teacher Education Module",
+      "journal": "Education Sciences",
+      "volume": "13",
+      "issue": "8",
+      "pages": "797",
+      "doi": "10.3390/educsci13080797",
+      "url": "https://doi.org/10.3390/educsci13080797",
+      "open_access": true,
+      "tags": ["teacher education", "evolution education", "primary school", "design study"],
+      "asset_thumbnail": "assets/images/publications/pub_001_thumb.jpg"
+    },
+    {
+      "id": "pub_002",
+      "type": "book_chapter",
+      "year": 2023,
+      "authors": ["Eirdosh, D.", "Hanisch, S."],
+      "author_roles": {
+        "Eirdosh, D.": "lead author"
+      },
+      "title": "A Community Science Model for Interdisciplinary Evolution Education and School Improvement",
+      "book_title": "Evolutionary Thinking Across Disciplines: Problems and Perspectives in Generalized Darwinism",
+      "editors": ["du Crest, A.", "Valković, M.", "Ariew, A.", "Desmond, H.", "Huneman, P.", "Reydon, T. A. C."],
+      "publisher": "Springer International Publishing",
+      "pages": "125–146",
+      "doi": "10.1007/978-3-031-33358-3_7",
+      "url": "https://doi.org/10.1007/978-3-031-33358-3_7",
+      "open_access": false,
+      "tags": ["community science", "evolution education", "school improvement", "interdisciplinary"],
+      "asset_thumbnail": "assets/images/publications/pub_002_thumb.jpg"
+    },
+    {
+      "id": "pub_003",
+      "type": "book_chapter",
+      "year": 2023,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Teaching for the Interdisciplinary Understanding of Evolutionary Concepts",
+      "book_title": "Evolutionary Thinking Across Disciplines: Problems and Perspectives in Generalized Darwinism",
+      "editors": ["du Crest, A.", "Valković, M.", "Ariew, A.", "Desmond, H.", "Huneman, P.", "Reydon, T. A. C."],
+      "publisher": "Springer International Publishing",
+      "pages": "147–180",
+      "doi": "10.1007/978-3-031-33358-3_8",
+      "url": "https://doi.org/10.1007/978-3-031-33358-3_8",
+      "open_access": false,
+      "tags": ["evolution education", "interdisciplinary", "evolutionary concepts"],
+      "asset_thumbnail": "assets/images/publications/pub_003_thumb.jpg"
+    },
+    {
+      "id": "pub_004",
+      "type": "journal_article",
+      "year": 2023,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency",
+      "journal": "Sustainability",
+      "volume": "15",
+      "issue": "9",
+      "pages": "7413",
+      "doi": "10.3390/su15097413",
+      "url": "https://doi.org/10.3390/su15097413",
+      "open_access": true,
+      "tags": ["behavioral science", "sustainability education", "metacognition", "ESD"],
+      "asset_thumbnail": "assets/images/publications/pub_004_thumb.jpg"
+    },
+    {
+      "id": "pub_005",
+      "type": "book_chapter",
+      "year": 2023,
+      "authors": ["Hanisch, S.", "Eirdosh, D.", "Morgan, T."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Evolving cooperation and sustainability for common pool resources",
+      "book_title": "Learning evolution through socioscientific issues",
+      "editors": ["Sá-Pinto, X.", "Beniermann, A.", "Børsen, T.", "Georgiou, M.", "Jeffries, A.", "Pessoa, P."],
+      "publisher": "UA Editora",
+      "publisher_location": "Aveiro",
+      "pages": "127-147",
+      "doi": "10.17617/2.3486776",
+      "url": "http://doi.org/10.17617/2.3486776",
+      "open_access": true,
+      "tags": ["cooperation", "sustainability", "common pool resources", "evolution", "socioscientific issues"],
+      "asset_thumbnail": "assets/images/publications/pub_005_thumb.jpg"
+    },
+    {
+      "id": "pub_006",
+      "type": "journal_article",
+      "year": 2022,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Cooperation as a causal factor in human evolution: a scientific clarification and analysis of German high school biology textbooks",
+      "journal": "Journal of Biological Education",
+      "doi": "10.1080/00219266.2021.2020875",
+      "url": "https://doi.org/10.1080/00219266.2021.2020875",
+      "open_access": false,
+      "tags": ["cooperation", "human evolution", "textbook analysis", "biology education", "Germany"],
+      "asset_thumbnail": "assets/images/publications/pub_006_thumb.jpg"
+    },
+    {
+      "id": "pub_007",
+      "type": "journal_article",
+      "year": 2021,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Are Humans a Cooperative Species? Challenges & Opportunities for Teaching the Evolution of Human Prosociality",
+      "journal": "The American Biology Teacher",
+      "volume": "83",
+      "issue": "6",
+      "pages": "356–361",
+      "doi": "10.1525/abt.2021.83.6.356",
+      "url": "https://doi.org/10.1525/abt.2021.83.6.356",
+      "open_access": false,
+      "tags": ["prosociality", "human evolution", "cooperation", "biology teaching"],
+      "asset_thumbnail": "assets/images/publications/pub_007_thumb.jpg"
+    },
+    {
+      "id": "pub_008",
+      "type": "book_chapter",
+      "year": 2021,
+      "authors": ["Eirdosh, D.", "Hanisch, S."],
+      "author_roles": {
+        "Eirdosh, D.": "lead author"
+      },
+      "title": "Evolving Schools in a Post-pandemic Context",
+      "book_title": "COVID-19: Paving the Way for a More Sustainable World",
+      "editors": ["Filho Leal, W."],
+      "publisher": "Springer",
+      "pages": "465–480",
+      "doi": "10.1007/978-3-030-69284-1_24",
+      "url": "https://doi.org/10.1007/978-3-030-69284-1_24",
+      "open_access": false,
+      "tags": ["school improvement", "pandemic", "sustainability", "educational change"],
+      "asset_thumbnail": "assets/images/publications/pub_008_thumb.jpg"
+    },
+    {
+      "id": "pub_009",
+      "type": "journal_article",
+      "year": 2020,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Educational potential of teaching evolution as an interdisciplinary science",
+      "journal": "Evolution: Education and Outreach",
+      "volume": "13",
+      "pages": "25",
+      "doi": "10.1186/s12052-020-00138-4",
+      "url": "https://doi.org/10.1186/s12052-020-00138-4",
+      "open_access": true,
+      "tags": ["evolution education", "interdisciplinary", "educational potential"],
+      "asset_thumbnail": "assets/images/publications/pub_009_thumb.jpg"
+    },
+    {
+      "id": "pub_010",
+      "type": "journal_article",
+      "year": 2020,
+      "authors": ["Eirdosh, D.", "Hanisch, S."],
+      "author_roles": {
+        "Eirdosh, D.": "lead author"
+      },
+      "title": "Can the science of Prosocial be a part of evolution education?",
+      "journal": "Evolution: Education and Outreach",
+      "volume": "13",
+      "pages": "5",
+      "doi": "10.1186/s12052-020-00119-7",
+      "url": "https://doi.org/10.1186/s12052-020-00119-7",
+      "open_access": true,
+      "tags": ["prosocial", "evolution education", "behavioral science"],
+      "asset_thumbnail": "assets/images/publications/pub_010_thumb.jpg"
+    },
+    {
+      "id": "pub_011",
+      "type": "journal_article",
+      "year": 2020,
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Causal Mapping as a Teaching Tool for Reflecting on Causation in Human Evolution",
+      "journal": "Science & Education",
+      "doi": "10.1007/s11191-020-00157-z",
+      "url": "https://doi.org/10.1007/s11191-020-00157-z",
+      "open_access": false,
+      "tags": ["causal mapping", "human evolution", "teaching tools", "causation"],
+      "asset_thumbnail": "assets/images/publications/pub_011_thumb.jpg"
+    },
+    {
+      "id": "pub_012",
+      "type": "book_chapter",
+      "year": 2019,
+      "authors": ["Eirdosh, D.", "Hanisch, S."],
+      "author_roles": {
+        "Eirdosh, D.": "lead author"
+      },
+      "title": "The Role of Evolutionary Studies in Education for Sustainable Development",
+      "book_title": "Darwin's Roadmap to the Curriculum: Evolutionary Studies in Higher Education",
+      "editors": ["Wilson, D. S.", "Geher, G.", "Gallup, A. G.", "Head, H."],
+      "publisher": "Oxford University Press",
+      "publisher_location": "New York",
+      "doi": null,
+      "url": null,
+      "open_access": false,
+      "tags": ["evolutionary studies", "ESD", "higher education", "curriculum"],
+      "asset_thumbnail": "assets/images/publications/pub_012_thumb.jpg"
+    },
+    {
+      "id": "pub_013",
+      "type": "journal_article",
+      "year": 2024,
+      "authors": ["Sánchez Amaro, A.", "Eirdosh, D.", "Haun, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Studying Great Apes and Cultural Diversity to Understand the Human Mind",
+      "journal": "Frontiers for Young Minds",
+      "volume": "12",
+      "doi": null,
+      "url": "https://kids.frontiersin.org/article/10.3389/frym.2024.1337514",
+      "open_access": true,
+      "category": "outreach",
+      "tags": ["great apes", "cultural diversity", "human mind", "science outreach", "young minds"],
+      "asset_thumbnail": "assets/images/publications/pub_013_thumb.jpg"
+    },
+    {
+      "id": "pub_014",
+      "type": "journal_article",
+      "year": 2021,
+      "authors": ["Hanisch, S.", "Eirdosh, D.", "Schäfer, M.", "Haun, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "What Is 'Fair' Is Not the Same Everywhere",
+      "journal": "Frontiers for Young Minds",
+      "volume": "9",
+      "doi": "10.3389/frym.2021.580435",
+      "url": "https://doi.org/10.3389/frym.2021.580435",
+      "open_access": true,
+      "category": "outreach",
+      "tags": ["fairness", "cultural diversity", "science outreach", "young minds"],
+      "asset_thumbnail": "assets/images/publications/pub_014_thumb.jpg"
+    },
+    {
+      "id": "pub_015",
+      "type": "field_guide",
+      "year": 2020,
+      "authors": ["Hanisch, S.", "Eirdosh, D.", "Atkins, P.W.B."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "Community Science Field Guide for School Culture: Tools for learning better, together",
+      "publisher": "GlobalESD",
+      "url": null,
+      "open_access": true,
+      "category": "practitioner_resource",
+      "tags": ["community science", "school culture", "field guide", "practitioner"],
+      "asset_thumbnail": "assets/images/publications/pub_015_thumb.jpg"
+    },
+    {
+      "id": "pub_016",
+      "type": "guide",
+      "year": 2020,
+      "edition": "2nd",
+      "authors": ["Hanisch, S.", "Eirdosh, D."],
+      "author_roles": {
+        "Eirdosh, D.": "co-author"
+      },
+      "title": "A Teacher's Guide to Evolution, Behavior, and Sustainability Science",
+      "title_de": "Lehren und Lernen über Evolution, Verhalten und nachhaltige Entwicklung. Ein Leitfaden.",
+      "url": "http://guide.openevo.net",
+      "languages": ["English", "German"],
+      "open_access": true,
+      "category": "practitioner_resource",
+      "tags": ["teacher guide", "evolution", "behavior", "sustainability", "open access"],
+      "asset_thumbnail": "assets/images/publications/pub_016_thumb.jpg"
+    }
+  ]
+}

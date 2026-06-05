@@ -1,0 +1,99 @@
+{
+  "profile": {
+    "name": "Dustin Eirdosh",
+    "credentials": "PhD",
+    "title": "Education Innovation Coordinator & Researcher",
+    "tagline": "Educational innovation for understanding the human condition",
+    "contact": {
+      "email": "dustin.eirdosh@eva.mpg.de",
+      "phone": "+49 0176 8926 3122",
+      "address": {
+        "street": "Blücherstr. 37",
+        "city": "Leipzig",
+        "postcode": "04159",
+        "country": "Germany"
+      }
+    },
+    "online_presence": [
+      {
+        "platform": "OpenEvo Project",
+        "label": "openevo.eva.mpg.de",
+        "url": "http://openevo.eva.mpg.de",
+        "type": "project"
+      },
+      {
+        "platform": "Max Planck Institute Profile",
+        "label": "MPI EVA Staff Page",
+        "url": "https://www.eva.mpg.de/comparative-cultural-psychology/staff/dustin-eirdosh/",
+        "type": "institutional"
+      },
+      {
+        "platform": "University of Jena Profile",
+        "label": "Biodidaktik Uni Jena",
+        "url": "https://www.biodidaktik.uni-jena.de/arbeitsgruppe/dr-dustin-eirdosh",
+        "type": "institutional"
+      },
+      {
+        "platform": "LinkedIn",
+        "label": "linkedin.com/in/dustin-eirdosh",
+        "url": "https://www.linkedin.com/in/dustin-eirdosh/",
+        "type": "professional_network"
+      },
+      {
+        "platform": "ResearchGate",
+        "label": "researchgate.net/profile/Dustin-Eirdosh",
+        "url": "https://www.researchgate.net/profile/Dustin-Eirdosh",
+        "type": "academic_network"
+      },
+      {
+        "platform": "ORCID",
+        "label": "0000-0002-3836-1501",
+        "url": "https://orcid.org/0000-0002-3836-1501",
+        "type": "academic_id"
+      },
+      {
+        "platform": "GlobalESD",
+        "label": "GlobalESD.org",
+        "url": "http://www.GlobalESD.org",
+        "type": "project"
+      }
+    ],
+    "about": "I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.",
+    "featured_project": {
+      "name": "OpenEvo",
+      "url": "http://openevo.eva.mpg.de",
+      "description": "The OpenEvo Learning and Research Hubs provide access to open education resources, and tools for interdisciplinary educational innovation research within our Educational Design Concept and Theory of School Improvement.",
+      "roles": [
+        "Team management and partnership coordination",
+        "Theory and research methods development",
+        "WordPress site design and management",
+        "Moodle module development",
+        "Content development and curation",
+        "Grant writing and project sustainability planning"
+      ]
+    },
+    "dei_statement": {
+      "title": "From Values to Action: Educational Innovations for Diversity, Equity, and Inclusion",
+      "body": "Scientific traditions in evolution, behavior, and sustainability have historically, and sometimes presently, faced criticism for their colonial origins, Western biases, and potential for ethnocentric applications. At OpenEvo, our work is advanced critically within this context. Our central focus is on empowering the voices of educators and young people across geographic, demographic, and cultural boundaries. We aim to enable all learners to engage critically with the full diversity of human science fields, past and present. We promote collaboration across disciplines and communities to foster a values-driven participatory approach in understanding and facilitating community change.\n\nIn theoretical terms, the design of our Community Science Lab model and our inclusive conceptualization of culturally diverse Theories of Schooling demand the elevation of marginalized voices to drive local and global school improvement agendas. Practically, our experience in international research and development projects in Madagascar has led us to develop and commit to collaboration strategies that are fundamentally centered on the leadership and empowerment of those with the least voice and power in the system.\n\nOne area of outcomes of this approach is our ongoing eight-year collaboration with Dr. Josia Razafindramanana. Together, we explore and co-design teacher education innovations around the behavioral dimensions of common pool resource management in Madagascar's forests. We've also trained and collaborated with community forest educators in Pemba, Tanzania, where their team has used our agent-based models of common pool and privatized resource sustainability to develop educational programs and metacognitive reflections on the cultural dimensions of resource use in Pemba. These lessons are delivered in ways that empower young girls and women, remaining culturally valued within this Muslim society context. These approaches also inform our scientific advising to the FAO for forestry and educational innovation in Zambia.\n\nWe believe that advancing educational innovation for understanding humans is a fundamental context for bringing all voices to the table in meaningful ways.",
+      "collaborations": [
+        {
+          "collaborator": "Dr. Josia Razafindramanana",
+          "duration_years": 8,
+          "focus": "Teacher education innovations around behavioral dimensions of common pool resource management in Madagascar's forests",
+          "location": "Madagascar"
+        },
+        {
+          "collaborator": "Community forest educators",
+          "focus": "Agent-based models of common pool and privatized resource sustainability for educational programs empowering girls and women",
+          "location": "Pemba, Tanzania"
+        },
+        {
+          "collaborator": "FAO",
+          "focus": "Scientific advising for forestry and educational innovation",
+          "location": "Zambia"
+        }
+      ]
+    },
+    "last_updated": "2024-08"
+  }
+}

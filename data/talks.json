@@ -1,0 +1,26 @@
+{
+  "talks": [
+    {
+      "id": "talk_001",
+      "type": "keynote",
+      "title": "Understanding Humans, AIs, and the evolution of equitable societies",
+      "event": "8th Max Planck Symposium for Alumni and Early Career Researchers",
+      "event_theme": "The rise of social, economic and environmental justice",
+      "role": "Opening Keynote",
+      "date": "2023-07-24",
+      "location": "Max Planck Society",
+      "url": "https://vimeo.com/853279504/3d417d279a",
+      "media_type": "video"
+    },
+    {
+      "id": "talk_002",
+      "type": "ted_talk",
+      "title": "Why human behavior is at the center of education",
+      "event": "TEDxLeipzigInternationalSchool",
+      "date": "2021-06-16",
+      "location": "Leipzig, Germany",
+      "url": "https://www.ted.com/talks/dustin_eirdosh_why_is_human_behaviour_at_the_center_of_education",
+      "media_type": "video"
+    }
+  ]
+}

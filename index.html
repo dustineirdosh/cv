@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dustin Eirdosh, PhD — CV</title>
+  <style>
+    /* ── Reset & Base ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a2e;
+      --ink-light:  #4a4a6a;
+      --accent:     #2d6a4f;
+      --accent2:    #52b788;
+      --accent-pale:#d8f3dc;
+      --bg:         #fafaf8;
+      --surface:    #ffffff;
+      --border:     #e8e8e0;
+      --tag-bg:     #eef7f1;
+      --tag-text:   #2d6a4f;
+      --warn:       #e76f51;
+      --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --radius:     8px;
+      --shadow:     0 2px 12px rgba(0,0,0,.07);
+      --shadow-lg:  0 8px 32px rgba(0,0,0,.10);
+      --transition: .2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    /* ── Google Fonts ───────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Top Nav ────────────────────────────────────────────────── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,248,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-name {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-links a:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-outline:hover { background: var(--accent-pale); }
+
+    .btn-solid {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-solid:hover { background: #245a41; }
+
+    /* ── Hero Header ────────────────────────────────────────────── */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: .95rem;
+      color: var(--ink-light);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--ink);
+      font-weight: 300;
+      max-width: 560px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid var(--accent2);
+      border-radius: 20px;
+      background: var(--tag-bg);
+      transition: all var(--transition);
+    }
+
+    .hero-link:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .orcid-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .orcid-badge svg { width: 40px; height: 40px; }
+
+    .orcid-id {
+      font-family: 'Courier New', monospace;
+      font-size: .7rem;
+      color: var(--ink-light);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .7rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .status-live {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-loading {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .pulse {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+
+    /* ── Section ────────────────────────────────────────────────── */
+    .section {
+      margin-bottom: 52px;
+      scroll-margin-top: 70px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+
+    .section-count {
+      font-size: .75rem;
+      color: var(--ink-light);
+      background: var(--border);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── About ──────────────────────────────────────────────────── */
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--ink);
+      max-width: 680px;
+    }
+
+    /* ── Timeline (Education & Experience) ──────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 2px; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .timeline-item:hover { background: var(--accent-pale); border-radius: var(--radius); padding-left: 12px; padding-right: 12px; }
+
+    .timeline-date {
+      font-size: .78rem;
+      color: var(--ink-light);
+      font-weight: 500;
+      padding-top: 3px;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    .timeline-dot {
+      display: none;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .timeline-org {
+      font-size: .88rem;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .timeline-dept {
+      font-size: .82rem;
+      color: var(--ink-light);
+      margin-bottom: 4px;
+    }
+
+    .timeline-loc {
+      font-size: .78rem;
+      color: var(--ink-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-current {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--accent);
+      background: var(--accent-pale);
+      border: 1px solid var(--accent2);
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Publications ───────────────────────────────────────────── */
+    .pub-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .filter-btn {
+      font-size: .75rem;
+      padding: 4px 12px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-light);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-weight: 500;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 18px;
+      align-items: start;
+    }
+
+    .pub-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent2);
+      transform: translateY(-1px);
+    }
+
+    .pub-year-col {
+      text-align: center;
+      min-width: 44px;
+    }
+
+    .pub-year {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-pale);
+      padding: 3px 6px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .pub-type-icon {
+      font-size: .65rem;
+      color: var(--ink-light);
+      margin-top: 5px;
+      display: block;
+      text-align: center;
+    }
+
+    .pub-title {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--ink);
+      margin-bottom: 5px;
+      line-height: 1.45;
+    }
+
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .pub-title a:hover { color: var(--accent); text-decoration: underline; }
+
+    .pub-authors {
+      font-size: .8rem;
+      color: var(--ink-light);
+      margin-bottom: 4px;
+    }
+
+    .pub-authors .self { color: var(--accent); font-weight: 600; }
+
+    .pub-venue {
+      font-size: .8rem;
+      color: var(--ink-light);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .pub-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: .68rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-weight: 500;
+    }
+
+    .oa-badge {
+      font-size: .68rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 600;
+    }
+
+    .doi-link {
+      font-size: .72rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 2px 8px;
+      border: 1px solid var(--accent2);
+      border-radius: 10px;
+      transition: all var(--transition);
+    }
+
+    .doi-link:hover { background: var(--accent); color: #fff; }
+
+    /* ── Talks ──────────────────────────────────────────────────── */
+    .talks-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .talk-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all var(--transition);
+    }
+
+    .talk-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent2);
+    }
+
+    .talk-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--accent-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .talk-type {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .talk-title {
+      font-weight: 600;
+      font-size: .92rem;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .talk-meta {
+      font-size: .8rem;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+    }
+
+    /* ── Grants ─────────────────────────────────────────────────── */
+    .grants-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .grant-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .grant-title {
+      font-weight: 600;
+      font-size: .95rem;
+      margin-bottom: 6px;
+    }
+
+    .grant-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .grant-amount {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .grant-funder {
+      font-size: .82rem;
+      color: var(--ink-light);
+    }
+
+    .grant-period {
+      font-size: .82rem;
+      color: var(--ink-light);
+    }
+
+    .grant-roles { margin-top: 8px; }
+
+    .grant-roles li {
+      font-size: .82rem;
+      color: var(--ink-light);
+      margin-left: 16px;
+      margin-bottom: 2px;
+    }
+
+    /* ── Advisory ───────────────────────────────────────────────── */
+    .advisory-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .advisory-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .advisory-role {
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .75rem;
+      margin-bottom: 4px;
+    }
+
+    .advisory-org {
+      font-weight: 600;
+      font-size: .95rem;
+      margin-bottom: 4px;
+    }
+
+    .advisory-body {
+      font-size: .82rem;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+
+    .advisory-resp li {
+      font-size: .82rem;
+      color: var(--ink-light);
+      margin-left: 16px;
+      margin-bottom: 3px;
+    }
+
+    /* ── Awards ─────────────────────────────────────────────────── */
+    .awards-list { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .award-card {
+      flex: 1;
+      min-width: 240px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .award-year {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-serif);
+    }
+
+    .award-title {
+      font-weight: 600;
+      font-size: .9rem;
+      margin: 6px 0 4px;
+    }
+
+    .award-org {
+      font-size: .8rem;
+      color: var(--ink-light);
+      margin-bottom: 8px;
+    }
+
+    .award-reason {
+      font-size: .78rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* ── Loading Skeleton ───────────────────────────────────────── */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0ec 25%, #e8e8e2 50%, #f0f0ec 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .skeleton-line {
+      height: 14px;
+      margin-bottom: 8px;
+    }
+
+    .skeleton-line.short { width: 40%; }
+    .skeleton-line.medium { width: 65%; }
+    .skeleton-line.long { width: 90%; }
+
+    /* ── Error State ────────────────────────────────────────────── */
+    .error-box {
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: var(--radius);
+      padding: 20px;
+      color: #742a2a;
+      font-size: .88rem;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .78rem;
+      color: var(--ink-light);
+    }
+
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ── Export Modal ───────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 480px;
+      width: calc(100% - 48px);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal h2 {
+      font-family: var(--font-serif);
+      margin-bottom: 8px;
+    }
+
+    .modal p {
+      font-size: .88rem;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+
+    .modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+      background: var(--bg);
+    }
+
+    .modal-option:hover {
+      border-color: var(--accent);
+      background: var(--accent-pale);
+    }
+
+    .modal-option-icon {
+      font-size: 1.5rem;
+      width: 36px;
+      text-align: center;
+    }
+
+    .modal-option-label { font-weight: 600; font-size: .88rem; }
+    .modal-option-desc { font-size: .78rem; color: var(--ink-light); }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--ink-light);
+      line-height: 1;
+    }
+
+    .modal-close:hover { color: var(--ink); }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .orcid-badge { display: none; }
+      .timeline-item { grid-template-columns: 80px 1fr; gap: 0 12px; }
+      .top-nav { flex-wrap: wrap; gap: 8px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── Print ──────────────────────────────────────────────────── */
+    @media print {
+      .top-nav, .nav-actions, .pub-filters, .btn,
+      .modal-overlay, .footer { display: none !important; }
+      body { font-size: 11pt; }
+      .pub-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Top Navigation ──────────────────────────────────────────── -->
+<nav class="top-nav">
+  <span class="nav-name">Dustin Eirdosh, PhD</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#publications">Publications</a>
+    <a href="#talks">Talks</a>
+    <a href="#grants">Grants</a>
+    <a href="#advisory">Advisory</a>
+    <a href="#awards">Awards</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-outline" onclick="openExportModal()">
+      ↓ Export
+    </button>
+  </div>
+</nav>
+
+<!-- ── Main Content ────────────────────────────────────────────── -->
+<div class="page-wrap">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-name">Dustin Eirdosh, <em>PhD</em></h1>
+        <p class="hero-title" id="hero-title">Education Innovation Coordinator · Max Planck Institute for Evolutionary Anthropology</p>
+        <p class="hero-tagline">"Educational innovation for understanding the human condition"</p>
+        <div class="hero-links">
+          <a class="hero-link" href="http://openevo.eva.mpg.de" target="_blank">🌱 OpenEvo</a>
+          <a class="hero-link" href="http://www.GlobalESD.org" target="_blank">🌍 GlobalESD</a>
+          <a class="hero-link" href="https://www.linkedin.com/in/dustin-eirdosh/" target="_blank">💼 LinkedIn</a>
+          <a class="hero-link" href="https://www.researchgate.net/profile/Dustin-Eirdosh" target="_blank">📄 ResearchGate</a>
+          <a class="hero-link" href="mailto:dustin.eirdosh@eva.mpg.de">✉️ Email</a>
+        </div>
+      </div>
+      <div class="orcid-badge">
+        <!-- ORCID logo SVG -->
+        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="128" cy="128" r="128" fill="#A6CE39"/>
+          <path d="M86.3 186.2H70.9V79.1h15.4v107.1zm36.8 0h-15.4V79.1h15.4v107.1z" fill="#fff"/>
+          <path d="M128 128c0-27.6 22.4-50 50-50s50 22.4 50 50-22.4 50-50 50-50-22.4-50-50zm15.4 0c0 19.1 15.5 34.6 34.6 34.6s34.6-15.5 34.6-34.6-15.5-34.6-34.6-34.6-34.6 15.5-34.6 34.6z" fill="#fff"/>
+          <ellipse cx="79.4" cy="59.1" rx="9.1" ry="9.4" fill="#fff"/>
+        </svg>
+        <span class="orcid-id">0000-0002-3836-1501</span>
+        <span id="orcid-status" class="status-pill status-loading">
+          <span class="pulse"></span> Loading…
+        </span>
+        <span id="last-sync" style="font-size:.65rem;color:var(--ink-light);"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <h2 class="section-title">About</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="about-content">
+      <div class="skeleton skeleton-line long"></div>
+      <div class="skeleton skeleton-line long"></div>
+      <div class="skeleton skeleton-line medium"></div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education">
+    <div class="section-header">
+      <h2 class="section-title">Education &amp; Training</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="education-content">
+      <div class="skeleton skeleton-line medium"></div>
+      <div class="skeleton skeleton-line short"></div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="experience-content">
+      <div class="skeleton skeleton-line long"></div>
+      <div class="skeleton skeleton-line medium"></div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section class="section" id="publications">
+    <div class="section-header">
+      <h2 class="section-title">Publications</h2>
+      <span class="section-count" id="pub-count">—</span>
+      <div class="section-divider"></div>
+    </div>
+    <div class="pub-filters" id="pub-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="journal-article">Journal Articles</button>
+      <button class="filter-btn" data-filter="book-chapter">Book Chapters</button>
+      <button class="filter-btn" data-filter="other">Other</button>
+    </div>
+    <div id="publications-content" class="pub-list">
+      <div class="skeleton skeleton-line long"></div>
+      <div class="skeleton skeleton-line medium"></div>
+      <div class="skeleton skeleton-line long"></div>
+    </div>
+  </section>
+
+  <!-- Talks -->
+  <section class="section" id="talks">
+    <div class="section-header">
+      <h2 class="section-title">Talks &amp; Media</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="talks-content" class="talks-list">
+      <!-- Static data — not in ORCID API -->
+    </div>
+  </section>
+
+  <!-- Grants -->
+  <section class="section" id="grants">
+    <div class="section-header">
+      <h2 class="section-title">Grants &amp; Funding</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="grants-content" class="grants-list">
+      <!-- Static data -->
+    </div>
+  </section>
+
+  <!-- Advisory -->
+  <section class="section" id="advisory">
+    <div class="section-header">
+      <h2 class="section-title">Advisory &amp; Innovation Roles</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="advisory-content" class="advisory-list">
+      <!-- Static data -->
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="section" id="awards">
+    <div class="section-header">
+      <h2 class="section-title">Awards &amp; Recognition</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="awards-content" class="awards-list">
+      <!-- Static data -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      Data sourced from <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">ORCID</a>
+      and supplemented with curated records.
+      <span id="footer-sync"></span>
+    </div>
+    <div>
+      <a href="https://github.com/dustin-eirdosh/cv" target="_blank">View source on GitHub</a>
+      · Built with ORCID Public API
+    </div>
+  </footer>
+</div>
+
+<!-- ── Export Modal ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="export-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeExportModal()">✕</button>
+    <h2>Export CV</h2>
+    <p>Choose your preferred format. Data is sourced live from ORCID plus curated records.</p>
+    <div class="modal-options">
+      <div class="modal-option" onclick="exportPDF()">
+        <span class="modal-option-icon">📄</span>
+        <div>
+          <div class="modal-option-label">PDF — Human Readable</div>
+          <div class="modal-option-desc">Clean print-formatted version via browser print dialog</div>
+        </div>
+      </div>
+      <div class="modal-option" onclick="exportJSON()">
+        <span class="modal-option-icon">{ }</span>
+        <div>
+          <div class="modal-option-label">JSON — Machine Readable</div>
+          <div class="modal-option-desc">Full structured dataset including all ORCID + curated data</div>
+        </div>
+      </div>
+      <div class="modal-option" onclick="exportMarkdown()">
+        <span class="modal-option-icon">Ⅿ↓</span>
+        <div>
+          <div class="modal-option-label">Markdown — Plain Text</div>
+          <div class="modal-option-desc">Portable .md format suitable for GitHub README or Obsidian</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  CONFIG
+// ══════════════════════════════════════════════════════════════════
+const ORCID_ID   = '0000-0002-3836-1501';
+const ORCID_BASE = 'https://pub.orcid.org/v3.0';
+const HEADERS    = { 'Accept': 'application/json' };
+
+// Master in-memory store — filled from ORCID + static data
+let CV = {
+  profile: null,
+  education: [],
+  employment: [],
+  works: [],
+  fundings: [],
+  // Static enrichment (not in ORCID)
+  talks: [
+    {
+      id: 'talk_001',
+      type: 'Opening Keynote',
+      icon: '🎤',
+      title: 'Understanding Humans, AIs, and the evolution of equitable societies',
+      event: '8th Max Planck Symposium for Alumni and Early Career Researchers',
+      theme: '"The rise of social, economic and environmental justice"',
+      date: '24 July 2023',
+      url: 'https://vimeo.com/853279504/3d417d279a'
+    },
+    {
+      id: 'talk_002',
+      type: 'TEDx Talk',
+      icon: '🔴',
+      title: 'Why human behavior is at the center of education',
+      event: 'TEDxLeipzigInternationalSchool',
+      date: '16 June 2021',
+      url: 'https://www.ted.com/talks/dustin_eirdosh_why_is_human_behaviour_at_the_center_of_education'
+    }
+  ],
+  grants: [
+    {
+      id: 'grant_001',
+      title: 'Developing a field approach to cultural evolution',
+      funder: 'John Templeton Foundation',
+      period: 'March 2022 – December 2024',
+      amount: '$3,130,761',
+      roles: [
+        'Grant conceptualization for viewing schools as field sites for community-based research',
+        'Involved in drafting of the proposal',
+        'Supporting Leipzig field site projects'
+      ]
+    },
+    {
+      id: 'grant_002',
+      title: 'Amselo — Agent-based models of social-ecological systems with NetLogo',
+      funder: 'Joachim Herz Stiftung',
+      period: 'October 2022 – September 2025',
+      amount: null,
+      roles: [
+        'Supported conceptualization of the proposal',
+        'Development and dissemination of outputs'
+      ]
+    }
+  ],
+  advisory: [
+    {
+      id: 'adv_001',
+      role: 'Education Domain Co-Lead (with Susan Hanisch)',
+      org: 'Cultural Evolution Society Transformation Fund',
+      body: 'Sustainability Applied Working Group',
+      url: 'https://ces-transformationfund.org/our-projects/sustainability-awg/',
+      current: true,
+      responsibilities: [
+        'Facilitating multi-stakeholder collaboration for applied cultural evolutionary change and sustainable development in education',
+        'Developing a policy brief relating applied cultural evolution to Education for Sustainable Development'
+      ]
+    },
+    {
+      id: 'adv_002',
+      role: 'Scientific Advisory Board Member',
+      org: 'Food and Agriculture Organization of the United Nations (FAO)',
+      body: 'FACE-NDC — Facility for Action for Climate Empowerment, FAO Zambia',
+      period: '01.03.2023 – 28.02.2030',
+      funding: '€18,496,873',
+      current: true,
+      responsibilities: [
+        'Technical guidance for teacher education training and sustainability-focused student thesis projects',
+        'Guidance for University-Assisted Community Science Lab models in regional schools'
+      ]
+    },
+    {
+      id: 'adv_003',
+      role: 'AI Advisory Board Member',
+      org: 'Frankfurt International School',
+      body: 'Student, Teacher & Expert AI Advisory Team',
+      period: 'Since September 2023',
+      current: true,
+      responsibilities: [
+        'Supporting student-led symposia and community science lab development on AI perceptions and use',
+        'Supporting networked improvement across multiple IB Schools informed by innovations at FIS'
+      ]
+    }
+  ],
+  awards: [
+    {
+      id: 'award_001',
+      year: 2005,
+      title: 'KIDS Consortium Community Partner of the Year',
+      org: 'KIDS Consortium',
+      reason: 'Excellence in supporting school and community partners in service-learning project development'
+    },
+    {
+      id: 'award_002',
+      year: 2004,
+      title: 'Ecological Entrepreneurship Award',
+      org: 'College of the Atlantic',
+      reason: 'Excellence in undergraduate thesis work related to food systems education and community development'
+    }
+  ]
+};
+
+// ══════════════════════════════════════════════════════════════════
+//  ORCID API FETCH
+// ══════════════════════════════════════════════════════════════════
+async function fetchORCID() {
+  setStatus('loading');
+  try {
+    // Fetch full record in one call
+    const res = await fetch(`${ORCID_BASE}/${ORCID_ID}/record`, { headers: HEADERS });
+    if (!res.ok) throw new Error(`ORCID API ${res.status}`);
+    const data = await res.json();
+
+    parseProfile(data);
+    parseEducation(data);
+    parseEmployment(data);
+    await parseWorks(data);
+
+    setStatus('live');
+    const now = new Date();
+    document.getElementById('last-sync').textContent =
+      `Synced ${now.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})}`;
+    document.getElementById('footer-sync').textContent =
+      ` · Last synced: ${now.toLocaleString('en-GB')}`;
+
+  } catch (err) {
+    console.error('ORCID fetch failed:', err);
+    setStatus('error');
+    loadFallback();
+  }
+
+  // Always render static sections
+  renderTalks();
+  renderGrants();
+  renderAdvisory();
+  renderAwards();
+}
+
+function setStatus(state) {
+  const el = document.getElementById('orcid-status');
+  if (state === 'loading') {
+    el.className = 'status-pill status-loading';
+    el.innerHTML = '<span class="pulse"></span> Loading…';
+  } else if (state === 'live') {
+    el.className = 'status-pill status-live';
+    el.innerHTML = '<span class="pulse"></span> Live from ORCID';
+  } else {
+    el.className = 'status-pill status-error';
+    el.innerHTML = '⚠ Offline data';
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────
+//  PARSERS
+// ──────────────────────────────────────────────────────────────────
+function parseProfile(data) {
+  const person = data.person;
+  const bio    = person?.biography?.content || '';
+  const name   = person?.name;
+
+  CV.profile = {
+    given:  name?.['given-names']?.value  || 'Dustin',
+    family: name?.['family-name']?.value  || 'Eirdosh',
+    bio:    bio || 'I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.',
+    keywords: person?.keywords?.keyword?.map(k => k.content) || []
+  };
+
+  document.getElementById('about-content').innerHTML =
+    `<p class="about-text">${CV.profile.bio}</p>`;
+}
+
+function parseEducation(data) {
+  const items = data?.['activities-summary']?.educations?.['affiliation-group'] || [];
+  const parsed = [];
+
+  items.forEach(group => {
+    const sums = group?.summaries || [];
+    sums.forEach(s => {
+      const ed = s?.['education-summary'];
+      if (!ed) return;
+      parsed.push({
+        role:    ed?.['role-title'] || 'Degree',
+        dept:    ed?.department?.value || '',
+        org:     ed?.organization?.name || '',
+        city:    ed?.organization?.address?.city || '',
+        country: ed?.organization?.address?.country || '',
+        start:   ed?.['start-date']?.year?.value || '',
+        end:     ed?.['end-date']?.year?.value   || ''
+      });
+    });
+  });
+
+  // Fallback if ORCID is missing entries
+  if (parsed.length === 0) {
+    parsed.push(
+      { role:'PhD, Biology Education', org:'Friedrich Schiller University of Jena', city:'Jena', country:'DE', end:'2022', dept:'Hosted by MPI EVA, Leipzig — Magna Cum Laude (1,1)' },
+      { role:'M.Sc., International Food Business & Consumer Science', org:'University of Kassel', city:'Witzenhausen', country:'DE', end:'2015', dept:'Focus: Education for Sustainable Development' },
+      { role:'B.A., Human Ecology', org:'College of the Atlantic', city:'Bar Harbor, Maine', country:'US', end:'2004', dept:'Focus: Sustainability education & community development' }
+    );
+  }
+
+  CV.education = parsed;
+  renderTimeline('education-content', parsed);
+}
+
+function parseEmployment(data) {
+  const items = data?.['activities-summary']?.employments?.['affiliation-group'] || [];
+  const parsed = [];
+
+  items.forEach(group => {
+    const sums = group?.summaries || [];
+    sums.forEach(s => {
+      const em = s?.['employment-summary'];
+      if (!em) return;
+      parsed.push({
+        role:    em?.['role-title'] || 'Researcher',
+        dept:    em?.department?.value || '',
+        org:     em?.organization?.name || '',
+        city:    em?.organization?.address?.city || '',
+        country: em?.organization?.address?.country || '',
+        start:   em?.['start-date']?.year?.value || '',
+        end:     em?.['end-date']?.year?.value   || null,
+        current: !em?.['end-date']
+      });
+    });
+  });
+
+  if (parsed.length === 0) {
+    parsed.push(
+      { role:'Education Innovation Coordinator', org:'Max Planck Institute for Evolutionary Anthropology', dept:'Dept. of Comparative Cultural Psychology', city:'Leipzig', country:'DE', start:'2019', current:true },
+      { role:'Guest Researcher', org:'Friedrich-Schiller-Universität Jena', dept:'AG Biologiedidaktik', city:'Jena', country:'DE', start:'2022', current:true },
+      { role:'Co-Founder & Curriculum Designer', org:'Global ESD', dept:'Education for Sustainable Development', city:'International', country:'', start:'2015', current:true },
+      { role:'Research Assistant', org:'University of Leipzig', dept:'Biology Education Research Group, Faculty of Life Sciences', city:'Leipzig', country:'DE', start:'2017', end:'2019', current:false },
+      { role:'Project Leader & Curriculum Consultant', org:'The Positive Education Action-Research Lab / University of Toliara', dept:'ENS — Faculty of Educational Psychology', city:'Toliara', country:'MG', start:'2012', end:'2015', current:false },
+      { role:'K-12 Service-Learning & Youth Advocacy Coordinator', org:'Mt. Desert Island Regional School Unit', dept:'Coordinated School Health Program', city:'Hancock County, Maine', country:'US', start:'2004', end:'2009', current:false }
+    );
+  }
+
+  CV.employment = parsed;
+  renderTimeline('experience-content', parsed, true);
+}
+
+async function parseWorks(data) {
+  const groups = data?.['activities-summary']?.works?.group || [];
+  const works  = [];
+
+  // Fetch all work summaries (already in record)
+  groups.forEach(group => {
+    const summary = group?.['work-summary']?.[0];
+    if (!summary) return;
+
+    const extIds = summary?.['external-ids']?.['external-id'] || [];
+    const doi    = extIds.find(e => e?.['external-id-type'] === 'doi')?.['external-id-value'] || null;
+
+    works.push({
+      putCode:  summary?.['put-code'],
+      title:    summary?.title?.title?.value || 'Untitled',
+      type:     summary?.type || 'other',
+      year:     summary?.['publication-date']?.year?.value || '',
+      journal:  summary?.['journal-title']?.value || '',
+      doi:      doi,
+      url:      doi ? `https://doi.org/${doi}` : (summary?.url?.value || null),
+      source:   'orcid'
+    });
+  });
+
+  // Sort by year desc
+  works.sort((a,b) => (b.year||0) - (a.year||0));
+  CV.works = works;
+
+  document.getElementById('pub-count').textContent = works.length || '—';
+  renderPublications(works);
+}
+
+// ──────────────────────────────────────────────────────────────────
+//  RENDERERS
+// ──────────────────────────────────────────────────────────────────
+function renderTimeline(containerId, items, showCurrent=false) {
+  const el = document.getElementById(containerId);
+  if (!items.length) { el.innerHTML = '<p style="color:var(--ink-light);font-size:.85rem;">No data available.</p>'; return; }
+
+  el.innerHTML = `<div class="timeline">${items.map(item => {
+    const dateStr = item.end
+      ? (item.start ? `${item.start}–${item.end}` : item.end)
+      : (item.start ? `${item.start}–` : '');
+
+    const locStr  = [item.city, item.country].filter(Boolean).join(', ');
+    const current = showCurrent && item.current;
+
+    return `
+      <div class="timeline-item">
+        <div class="timeline-date">${dateStr}</div>
+        <div>
+          <div class="timeline-role">
+            ${item.role}
+            ${current ? '<span class="badge-current">Current</span>' : ''}
+          </div>
+          <div class="timeline-org">${item.org}</div>
+          ${item.dept ? `<div class="timeline-dept">${item.dept}</div>` : ''}
+          ${locStr    ? `<div class="timeline-loc">📍 ${locStr}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('')}</div>`;
+}
+
+const TYPE_MAP = {
+  'JOURNAL_ARTICLE':   { label: 'Journal Article', icon: '📰', filter: 'journal-article' },
+  'BOOK_CHAPTER':      { label: 'Book Chapter',    icon: '📖', filter: 'book-chapter' },
+  'BOOK':              { label: 'Book',             icon: '📚', filter: 'other' },
+  'CONFERENCE_PAPER':  { label: 'Conference',       icon: '🎙', filter: 'other' },
+  'REPORT':            { label: 'Report',           icon: '📋', filter: 'other' },
+  'OTHER':             { label: 'Other',            icon: '📄', filter: 'other' }
+};
+
+function typeInfo(t) {
+  return TYPE_MAP[t?.toUpperCase()] || TYPE_MAP['OTHER'];
+}
+
+// Highlight DE's name in author strings
+function highlightSelf(authors) {
+  if (!authors) return '';
+  return authors
+    .replace(/Eirdosh,?\s*D\.?/gi,
+      '<span class="self">Eirdosh, D.</span>');
+}
+
+function renderPublications(works) {
+  const container = document.getElementById('publications-content');
+  if (!works.length) {
+    container.innerHTML = '<div class="error-box">No publications found in ORCID record.</div>';
+    return;
+  }
+
+  container.innerHTML = works.map(w => {
+    const ti    = typeInfo(w.type);
+    const doiEl = w.doi
+      ? `<a class="doi-link" href="https://doi.org/${w.doi}" target="_blank">DOI ↗</a>`
+      : (w.url ? `<a class="doi-link" href="${w.url}" target="_blank">Link ↗</a>` : '');
+
+    return `
+      <div class="pub-card" data-type="${ti.filter}">
+        <div class="pub-year-col">
+          <span class="pub-year">${w.year||'n.d.'}</span>
+          <span class="pub-type-icon">${ti.icon}</span>
+        </div>
+        <div>
+          <div class="pub-title">
+            ${w.url
+              ? `<a href="${w.url}" target="_blank">${w.title}</a>`
+              : w.title
+            }
+          </div>
+          ${w.journal ? `<div class="pub-venue">${w.journal}</div>` : ''}
+          <div class="pub-footer">
+            <span class="tag">${ti.label}</span>
+            ${doiEl}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  initPubFilters();
+}
+
+function initPubFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.pub-card').forEach(card => {
+        card.style.display =
+          (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+      });
+    });
+  });
+}
+
+function renderTalks() {
+  document.getElementById('talks-content').innerHTML = CV.talks.map(t => `
+    <div class="talk-card">
+      <div class="talk-icon">${t.icon}</div>
+      <div>
+        <div class="talk-type">${t.type}</div>
+        <div class="talk-title">${t.title}</div>
+        <div class="talk-meta">${t.event}${t.theme ? ' · ' + t.theme : ''} · ${t.date}</div>
+        <a class="doi-link" href="${t.url}" target="_blank">Watch ↗</a>
+      </div>
+    </div>`).join('');
+}
+
+function renderGrants() {
+  document.getElementById('grants-content').innerHTML = CV.grants.map(g => `
+    <div class="grant-card">
+      <div class="grant-title">${g.title}</div>
+      <div class="grant-meta">
+        ${g.amount ? `<span class="grant-amount">${g.amount}</span>` : ''}
+        <span class="grant-funder">📌 ${g.funder}</span>
+        <span class="grant-period">🗓 ${g.period}</span>
+      </div>
+      <ul class="grant-roles">
+        ${g.roles.map(r => `<li>${r}</li>`).join('')}
+      </ul>
+    </div>`).join('');
+}
+
+function renderAdvisory() {
+  document.getElementById('advisory-content').innerHTML = CV.advisory.map(a => `
+    <div class="advisory-card">
+      <div class="advisory-role">${a.role}</div>
+      <div class="advisory-org">
+        ${a.url ? `<a href="${a.url}" target="_blank" style="color:inherit;text-decoration:none;">${a.org} ↗</a>` : a.org}
+        ${a.current ? '<span class="badge-current">Current</span>' : ''}
+      </div>
+      <div class="advisory-body">
+        ${a.body}
+        ${a.period ? ' · ' + a.period : ''}
+        ${a.funding ? ' · Allocated: ' + a.funding : ''}
+      </div>
+      <ul class="advisory-resp">
+        ${a.responsibilities.map(r => `<li>${r}</li>`).join('')}
+      </ul>
+    </div>`).join('');
+}
+
+function renderAwards() {
+  document.getElementById('awards-content').innerHTML = CV.awards.map(a => `
+    <div class="award-card">
+      <div class="award-year">${a.year}</div>
+      <div class="award-title">${a.title}</div>
+      <div class="award-org">${a.org}</div>
+      <div class="award-reason">${a.reason}</div>
+    </div>`).join('');
+}
+
+// ──────────────────────────────────────────────────────────────────
+//  OFFLINE FALLBACK (if ORCID API unreachable)
+// ──────────────────────────────────────────────────────────────────
+function loadFallback() {
+  // Profile
+  document.getElementById('about-content').innerHTML = `
+    <p class="about-text">I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.</p>`;
+
+  // Education fallback
+  parseEducation({ 'activities-summary': {} });
+  parseEmployment({ 'activities-summary': {} });
+
+  // Publications fallback — curated static list
+  const fallbackWorks = [
+    { title:"Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum", type:"JOURNAL_ARTICLE", year:"2023", journal:"Education Sciences 13(8), 797", doi:"10.3390/educsci13080797" },
+    { title:"A Community Science Model for Interdisciplinary Evolution Education and School Improvement", type:"BOOK_CHAPTER", year:"2023", journal:"Evolutionary Thinking Across Disciplines, Springer, pp.125–146", doi:"10.1007/978-3-031-33358-3_7" },
+    { title:"Teaching for the Interdisciplinary Understanding of Evolutionary Concepts", type:"BOOK_CHAPTER", year:"2023", journal:"Evolutionary Thinking Across Disciplines, Springer, pp.147–180", doi:"10.1007/978-3-031-33358-3_8" },
+    { title:"Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency", type:"JOURNAL_ARTICLE", year:"2023", journal:"Sustainability 15(9), 7413", doi:"10.3390/su15097413" },
+    { title:"Evolving cooperation and sustainability for common pool resources", type:"BOOK_CHAPTER", year:"2023", journal:"Learning evolution through socioscientific issues, UA Editora, pp.127–147", doi:"10.17617/2.3486776" },
+    { title:"Studying Great Apes and Cultural Diversity to Understand the Human Mind", type:"JOURNAL_ARTICLE", year:"2024", journal:"Frontiers for Young Minds 12", url:"https://kids.frontiersin.org/article/10.3389/frym.2024.1337514" },
+    { title:"Cooperation as a causal factor in human evolution: analysis of German high school biology textbooks", type:"JOURNAL_ARTICLE", year:"2022", journal:"Journal of Biological Education", doi:"10.1080/00219266.2021.2020875" },
+    { title:"Are Humans a Cooperative Species? Challenges & Opportunities for Teaching the Evolution of Human Prosociality", type:"JOURNAL_ARTICLE", year:"2021", journal:"The American Biology Teacher 83(6), 356–361", doi:"10.1525/abt.2021.83.6.356" },
+    { title:"What Is 'Fair' Is Not the Same Everywhere", type:"JOURNAL_ARTICLE", year:"2021", journal:"Frontiers for Young Minds 9", doi:"10.3389/frym.2021.580435" },
+    { title:"Evolving Schools in a Post-pandemic Context", type:"BOOK_CHAPTER", year:"2021", journal:"COVID-19: Paving the Way for a More Sustainable World, Springer, pp.465–480", doi:"10.1007/978-3-030-69284-1_24" },
+    { title:"Educational potential of teaching evolution as an interdisciplinary science", type:"JOURNAL_ARTICLE", year:"2020", journal:"Evolution: Education and Outreach 13, 25", doi:"10.1186/s12052-020-00138-4" },
+    { title:"Can the science of Prosocial be a part of evolution education?", type:"JOURNAL_ARTICLE", year:"2020", journal:"Evolution: Education and Outreach 13, 5", doi:"10.1186/s12052-020-00119-7" },
+    { title:"Causal Mapping as a Teaching Tool for Reflecting on Causation in Human Evolution", type:"JOURNAL_ARTICLE", year:"2020", journal:"Science & Education", doi:"10.1007/s11191-020-00157-z" },
+    { title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"BOOK_CHAPTER", year:"2019", journal:"Darwin's Roadmap to the Curriculum, Oxford University Press", doi:null }
+  ].map((w,i) => ({ ...w, putCode: `fallback_${i}`, url: w.url || (w.doi ? `https://doi.org/${w.doi}` : null) }));
+
+  CV.works = fallbackWorks;
+  document.getElementById('pub-count').textContent = fallbackWorks.length;
+  renderPublications(fallbackWorks);
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  EXPORT FUNCTIONS
+// ══════════════════════════════════════════════════════════════════
+function openExportModal()  { document.getElementById('export-modal').classList.add('open'); }
+function closeExportModal() { document.getElementById('export-modal').classList.remove('open'); }
+
+document.getElementById('export-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeExportModal();
+});
+
+function exportPDF() {
+  closeExportModal();
+  window.print();
+}
+
+function exportJSON() {
+  closeExportModal();
+  const exportData = {
+    meta: {
+      schema_version: '1.1',
+      exported_at: new Date().toISOString(),
+      orcid: ORCID_ID,
+      source: `https://pub.orcid.org/v3.0/${ORCID_ID}/record`,
+      license: 'CC-BY 4.0'
+    },
+    profile: CV.profile,
+    education: CV.education,
+    employment: CV.employment,
+    publications: CV.works,
+    talks: CV.talks,
+    grants: CV.grants,
+    advisory: CV.advisory,
+    awards: CV.awards
+  };
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+  downloadBlob(blob, 'dustin-eirdosh-cv.json');
+}
+
+function exportMarkdown() {
+  closeExportModal();
+  const lines = [];
+  const now   = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
+
+  lines.push(`# Dustin Eirdosh, PhD`);
+  lines.push(`> Educational innovation for understanding the human condition`);
+  lines.push(``);
+  lines.push(`**Email:** dustin.eirdosh@eva.mpg.de  `);
+  lines.push(`**ORCID:** [0000-0002-3836-1501](https://orcid.org/0000-0002-3836-1501)  `);
+  lines.push(`**Web:** [openevo.eva.mpg.de](http://openevo.eva.mpg.de) | [GlobalESD.org](http://www.GlobalESD.org)  `);
+  lines.push(`*CV generated: ${now}*`);
+  lines.push(``);
+
+  // About
+  if (CV.profile?.bio) {
+    lines.push(`## About`);
+    lines.push(CV.profile.bio);
+    lines.push(``);
+  }
+
+  // Education
+  lines.push(`## Education & Training`);
+  CV.education.forEach(e => {
+    const date = e.end || e.start || '';
+    lines.push(`- **${date}** — ${e.role}, *${e.org}*, ${e.city}`);
+    if (e.dept) lines.push(`  - ${e.dept}`);
+  });
+  lines.push(``);
+
+  // Experience
+  lines.push(`## Professional Experience`);
+  CV.employment.forEach(e => {
+    const period = e.end ? `${e.start}–${e.end}` : `${e.start}–present`;
+    lines.push(`- **${period}** — ${e.role}${e.current ? ' *(current)*' : ''}`);
+    lines.push(`  - ${e.org}${e.dept ? ', ' + e.dept : ''}${e.city ? ', ' + e.city : ''}`);
+  });
+  lines.push(``);
+
+  // Publications
+  lines.push(`## Publications`);
+  CV.works.forEach(w => {
+    const link = w.doi ? ` — [DOI](https://doi.org/${w.doi})` : (w.url ? ` — [Link](${w.url})` : '');
+    lines.push(`- **${w.year||'n.d.'}** — ${w.title}. *${w.journal||''}*${link}`);
+  });
+  lines.push(``);
+
+  // Talks
+  lines.push(`## Talks & Media`);
+  CV.talks.forEach(t => {
+    lines.push(`- **${t.type}** (${t.date}) — [${t.title}](${t.url})`);
+    lines.push(`  - ${t.event}`);
+  });
+  lines.push(``);
+
+  // Grants
+  lines.push(`## Grants & Funding`);
+  CV.grants.forEach(g => {
+    lines.push(`- **${g.title}**`);
+    lines.push(`  - Funder: ${g.funder}${g.amount ? ' | Amount: ' + g.amount : ''} | ${g.period}`);
+    g.roles.forEach(r => lines.push(`  - ${r}`));
+  });
+  lines.push(``);
+
+  // Advisory
+  lines.push(`## Advisory & Innovation Roles`);
+  CV.advisory.forEach(a => {
+    lines.push(`- **${a.role}**, ${a.org}${a.current ? ' *(current)*' : ''}`);
+    lines.push(`  - ${a.body}`);
+    a.responsibilities.forEach(r => lines.push(`  - ${r}`));
+  });
+  lines.push(``);
+
+  // Awards
+  lines.push(`## Awards & Recognition`);
+  CV.awards.forEach(a => {
+    lines.push(`- **${a.year}** — ${a.title}, *${a.org}*`);
+    lines.push(`  - ${a.reason}`);
+  });
+  lines.push(``);
+  lines.push(`---`);
+  lines.push(`*Data sourced from ORCID (${ORCID_ID}) and curated records. Generated ${now}.*`);
+
+  const blob = new Blob([lines.join('\n')], { type: 'text/markdown' });
+  downloadBlob(blob, 'dustin-eirdosh-cv.md');
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a   = document.createElement('a');
+  a.href    = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════════════
+fetchORCID();
+</script>
+</body>
+</html>

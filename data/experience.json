@@ -1,0 +1,65 @@
+{
+  "experience": [
+    {
+      "id": "exp_001",
+      "role": "Education Innovation Coordinator",
+      "department": "Department of Comparative Cultural Psychology",
+      "institution": "Max Planck Institute for Evolutionary Anthropology",
+      "location": "Leipzig, Germany",
+      "start_date": "2019-04",
+      "end_date": null,
+      "current": true,
+      "url": "http://openevo.eva.mpg.de",
+      "key_project": "OpenEvo"
+    },
+    {
+      "id": "exp_002",
+      "role": "Guest Researcher",
+      "department": "AG Biologiedidaktik (Biology Education)",
+      "institution": "Friedrich-Schiller-Universität Jena",
+      "location": "Jena, Germany",
+      "start_date": "2022-02",
+      "end_date": null,
+      "current": true
+    },
+    {
+      "id": "exp_003",
+      "role": "Research Assistant",
+      "department": "Biology Education Research Group, Faculty of Life Sciences",
+      "institution": "University of Leipzig",
+      "location": "Leipzig, Germany",
+      "start_date": "2017-03",
+      "end_date": "2019-04",
+      "current": false
+    },
+    {
+      "id": "exp_004",
+      "role": "Co-Founder and Curriculum Designer",
+      "institution": "Global ESD (Education for Sustainable Development)",
+      "location": "International",
+      "start_date": "2015-06",
+      "end_date": null,
+      "current": true,
+      "url": "http://www.GlobalESD.org"
+    },
+    {
+      "id": "exp_005",
+      "role": "Project Leader & Curriculum Consultant",
+      "institution": "The Positive Education Action-Research Lab",
+      "department": "Faculty of Educational Psychology, ENS, University of Toliara",
+      "location": "Toliara, Atsimo Andrefana, Madagascar",
+      "start_date": "2012-09",
+      "end_date": "2015-06",
+      "current": false
+    },
+    {
+      "id": "exp_006",
+      "role": "K-12 Service-Learning & Youth Advocacy Coordinator",
+      "institution": "Mt. Desert Island Regional School Unit, Coordinated School Health Program",
+      "location": "Hancock County, Maine, USA",
+      "start_date": "2004-09",
+      "end_date": "2009-03",
+      "current": false
+    }
+  ]
+}
