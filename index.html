@@ -1625,13 +1625,20 @@ function defaultBio() {
 }
 
 function parseEducation(data) {
-  const groups = data?.['activities-summary']?.educations?.['affiliation-group'] || [];
   const parsed = [];
 
-  groups.forEach(group => {
+  // ORCID splits academic credentials across two separate groups:
+  // 'educations' (degrees) and 'qualifications' (also used for degrees by some institutions)
+  const eduGroups  = data?.['activities-summary']?.educations?.['affiliation-group']    || [];
+  const qualGroups = data?.['activities-summary']?.qualifications?.['affiliation-group'] || [];
+  const allGroups  = [...eduGroups, ...qualGroups];
+
+  allGroups.forEach(group => {
     (group?.summaries || []).forEach(s => {
-      const ed = s?.['education-summary'];
+      // summaries can be keyed as 'education-summary' or 'qualification-summary'
+      const ed = s?.['education-summary'] || s?.['qualification-summary'];
       if (!ed) return;
+
       parsed.push({
         role:    ed?.['role-title'] || 'Degree',
         dept:    ed?.department?.value || '',
@@ -1644,6 +1651,10 @@ function parseEducation(data) {
     });
   });
 
+  // Sort by end year descending (most recent first)
+  parsed.sort((a, b) => (parseInt(b.end) || 0) - (parseInt(a.end) || 0));
+
+  // Fallback if ORCID returns nothing at all
   if (!parsed.length) {
     parsed.push(
       { role:'PhD, Biology Education', org:'Friedrich Schiller University of Jena', dept:'Hosted by MPI EVA Leipzig — Magna Cum Laude (1,1)', city:'Jena', country:'DE', end:'2022' },
