@@ -1,5 +1,3 @@
-# Dustin Eirdosh
+# The CV Repository for Dustin Eirdosh
 
-
-- ORCID, OpenAlex, Zotero, Semantic Scholar, etc integrated publication base
-- Extended bio
+A visualization and data export tool for the ORCiD data for Dustin Eirdosh. 
