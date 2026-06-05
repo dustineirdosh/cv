@@ -4,829 +4,1169 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dustin Eirdosh, PhD — CV</title>
-  <style>
-    /* ── Reset & Base ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
+  <style>
+    /* ══════════════════════════════════════════════════════
+       DESIGN TOKENS  (OpenEvo palette)
+    ══════════════════════════════════════════════════════ */
     :root {
-      --ink:        #1a1a2e;
-      --ink-light:  #4a4a6a;
-      --accent:     #2d6a4f;
-      --accent2:    #52b788;
-      --accent-pale:#d8f3dc;
-      --bg:         #fafaf8;
-      --surface:    #ffffff;
-      --border:     #e8e8e0;
-      --tag-bg:     #eef7f1;
-      --tag-text:   #2d6a4f;
-      --warn:       #e76f51;
-      --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --radius:     8px;
-      --shadow:     0 2px 12px rgba(0,0,0,.07);
-      --shadow-lg:  0 8px 32px rgba(0,0,0,.10);
-      --transition: .2s ease;
+      --navy:          #1D3557;
+      --steel:         #457B9D;
+      --steel-light:   #A8C8E0;
+      --teal:          #2A9D8F;
+      --teal-light:    #A8D8D4;
+      --teal-pale:     #E8F5F4;
+      --bg:            #F0F4F8;
+      --surface:       #FFFFFF;
+      --surface-2:     #EEF2F7;
+      --border:        #DEE2E6;
+      --border-focus:  #457B9D;
+      --ink:           #1D3557;
+      --ink-mid:       #457B9D;
+      --ink-light:     #6B849A;
+      --ink-faint:     #9AB0C0;
+
+      --grad-hero:     linear-gradient(135deg, #1D3557 0%, #457B9D 100%);
+      --grad-accent:   linear-gradient(135deg, #2A9D8F 0%, #457B9D 100%);
+      --grad-subtle:   linear-gradient(135deg, #EEF2F7 0%, #E8F5F4 100%);
+
+      --shadow-sm:     0 1px 8px rgba(29,53,87,.06);
+      --shadow-md:     0 4px 20px rgba(29,53,87,.10);
+      --shadow-lg:     0 8px 32px rgba(29,53,87,.15);
+      --shadow-hero:   0 4px 20px rgba(29,53,87,.25);
+
+      --radius-sm:     6px;
+      --radius:        12px;
+      --radius-lg:     16px;
+      --radius-pill:   100px;
+
+      --transition:    .2s ease;
+      --font:          'Inter', system-ui, sans-serif;
+      --font-serif:    'Playfair Display', Georgia, serif;
     }
 
-    html { scroll-behavior: smooth; }
+    /* ══════════════════════════════════════════════════════
+       RESET + BASE
+    ══════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 15px; }
 
     body {
-      font-family: var(--font-sans);
-      background: var(--bg);
-      color: var(--ink);
+      font-family: var(--font);
+      background:  var(--bg);
+      color:       var(--ink);
       line-height: 1.65;
-      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Google Fonts ───────────────────────────────────────────── */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    a { color: var(--steel); text-decoration: none; }
+    a:hover { color: var(--teal); }
 
-    /* ── Layout ─────────────────────────────────────────────────── */
-    .page-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-
-    /* ── Top Nav ────────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       TOP NAV
+    ══════════════════════════════════════════════════════ */
     .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250,250,248,.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
+      position:        sticky;
+      top:             0;
+      z-index:         200;
+      background:      rgba(240,244,248,.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom:   1px solid var(--border);
+      padding:         0 24px;
+      height:          52px;
+      display:         flex;
+      align-items:     center;
       justify-content: space-between;
-      gap: 16px;
+      gap:             16px;
     }
 
     .nav-name {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      color: var(--accent);
-      white-space: nowrap;
+      font-family:  var(--font-serif);
+      font-size:    .95rem;
+      font-weight:  600;
+      color:        var(--navy);
+      white-space:  nowrap;
+      flex-shrink:  0;
     }
 
     .nav-links {
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
+      display:     flex;
+      gap:         2px;
+      flex-wrap:   wrap;
+      flex:        1;
+      justify-content: center;
     }
 
     .nav-links a {
-      font-size: .78rem;
-      font-weight: 500;
-      color: var(--ink-light);
-      text-decoration: none;
-      padding: 4px 10px;
-      border-radius: 20px;
-      transition: background var(--transition), color var(--transition);
+      font-size:     .75rem;
+      font-weight:   500;
+      color:         var(--ink-light);
+      padding:       5px 10px;
+      border-radius: var(--radius-pill);
+      transition:    background var(--transition), color var(--transition);
     }
 
     .nav-links a:hover {
-      background: var(--accent-pale);
-      color: var(--accent);
+      background: var(--teal-pale);
+      color:      var(--teal);
     }
 
-    .nav-actions {
-      display: flex;
-      gap: 8px;
-    }
+    .nav-actions { display: flex; gap: 8px; flex-shrink: 0; }
 
+    /* ══════════════════════════════════════════════════════
+       BUTTONS
+    ══════════════════════════════════════════════════════ */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 20px;
-      font-size: .78rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all var(--transition);
+      display:       inline-flex;
+      align-items:   center;
+      gap:           6px;
+      padding:       7px 16px;
+      border-radius: var(--radius-pill);
+      font-size:     .78rem;
+      font-weight:   600;
+      cursor:        pointer;
+      border:        none;
+      font-family:   var(--font);
+      transition:    all var(--transition);
       text-decoration: none;
+      white-space:   nowrap;
     }
 
     .btn-outline {
-      background: transparent;
-      border: 1.5px solid var(--accent);
-      color: var(--accent);
+      background:   transparent;
+      border:       1.5px solid var(--border-focus);
+      color:        var(--steel);
     }
-    .btn-outline:hover { background: var(--accent-pale); }
+    .btn-outline:hover {
+      background:   var(--teal-pale);
+      border-color: var(--teal);
+      color:        var(--teal);
+    }
 
     .btn-solid {
-      background: var(--accent);
-      color: #fff;
+      background: var(--grad-hero);
+      color:      #fff;
+      box-shadow: 0 2px 8px rgba(29,53,87,.20);
     }
-    .btn-solid:hover { background: #245a41; }
+    .btn-solid:hover {
+      transform:  translateY(-1px);
+      box-shadow: 0 4px 14px rgba(29,53,87,.30);
+    }
 
-    /* ── Hero Header ────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       PAGE WRAP
+    ══════════════════════════════════════════════════════ */
+    .page-wrap {
+      max-width: 920px;
+      margin:    0 auto;
+      padding:   0 24px 100px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════ */
     .hero {
-      padding: 56px 0 40px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
+      background:    var(--grad-hero);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      padding:       48px 40px 44px;
+      margin:        0 -24px 48px;
+      color:         #fff;
+      box-shadow:    var(--shadow-hero);
+      position:      relative;
+      overflow:      hidden;
+    }
+
+    /* decorative circles */
+    .hero::before, .hero::after {
+      content:       '';
+      position:      absolute;
+      border-radius: 50%;
+      opacity:       .08;
+      pointer-events: none;
+    }
+    .hero::before {
+      width:  400px; height: 400px;
+      background: #fff;
+      top: -160px; right: -80px;
+    }
+    .hero::after {
+      width:  240px; height: 240px;
+      background: var(--teal-light);
+      bottom: -100px; left: 40px;
     }
 
     .hero-grid {
-      display: grid;
+      display:     grid;
       grid-template-columns: 1fr auto;
-      gap: 32px;
+      gap:         32px;
       align-items: start;
+      position:    relative;
+      z-index:     1;
     }
 
     .hero-name {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      line-height: 1.15;
-      color: var(--ink);
+      font-family:  var(--font-serif);
+      font-size:    clamp(1.9rem, 4.5vw, 2.6rem);
+      line-height:  1.15;
+      color:        #fff;
       margin-bottom: 6px;
     }
 
     .hero-title {
-      font-size: .95rem;
-      color: var(--ink-light);
-      font-weight: 400;
-      margin-bottom: 16px;
+      font-size:    .88rem;
+      color:        rgba(255,255,255,.75);
+      margin-bottom: 14px;
+      font-weight:  400;
     }
 
     .hero-tagline {
-      font-size: 1.05rem;
-      color: var(--ink);
-      font-weight: 300;
-      max-width: 560px;
+      font-size:    1rem;
+      color:        rgba(255,255,255,.92);
+      font-weight:  300;
+      font-style:   italic;
+      max-width:    520px;
+      line-height:  1.7;
       margin-bottom: 20px;
-      font-style: italic;
+    }
+
+    .hero-keywords {
+      display:   flex;
+      flex-wrap: wrap;
+      gap:       6px;
+      margin-bottom: 22px;
+    }
+
+    .keyword-chip {
+      font-size:     .72rem;
+      font-weight:   500;
+      padding:       3px 10px;
+      border-radius: var(--radius-pill);
+      background:    rgba(255,255,255,.15);
+      color:         rgba(255,255,255,.9);
+      border:        1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(4px);
+      transition:    all var(--transition);
+    }
+    .keyword-chip:hover {
+      background: rgba(255,255,255,.25);
     }
 
     .hero-links {
-      display: flex;
+      display:   flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap:       8px;
     }
 
     .hero-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: .78rem;
-      font-weight: 500;
-      color: var(--accent);
+      display:       inline-flex;
+      align-items:   center;
+      gap:           5px;
+      font-size:     .75rem;
+      font-weight:   500;
+      color:         #fff;
+      padding:       5px 12px;
+      border-radius: var(--radius-pill);
+      background:    rgba(255,255,255,.15);
+      border:        1px solid rgba(255,255,255,.25);
+      transition:    all var(--transition);
       text-decoration: none;
-      padding: 4px 10px;
-      border: 1px solid var(--accent2);
-      border-radius: 20px;
-      background: var(--tag-bg);
-      transition: all var(--transition);
     }
-
     .hero-link:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+      background: rgba(255,255,255,.28);
+      color:      #fff;
+      transform:  translateY(-1px);
     }
 
-    .orcid-badge {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+    /* ORCID card */
+    .orcid-card {
+      background:    rgba(255,255,255,.12);
+      border:        1px solid rgba(255,255,255,.2);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-width: 140px;
-      text-align: center;
+      padding:       20px 18px;
+      display:       flex;
+      flex-direction: column;
+      align-items:   center;
+      gap:           10px;
+      min-width:     148px;
+      backdrop-filter: blur(8px);
+      position:      relative;
+      z-index:       1;
     }
 
-    .orcid-badge svg { width: 40px; height: 40px; }
+    .orcid-card svg { width: 44px; height: 44px; }
 
     .orcid-id {
-      font-family: 'Courier New', monospace;
-      font-size: .7rem;
-      color: var(--ink-light);
+      font-family:  'Courier New', monospace;
+      font-size:    .65rem;
+      color:        rgba(255,255,255,.7);
+      text-align:   center;
+      line-height:  1.5;
     }
 
+    /* status pill */
     .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: .7rem;
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-weight: 500;
+      display:       inline-flex;
+      align-items:   center;
+      gap:           5px;
+      font-size:     .68rem;
+      font-weight:   600;
+      padding:       3px 9px;
+      border-radius: var(--radius-pill);
+      letter-spacing: .02em;
     }
 
     .status-live {
-      background: #d1fae5;
-      color: #065f46;
+      background: rgba(42,157,143,.25);
+      color:      #a8e6df;
+      border:     1px solid rgba(42,157,143,.35);
     }
 
     .status-loading {
-      background: #fef3c7;
-      color: #92400e;
+      background: rgba(255,255,255,.15);
+      color:      rgba(255,255,255,.8);
+      border:     1px solid rgba(255,255,255,.2);
     }
 
     .status-error {
-      background: #fee2e2;
-      color: #991b1b;
+      background: rgba(231,111,81,.2);
+      color:      #f4a995;
+      border:     1px solid rgba(231,111,81,.3);
     }
 
-    .pulse {
-      width: 7px; height: 7px;
+    .pulse-dot {
+      width:         7px;
+      height:        7px;
       border-radius: 50%;
-      background: currentColor;
-      animation: pulse 1.6s ease-in-out infinite;
+      background:    currentColor;
+      animation:     pulse 1.8s ease-in-out infinite;
+      flex-shrink:   0;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .3; }
+      0%, 100% { opacity: 1;   transform: scale(1);    }
+      50%       { opacity: .35; transform: scale(.75);  }
     }
 
-    /* ── Section ────────────────────────────────────────────────── */
+    .sync-time {
+      font-size: .63rem;
+      color:     rgba(255,255,255,.5);
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECTION
+    ══════════════════════════════════════════════════════ */
     .section {
       margin-bottom: 52px;
-      scroll-margin-top: 70px;
+      scroll-margin-top: 64px;
     }
 
     .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
+      display:     flex;
+      align-items: center;
+      gap:         12px;
       margin-bottom: 24px;
     }
 
+    .section-icon {
+      width:         34px;
+      height:        34px;
+      border-radius: var(--radius-sm);
+      background:    var(--grad-accent);
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      font-size:     .9rem;
+      flex-shrink:   0;
+      box-shadow:    0 2px 6px rgba(42,157,143,.25);
+    }
+
     .section-title {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--ink);
+      font-family:  var(--font-serif);
+      font-size:    1.35rem;
+      color:        var(--navy);
     }
 
     .section-count {
-      font-size: .75rem;
-      color: var(--ink-light);
-      background: var(--border);
-      padding: 2px 8px;
-      border-radius: 10px;
+      font-size:     .72rem;
+      color:         var(--ink-light);
+      background:    var(--surface-2);
+      border:        1px solid var(--border);
+      padding:       2px 8px;
+      border-radius: var(--radius-pill);
+      font-weight:   500;
     }
 
-    .section-divider {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+    .section-rule {
+      flex:       1;
+      height:     1px;
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
     }
 
-    /* ── About ──────────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════════════════ */
+    .about-card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      padding:       24px 28px;
+      box-shadow:    var(--shadow-sm);
+    }
+
     .about-text {
-      font-size: 1rem;
+      font-size:   1rem;
       line-height: 1.8;
-      color: var(--ink);
-      max-width: 680px;
+      color:       var(--ink);
+      max-width:   680px;
     }
 
-    /* ── Timeline (Education & Experience) ──────────────────────── */
-    .timeline { display: flex; flex-direction: column; gap: 2px; }
+    /* ══════════════════════════════════════════════════════
+       TIMELINE
+    ══════════════════════════════════════════════════════ */
+    .timeline { display: flex; flex-direction: column; }
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 0 24px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      transition: background var(--transition);
+      display:               grid;
+      grid-template-columns: 108px 20px 1fr;
+      gap:                   0 16px;
+      padding:               18px 0;
+      border-bottom:         1px solid var(--border);
+      transition:            background var(--transition);
+      border-radius:         var(--radius-sm);
     }
 
     .timeline-item:last-child { border-bottom: none; }
 
-    .timeline-item:hover { background: var(--accent-pale); border-radius: var(--radius); padding-left: 12px; padding-right: 12px; }
+    .timeline-item:hover {
+      background:    var(--grad-subtle);
+      padding-left:  12px;
+      padding-right: 12px;
+    }
 
     .timeline-date {
-      font-size: .78rem;
-      color: var(--ink-light);
+      font-size:   .75rem;
+      color:       var(--ink-light);
       font-weight: 500;
+      text-align:  right;
       padding-top: 3px;
-      text-align: right;
       line-height: 1.4;
     }
 
+    .timeline-line-col {
+      display:        flex;
+      flex-direction: column;
+      align-items:    center;
+      gap:            0;
+    }
+
     .timeline-dot {
-      display: none;
+      width:         10px;
+      height:        10px;
+      border-radius: 50%;
+      background:    var(--grad-accent);
+      flex-shrink:   0;
+      margin-top:    5px;
+      box-shadow:    0 0 0 3px rgba(42,157,143,.15);
+    }
+
+    .timeline-dot.current {
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(42,157,143,.15); }
+      50%       { box-shadow: 0 0 0 6px rgba(42,157,143,.08); }
+    }
+
+    .timeline-connector {
+      flex:       1;
+      width:      1px;
+      background: var(--border);
+      margin-top: 4px;
     }
 
     .timeline-role {
-      font-weight: 600;
-      font-size: .95rem;
-      color: var(--ink);
+      font-weight:   600;
+      font-size:     .9rem;
+      color:         var(--ink);
       margin-bottom: 3px;
     }
 
     .timeline-org {
-      font-size: .88rem;
-      color: var(--accent);
+      font-size:     .84rem;
+      color:         var(--steel);
       margin-bottom: 3px;
     }
 
     .timeline-dept {
-      font-size: .82rem;
-      color: var(--ink-light);
+      font-size:     .78rem;
+      color:         var(--ink-light);
       margin-bottom: 4px;
     }
 
     .timeline-loc {
-      font-size: .78rem;
-      color: var(--ink-light);
-      display: flex;
+      font-size:   .74rem;
+      color:       var(--ink-faint);
+      display:     flex;
       align-items: center;
-      gap: 4px;
+      gap:         4px;
     }
 
     .badge-current {
-      display: inline-block;
-      font-size: .65rem;
-      font-weight: 700;
+      display:        inline-block;
+      font-size:      .62rem;
+      font-weight:    700;
       text-transform: uppercase;
       letter-spacing: .06em;
-      color: var(--accent);
-      background: var(--accent-pale);
-      border: 1px solid var(--accent2);
-      padding: 1px 7px;
-      border-radius: 10px;
-      margin-left: 8px;
+      color:          var(--teal);
+      background:     var(--teal-pale);
+      border:         1px solid var(--teal-light);
+      padding:        1px 7px;
+      border-radius:  var(--radius-pill);
+      margin-left:    8px;
       vertical-align: middle;
     }
 
-    /* ── Publications ───────────────────────────────────────────── */
-    .pub-filters {
-      display: flex;
+    /* ══════════════════════════════════════════════════════
+       FEATURED PUBLICATIONS
+    ══════════════════════════════════════════════════════ */
+    .featured-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap:                   16px;
+      margin-bottom:         36px;
+    }
+
+    .featured-card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-top:    3px solid var(--teal);
+      border-radius: var(--radius);
+      padding:       20px;
+      box-shadow:    var(--shadow-sm);
+      display:       flex;
+      flex-direction: column;
+      gap:           10px;
+      transition:    all var(--transition);
+    }
+
+    .featured-card:hover {
+      box-shadow:    var(--shadow-md);
+      border-color:  var(--steel);
+      border-top-color: var(--teal);
+      transform:     translateY(-2px);
+    }
+
+    .featured-label {
+      font-size:      .65rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color:          var(--teal);
+      display:        flex;
+      align-items:    center;
+      gap:            5px;
+    }
+
+    .featured-label::before {
+      content:       '★';
+      font-size:     .7rem;
+    }
+
+    .featured-title {
+      font-weight:   600;
+      font-size:     .85rem;
+      line-height:   1.45;
+      color:         var(--ink);
+    }
+
+    .featured-title a {
+      color: inherit;
+    }
+    .featured-title a:hover { color: var(--teal); }
+
+    .featured-venue {
+      font-size:  .76rem;
+      color:      var(--ink-light);
+      font-style: italic;
+    }
+
+    .featured-annotation {
+      font-size:   .8rem;
+      color:       var(--ink-mid);
+      line-height: 1.6;
+      padding:     10px 12px;
+      background:  var(--grad-subtle);
+      border-left: 3px solid var(--teal-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      flex:        1;
+    }
+
+    .featured-footer {
+      display:   flex;
+      gap:       8px;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
+      margin-top: auto;
     }
 
-    .filter-btn {
-      font-size: .75rem;
-      padding: 4px 12px;
-      border-radius: 14px;
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      color: var(--ink-light);
-      cursor: pointer;
-      transition: all var(--transition);
-      font-weight: 500;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+    /* ══════════════════════════════════════════════════════
+       PUBLICATIONS LIST
+    ══════════════════════════════════════════════════════ */
+    .pub-list { display: flex; flex-direction: column; gap: 10px; }
 
     .pub-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background:    var(--surface);
+      border:        1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-      transition: all var(--transition);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 18px;
-      align-items: start;
+      padding:       16px 20px;
+      box-shadow:    var(--shadow-sm);
+      display:       grid;
+      grid-template-columns: 50px 1fr;
+      gap:           0 16px;
+      align-items:   start;
+      transition:    all var(--transition);
     }
 
     .pub-card:hover {
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent2);
-      transform: translateY(-1px);
+      box-shadow:    var(--shadow-md);
+      border-color:  var(--steel-light);
+      transform:     translateX(2px);
     }
 
-    .pub-year-col {
-      text-align: center;
-      min-width: 44px;
-    }
+    .pub-card.has-note { border-left: 3px solid var(--steel-light); }
+
+    .pub-year-col { text-align: center; }
 
     .pub-year {
-      font-size: .75rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-pale);
-      padding: 3px 6px;
-      border-radius: 6px;
-      white-space: nowrap;
+      font-size:     .72rem;
+      font-weight:   700;
+      color:         var(--steel);
+      background:    var(--surface-2);
+      border:        1px solid var(--border);
+      padding:       3px 5px;
+      border-radius: var(--radius-sm);
+      display:       block;
+      text-align:    center;
     }
 
     .pub-type-icon {
-      font-size: .65rem;
-      color: var(--ink-light);
-      margin-top: 5px;
-      display: block;
-      text-align: center;
+      font-size:   .7rem;
+      color:       var(--ink-faint);
+      margin-top:  5px;
+      display:     block;
+      text-align:  center;
     }
 
     .pub-title {
-      font-weight: 600;
-      font-size: .9rem;
-      color: var(--ink);
-      margin-bottom: 5px;
-      line-height: 1.45;
-    }
-
-    .pub-title a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .pub-title a:hover { color: var(--accent); text-decoration: underline; }
-
-    .pub-authors {
-      font-size: .8rem;
-      color: var(--ink-light);
-      margin-bottom: 4px;
-    }
-
-    .pub-authors .self { color: var(--accent); font-weight: 600; }
-
-    .pub-venue {
-      font-size: .8rem;
-      color: var(--ink-light);
-      font-style: italic;
-      margin-bottom: 8px;
-    }
-
-    .pub-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .tag {
-      font-size: .68rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      font-weight: 500;
-    }
-
-    .oa-badge {
-      font-size: .68rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: #fef3c7;
-      color: #92400e;
-      font-weight: 600;
-    }
-
-    .doi-link {
-      font-size: .72rem;
-      color: var(--accent);
-      text-decoration: none;
-      padding: 2px 8px;
-      border: 1px solid var(--accent2);
-      border-radius: 10px;
-      transition: all var(--transition);
-    }
-
-    .doi-link:hover { background: var(--accent); color: #fff; }
-
-    /* ── Talks ──────────────────────────────────────────────────── */
-    .talks-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .talk-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      transition: all var(--transition);
-    }
-
-    .talk-card:hover {
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent2);
-    }
-
-    .talk-icon {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: var(--accent-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.1rem;
-    }
-
-    .talk-type {
-      font-size: .7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .talk-title {
-      font-weight: 600;
-      font-size: .92rem;
-      margin-bottom: 4px;
-      color: var(--ink);
-    }
-
-    .talk-meta {
-      font-size: .8rem;
-      color: var(--ink-light);
-      margin-bottom: 8px;
-    }
-
-    /* ── Grants ─────────────────────────────────────────────────── */
-    .grants-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .grant-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .grant-title {
-      font-weight: 600;
-      font-size: .95rem;
-      margin-bottom: 6px;
-    }
-
-    .grant-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .grant-amount {
-      font-size: .85rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .grant-funder {
-      font-size: .82rem;
-      color: var(--ink-light);
-    }
-
-    .grant-period {
-      font-size: .82rem;
-      color: var(--ink-light);
-    }
-
-    .grant-roles { margin-top: 8px; }
-
-    .grant-roles li {
-      font-size: .82rem;
-      color: var(--ink-light);
-      margin-left: 16px;
-      margin-bottom: 2px;
-    }
-
-    /* ── Advisory ───────────────────────────────────────────────── */
-    .advisory-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .advisory-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .advisory-role {
-      font-weight: 700;
-      font-size: .9rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      font-size: .75rem;
-      margin-bottom: 4px;
-    }
-
-    .advisory-org {
-      font-weight: 600;
-      font-size: .95rem;
-      margin-bottom: 4px;
-    }
-
-    .advisory-body {
-      font-size: .82rem;
-      color: var(--ink-light);
-      margin-bottom: 10px;
-    }
-
-    .advisory-resp li {
-      font-size: .82rem;
-      color: var(--ink-light);
-      margin-left: 16px;
+      font-weight:   600;
+      font-size:     .86rem;
+      line-height:   1.45;
+      color:         var(--ink);
       margin-bottom: 3px;
     }
 
-    /* ── Awards ─────────────────────────────────────────────────── */
-    .awards-list { display: flex; gap: 16px; flex-wrap: wrap; }
+    .pub-title a { color: inherit; }
+    .pub-title a:hover { color: var(--teal); }
+
+    .pub-venue {
+      font-size:     .78rem;
+      color:         var(--ink-light);
+      font-style:    italic;
+      margin-bottom: 6px;
+    }
+
+    .pub-note {
+      font-size:     .76rem;
+      color:         var(--ink-mid);
+      line-height:   1.55;
+      margin-bottom: 8px;
+      padding:       8px 10px;
+      background:    var(--surface-2);
+      border-radius: var(--radius-sm);
+      border-left:   2px solid var(--steel-light);
+    }
+
+    .pub-footer {
+      display:     flex;
+      align-items: center;
+      flex-wrap:   wrap;
+      gap:         6px;
+    }
+
+    /* tags + badges */
+    .chip {
+      display:       inline-flex;
+      align-items:   center;
+      padding:       2px 9px;
+      border-radius: var(--radius-pill);
+      font-size:     .68rem;
+      font-weight:   500;
+    }
+
+    .chip-type {
+      background: var(--surface-2);
+      color:      var(--ink-light);
+      border:     1px solid var(--border);
+    }
+
+    .chip-source-curated {
+      background: #EEF2F7;
+      color:      var(--steel);
+      border:     1px solid #C5D0DC;
+    }
+
+    .chip-oa {
+      background: #FEF9E7;
+      color:      #A0540A;
+      border:     1px solid #F5DFB5;
+    }
+
+    .doi-link {
+      font-size:     .7rem;
+      font-weight:   500;
+      color:         var(--teal);
+      padding:       2px 9px;
+      border:        1px solid var(--teal-light);
+      border-radius: var(--radius-pill);
+      transition:    all var(--transition);
+    }
+    .doi-link:hover {
+      background: var(--teal);
+      color:      #fff;
+      border-color: var(--teal);
+    }
+
+    /* section subheading */
+    .subheading {
+      font-size:     .78rem;
+      font-weight:   700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color:         var(--ink-light);
+      margin-bottom: 14px;
+      display:       flex;
+      align-items:   center;
+      gap:           8px;
+    }
+    .subheading::after {
+      content:    '';
+      flex:       1;
+      height:     1px;
+      background: var(--border);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       TALKS
+    ══════════════════════════════════════════════════════ */
+    .talks-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .talk-card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      padding:       20px 22px;
+      box-shadow:    var(--shadow-sm);
+      display:       flex;
+      gap:           18px;
+      align-items:   flex-start;
+      transition:    all var(--transition);
+    }
+    .talk-card:hover {
+      box-shadow:  var(--shadow-md);
+      border-color: var(--steel-light);
+    }
+
+    .talk-icon-wrap {
+      width:          42px;
+      height:         42px;
+      border-radius:  50%;
+      background:     var(--grad-hero);
+      display:        flex;
+      align-items:    center;
+      justify-content: center;
+      font-size:      1.1rem;
+      flex-shrink:    0;
+      box-shadow:     0 2px 8px rgba(29,53,87,.2);
+    }
+
+    .talk-type {
+      font-size:      .68rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color:          var(--steel);
+      margin-bottom:  3px;
+    }
+
+    .talk-title {
+      font-weight:   600;
+      font-size:     .9rem;
+      color:         var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .talk-meta {
+      font-size:     .78rem;
+      color:         var(--ink-light);
+      margin-bottom: 10px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       PANEL CARD  (grants / advisory)
+    ══════════════════════════════════════════════════════ */
+    .panel-card {
+      background:    var(--surface);
+      border-radius: var(--radius);
+      border:        1px solid var(--border);
+      padding:       20px 24px;
+      margin-bottom: 14px;
+      box-shadow:    var(--shadow-sm);
+      transition:    box-shadow var(--transition);
+    }
+    .panel-card:hover { box-shadow: var(--shadow-md); }
+
+    .panel-card.accent-left {
+      border-left: 4px solid var(--steel);
+    }
+
+    .panel-title {
+      font-weight:   600;
+      font-size:     .92rem;
+      color:         var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .panel-meta {
+      display:       flex;
+      flex-wrap:     wrap;
+      gap:           10px;
+      margin-bottom: 10px;
+      align-items:   center;
+    }
+
+    .panel-meta-item {
+      font-size:   .8rem;
+      color:       var(--ink-light);
+      display:     flex;
+      align-items: center;
+      gap:         4px;
+    }
+
+    .panel-meta-item.highlight {
+      font-weight: 700;
+      color:       var(--teal);
+    }
+
+    .panel-role-label {
+      font-size:      .68rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color:          var(--steel);
+      margin-bottom:  4px;
+    }
+
+    .panel-org {
+      font-weight:   600;
+      font-size:     .92rem;
+      margin-bottom: 4px;
+    }
+
+    .panel-body {
+      font-size:     .82rem;
+      color:         var(--ink-light);
+      margin-bottom: 10px;
+    }
+
+    .resp-list { list-style: none; margin-top: 8px; }
+
+    .resp-list li {
+      font-size:     .8rem;
+      color:         var(--ink-light);
+      padding:       3px 0 3px 14px;
+      position:      relative;
+      border-bottom: 1px solid var(--surface-2);
+    }
+    .resp-list li:last-child { border-bottom: none; }
+
+    .resp-list li::before {
+      content:  '›';
+      position: absolute;
+      left:     0;
+      color:    var(--teal);
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       AWARDS
+    ══════════════════════════════════════════════════════ */
+    .awards-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap:                   16px;
+    }
 
     .award-card {
-      flex: 1;
-      min-width: 240px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background:    var(--surface);
+      border:        1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      text-align: center;
+      padding:       22px 20px;
+      box-shadow:    var(--shadow-sm);
+      text-align:    center;
+      transition:    all var(--transition);
+    }
+    .award-card:hover {
+      box-shadow: var(--shadow-md);
+      transform:  translateY(-2px);
     }
 
     .award-year {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-family: var(--font-serif);
+      font-family:  var(--font-serif);
+      font-size:    2rem;
+      font-weight:  700;
+      background:   var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height:  1;
+      margin-bottom: 8px;
     }
 
     .award-title {
-      font-weight: 600;
-      font-size: .9rem;
-      margin: 6px 0 4px;
+      font-weight:   600;
+      font-size:     .85rem;
+      margin-bottom: 4px;
     }
 
     .award-org {
-      font-size: .8rem;
-      color: var(--ink-light);
+      font-size:     .76rem;
+      color:         var(--steel);
       margin-bottom: 8px;
     }
 
     .award-reason {
-      font-size: .78rem;
-      color: var(--ink-light);
+      font-size:  .74rem;
+      color:      var(--ink-light);
       font-style: italic;
+      line-height: 1.5;
     }
 
-    /* ── Loading Skeleton ───────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       STATUS BAR  (inside hero bottom row)
+    ══════════════════════════════════════════════════════ */
+    .status-bar {
+      background:    rgba(255,255,255,.12);
+      border-radius: var(--radius-sm);
+      padding:       7px 14px;
+      margin-top:    20px;
+      font-size:     .76rem;
+      color:         rgba(255,255,255,.75);
+      display:       flex;
+      gap:           20px;
+      flex-wrap:     wrap;
+      align-items:   center;
+      position:      relative;
+      z-index:       1;
+    }
+
+    .status-bar a {
+      color:            rgba(255,255,255,.9);
+      text-decoration:  underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SKELETON LOADING
+    ══════════════════════════════════════════════════════ */
     .skeleton {
-      background: linear-gradient(90deg, #f0f0ec 25%, #e8e8e2 50%, #f0f0ec 75%);
+      background:      linear-gradient(90deg, #eaeef3 25%, #dfe4ea 50%, #eaeef3 75%);
       background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 4px;
+      animation:       shimmer 1.5s infinite;
+      border-radius:   4px;
     }
 
     @keyframes shimmer {
-      0% { background-position: 200% 0; }
+      0%   { background-position:  200% 0; }
       100% { background-position: -200% 0; }
     }
 
-    .skeleton-line {
-      height: 14px;
-      margin-bottom: 8px;
-    }
+    .sk-line { height: 13px; margin-bottom: 9px; }
+    .sk-short  { width: 38%; }
+    .sk-medium { width: 62%; }
+    .sk-long   { width: 88%; }
+    .sk-full   { width: 100%; }
 
-    .skeleton-line.short { width: 40%; }
-    .skeleton-line.medium { width: 65%; }
-    .skeleton-line.long { width: 90%; }
-
-    /* ── Error State ────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       ERROR STATE
+    ══════════════════════════════════════════════════════ */
     .error-box {
-      background: #fff5f5;
-      border: 1px solid #fed7d7;
-      border-radius: var(--radius);
-      padding: 20px;
-      color: #742a2a;
-      font-size: .88rem;
+      background:    #FFF5F5;
+      border:        1px solid #FED7D7;
+      border-radius: var(--radius-sm);
+      padding:       16px 20px;
+      color:         #742A2A;
+      font-size:     .84rem;
     }
 
-    /* ── Footer ─────────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════ */
     .footer {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
+      margin-top:    64px;
+      padding-top:   22px;
+      border-top:    1px solid var(--border);
+      display:       flex;
       justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: .78rem;
-      color: var(--ink-light);
+      align-items:   center;
+      flex-wrap:     wrap;
+      gap:           12px;
+      font-size:     .74rem;
+      color:         var(--ink-faint);
     }
 
-    .footer a { color: var(--accent); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    .footer a { color: var(--steel); }
+    .footer a:hover { color: var(--teal); }
 
-    /* ── Export Modal ───────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       EXPORT MODAL
+    ══════════════════════════════════════════════════════ */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.45);
-      z-index: 200;
-      align-items: center;
+      display:         none;
+      position:        fixed;
+      inset:           0;
+      background:      rgba(29,53,87,.5);
+      backdrop-filter: blur(4px);
+      z-index:         300;
+      align-items:     center;
       justify-content: center;
     }
-
     .modal-overlay.open { display: flex; }
 
     .modal {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 32px;
-      max-width: 480px;
-      width: calc(100% - 48px);
-      box-shadow: var(--shadow-lg);
-      position: relative;
+      background:    var(--surface);
+      border-radius: var(--radius-lg);
+      padding:       32px 28px;
+      max-width:     460px;
+      width:         calc(100% - 48px);
+      box-shadow:    var(--shadow-lg);
+      position:      relative;
+      animation:     modal-in .2s ease;
+    }
+
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .modal-close {
+      position:   absolute;
+      top:        14px; right: 14px;
+      background: var(--surface-2);
+      border:     none;
+      width:      28px; height: 28px;
+      border-radius: 50%;
+      font-size:  1rem;
+      cursor:     pointer;
+      color:      var(--ink-light);
+      display:    flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .modal-close:hover {
+      background: var(--border);
+      color:      var(--ink);
     }
 
     .modal h2 {
-      font-family: var(--font-serif);
-      margin-bottom: 8px;
+      font-family:   var(--font-serif);
+      font-size:     1.3rem;
+      margin-bottom: 6px;
+      color:         var(--navy);
     }
 
     .modal p {
-      font-size: .88rem;
-      color: var(--ink-light);
+      font-size:     .84rem;
+      color:         var(--ink-light);
       margin-bottom: 20px;
     }
 
-    .modal-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .modal-options { display: flex; flex-direction: column; gap: 10px; }
 
     .modal-option {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1.5px solid var(--border);
+      display:       flex;
+      align-items:   center;
+      gap:           14px;
+      padding:       14px 16px;
+      border:        1.5px solid var(--border);
       border-radius: var(--radius);
-      cursor: pointer;
-      transition: all var(--transition);
-      background: var(--bg);
+      cursor:        pointer;
+      transition:    all var(--transition);
+      background:    var(--bg);
     }
-
     .modal-option:hover {
-      border-color: var(--accent);
-      background: var(--accent-pale);
+      border-color: var(--steel);
+      background:   var(--teal-pale);
+      transform:    translateX(3px);
     }
 
     .modal-option-icon {
-      font-size: 1.5rem;
-      width: 36px;
+      font-size:  1.6rem;
+      width:      40px;
       text-align: center;
+      flex-shrink: 0;
     }
 
-    .modal-option-label { font-weight: 600; font-size: .88rem; }
-    .modal-option-desc { font-size: .78rem; color: var(--ink-light); }
+    .modal-option-label { font-weight: 600; font-size: .86rem; color: var(--ink); }
+    .modal-option-desc  { font-size:   .74rem; color:   var(--ink-light); margin-top: 2px; }
 
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--ink-light);
-      line-height: 1;
-    }
-
-    .modal-close:hover { color: var(--ink); }
-
-    /* ── Responsive ─────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════ */
     @media (max-width: 640px) {
+      .hero { padding: 36px 24px 32px; margin: 0 -24px 40px; }
       .hero-grid { grid-template-columns: 1fr; }
-      .orcid-badge { display: none; }
-      .timeline-item { grid-template-columns: 80px 1fr; gap: 0 12px; }
-      .top-nav { flex-wrap: wrap; gap: 8px; }
-      .nav-links { display: none; }
+      .orcid-card { display: none; }
+      .timeline-item { grid-template-columns: 80px 16px 1fr; gap: 0 10px; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .awards-grid   { grid-template-columns: 1fr; }
+      .nav-links     { display: none; }
+      .top-nav       { padding: 0 16px; }
     }
 
-    /* ── Print ──────────────────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       PRINT
+    ══════════════════════════════════════════════════════ */
     @media print {
-      .top-nav, .nav-actions, .pub-filters, .btn,
-      .modal-overlay, .footer { display: none !important; }
-      body { font-size: 11pt; }
-      .pub-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+      .top-nav, .nav-actions, .btn, .modal-overlay,
+      .hero::before, .hero::after { display: none !important; }
+      body { font-size: 11pt; background: white; color: black; }
+      .hero {
+        background: white !important;
+        border: 2px solid #1D3557;
+        color: #1D3557 !important;
+        box-shadow: none;
+        margin: 0 0 24pt;
+        border-radius: 0;
+      }
+      .hero * { color: #1D3557 !important; }
+      .pub-card, .panel-card, .talk-card, .award-card,
+      .featured-card, .about-card {
+        box-shadow: none;
+        break-inside: avoid;
+        border-color: #ccc;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ── Top Navigation ──────────────────────────────────────────── -->
+<!-- ── Top Nav ──────────────────────────────────────────────────── -->
 <nav class="top-nav">
   <span class="nav-name">Dustin Eirdosh, PhD</span>
   <div class="nav-links">
@@ -840,22 +1180,23 @@
     <a href="#awards">Awards</a>
   </div>
   <div class="nav-actions">
-    <button class="btn btn-outline" onclick="openExportModal()">
-      ↓ Export
-    </button>
+    <button class="btn btn-outline" onclick="openExportModal()">↓ Export</button>
   </div>
 </nav>
 
-<!-- ── Main Content ────────────────────────────────────────────── -->
+<!-- ── Page Wrap ────────────────────────────────────────────────── -->
 <div class="page-wrap">
 
-  <!-- Hero -->
+  <!-- Hero ─────────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="hero-grid">
       <div>
         <h1 class="hero-name">Dustin Eirdosh, <em>PhD</em></h1>
-        <p class="hero-title" id="hero-title">Education Innovation Coordinator · Max Planck Institute for Evolutionary Anthropology</p>
+        <p class="hero-title">Education Innovation Coordinator · Max Planck Institute for Evolutionary Anthropology</p>
         <p class="hero-tagline">"Educational innovation for understanding the human condition"</p>
+        <div class="hero-keywords" id="hero-keywords">
+          <!-- populated from ORCID keywords -->
+        </div>
         <div class="hero-links">
           <a class="hero-link" href="http://openevo.eva.mpg.de" target="_blank">🌱 OpenEvo</a>
           <a class="hero-link" href="http://www.GlobalESD.org" target="_blank">🌍 GlobalESD</a>
@@ -863,145 +1204,154 @@
           <a class="hero-link" href="https://www.researchgate.net/profile/Dustin-Eirdosh" target="_blank">📄 ResearchGate</a>
           <a class="hero-link" href="mailto:dustin.eirdosh@eva.mpg.de">✉️ Email</a>
         </div>
+        <div class="status-bar">
+          <span>ORCID: <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">0000-0002-3836-1501</a></span>
+          <span id="footer-sync"></span>
+        </div>
       </div>
-      <div class="orcid-badge">
-        <!-- ORCID logo SVG -->
+
+      <!-- ORCID badge -->
+      <div class="orcid-card">
         <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
           <circle cx="128" cy="128" r="128" fill="#A6CE39"/>
-          <path d="M86.3 186.2H70.9V79.1h15.4v107.1zm36.8 0h-15.4V79.1h15.4v107.1z" fill="#fff"/>
-          <path d="M128 128c0-27.6 22.4-50 50-50s50 22.4 50 50-22.4 50-50 50-50-22.4-50-50zm15.4 0c0 19.1 15.5 34.6 34.6 34.6s34.6-15.5 34.6-34.6-15.5-34.6-34.6-34.6-34.6 15.5-34.6 34.6z" fill="#fff"/>
-          <ellipse cx="79.4" cy="59.1" rx="9.1" ry="9.4" fill="#fff"/>
+          <rect x="70" y="78" width="16" height="108" rx="3" fill="#fff"/>
+          <rect x="103" y="78" width="16" height="108" rx="3" fill="#fff"/>
+          <path d="M127 128c0-27.6 22.4-50 50-50s50 22.4 50 50-22.4 50-50 50-50-22.4-50-50zm16 0c0 18.8 15.2 34 34 34s34-15.2 34-34-15.2-34-34-34-34 15.2-34 34z" fill="#fff"/>
+          <circle cx="78" cy="60" r="9" fill="#fff"/>
         </svg>
-        <span class="orcid-id">0000-0002-3836-1501</span>
+        <span class="orcid-id">0000-0002-<br>3836-1501</span>
         <span id="orcid-status" class="status-pill status-loading">
-          <span class="pulse"></span> Loading…
+          <span class="pulse-dot"></span> Loading…
         </span>
-        <span id="last-sync" style="font-size:.65rem;color:var(--ink-light);"></span>
+        <span id="last-sync" class="sync-time"></span>
       </div>
     </div>
   </header>
 
-  <!-- About -->
+  <!-- About ────────────────────────────────────────────────────── -->
   <section class="section" id="about">
     <div class="section-header">
+      <div class="section-icon">👤</div>
       <h2 class="section-title">About</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
     <div id="about-content">
-      <div class="skeleton skeleton-line long"></div>
-      <div class="skeleton skeleton-line long"></div>
-      <div class="skeleton skeleton-line medium"></div>
+      <div class="about-card">
+        <div class="sk-line sk-full skeleton"></div>
+        <div class="sk-line sk-long skeleton"></div>
+        <div class="sk-line sk-medium skeleton"></div>
+      </div>
     </div>
   </section>
 
-  <!-- Education -->
+  <!-- Education ────────────────────────────────────────────────── -->
   <section class="section" id="education">
     <div class="section-header">
+      <div class="section-icon">🎓</div>
       <h2 class="section-title">Education &amp; Training</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
     <div id="education-content">
-      <div class="skeleton skeleton-line medium"></div>
-      <div class="skeleton skeleton-line short"></div>
+      <div class="sk-line sk-medium skeleton" style="margin-bottom:10px;height:18px;"></div>
+      <div class="sk-line sk-long skeleton"   style="height:18px;"></div>
     </div>
   </section>
 
-  <!-- Experience -->
+  <!-- Experience ───────────────────────────────────────────────── -->
   <section class="section" id="experience">
     <div class="section-header">
+      <div class="section-icon">💼</div>
       <h2 class="section-title">Professional Experience</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
     <div id="experience-content">
-      <div class="skeleton skeleton-line long"></div>
-      <div class="skeleton skeleton-line medium"></div>
+      <div class="sk-line sk-long   skeleton" style="margin-bottom:10px;height:18px;"></div>
+      <div class="sk-line sk-medium skeleton" style="height:18px;"></div>
     </div>
   </section>
 
-  <!-- Publications -->
+  <!-- Publications ─────────────────────────────────────────────── -->
   <section class="section" id="publications">
     <div class="section-header">
+      <div class="section-icon">📚</div>
       <h2 class="section-title">Publications</h2>
       <span class="section-count" id="pub-count">—</span>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
-    <div class="pub-filters" id="pub-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="journal-article">Journal Articles</button>
-      <button class="filter-btn" data-filter="book-chapter">Book Chapters</button>
-      <button class="filter-btn" data-filter="other">Other</button>
+
+    <!-- Featured -->
+    <div id="featured-publications-wrap" style="display:none;">
+      <p class="subheading">★ Featured</p>
+      <div class="featured-grid" id="featured-publications"></div>
+      <p class="subheading" style="margin-top:28px;">All Publications</p>
     </div>
+
     <div id="publications-content" class="pub-list">
-      <div class="skeleton skeleton-line long"></div>
-      <div class="skeleton skeleton-line medium"></div>
-      <div class="skeleton skeleton-line long"></div>
+      <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+      <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+      <div class="sk-line sk-long   skeleton" style="height:60px;border-radius:10px;"></div>
     </div>
   </section>
 
-  <!-- Talks -->
+  <!-- Talks ────────────────────────────────────────────────────── -->
   <section class="section" id="talks">
     <div class="section-header">
+      <div class="section-icon">🎤</div>
       <h2 class="section-title">Talks &amp; Media</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
-    <div id="talks-content" class="talks-list">
-      <!-- Static data — not in ORCID API -->
-    </div>
+    <div id="talks-content" class="talks-list"></div>
   </section>
 
-  <!-- Grants -->
+  <!-- Grants ───────────────────────────────────────────────────── -->
   <section class="section" id="grants">
     <div class="section-header">
+      <div class="section-icon">💰</div>
       <h2 class="section-title">Grants &amp; Funding</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
-    <div id="grants-content" class="grants-list">
-      <!-- Static data -->
-    </div>
+    <div id="grants-content"></div>
   </section>
 
-  <!-- Advisory -->
+  <!-- Advisory ─────────────────────────────────────────────────── -->
   <section class="section" id="advisory">
     <div class="section-header">
+      <div class="section-icon">🔬</div>
       <h2 class="section-title">Advisory &amp; Innovation Roles</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
-    <div id="advisory-content" class="advisory-list">
-      <!-- Static data -->
-    </div>
+    <div id="advisory-content"></div>
   </section>
 
-  <!-- Awards -->
+  <!-- Awards ───────────────────────────────────────────────────── -->
   <section class="section" id="awards">
     <div class="section-header">
+      <div class="section-icon">🏆</div>
       <h2 class="section-title">Awards &amp; Recognition</h2>
-      <div class="section-divider"></div>
+      <div class="section-rule"></div>
     </div>
-    <div id="awards-content" class="awards-list">
-      <!-- Static data -->
-    </div>
+    <div id="awards-content" class="awards-grid"></div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer ───────────────────────────────────────────────────── -->
   <footer class="footer">
-    <div>
-      Data sourced from <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">ORCID</a>
-      and supplemented with curated records.
-      <span id="footer-sync"></span>
-    </div>
-    <div>
-      <a href="https://github.com/dustin-eirdosh/cv" target="_blank">View source on GitHub</a>
-      · Built with ORCID Public API
-    </div>
+    <span>
+      Data sourced from <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">ORCID Public API</a>
+      + <a href="data/publications.json" target="_blank">curated records</a>.
+      <span id="footer-sync-2"></span>
+    </span>
+    <span>
+      <a href="https://github.com/dustineirdosh/cv" target="_blank">View source on GitHub</a>
+    </span>
   </footer>
 </div>
 
-<!-- ── Export Modal ────────────────────────────────────────────── -->
+<!-- ── Export Modal ─────────────────────────────────────────────── -->
 <div class="modal-overlay" id="export-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeExportModal()">✕</button>
     <h2>Export CV</h2>
-    <p>Choose your preferred format. Data is sourced live from ORCID plus curated records.</p>
+    <p>Choose your preferred format. All data is sourced live from ORCID plus your curated records.</p>
     <div class="modal-options">
       <div class="modal-option" onclick="exportPDF()">
         <span class="modal-option-icon">📄</span>
@@ -1011,44 +1361,56 @@
         </div>
       </div>
       <div class="modal-option" onclick="exportJSON()">
-        <span class="modal-option-icon">{ }</span>
+        <span class="modal-option-icon">{  }</span>
         <div>
           <div class="modal-option-label">JSON — Machine Readable</div>
-          <div class="modal-option-desc">Full structured dataset including all ORCID + curated data</div>
+          <div class="modal-option-desc">Full structured dataset: ORCID + curated data + annotations</div>
         </div>
       </div>
       <div class="modal-option" onclick="exportMarkdown()">
         <span class="modal-option-icon">Ⅿ↓</span>
         <div>
           <div class="modal-option-label">Markdown — Plain Text</div>
-          <div class="modal-option-desc">Portable .md format suitable for GitHub README or Obsidian</div>
+          <div class="modal-option-desc">Portable .md for GitHub README or note-taking apps</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════════ -->
 <script>
-// ══════════════════════════════════════════════════════════════════
-//  CONFIG
-// ══════════════════════════════════════════════════════════════════
+/* ────────────────────────────────────────────────────────────────
+   CONFIG
+──────────────────────────────────────────────────────────────── */
 const ORCID_ID   = '0000-0002-3836-1501';
 const ORCID_BASE = 'https://pub.orcid.org/v3.0';
-const HEADERS    = { 'Accept': 'application/json' };
+const PUB_JSON   = 'data/publications.json';
 
-// Master in-memory store — filled from ORCID + static data
+/* ────────────────────────────────────────────────────────────────
+   STATE
+──────────────────────────────────────────────────────────────── */
 let CV = {
-  profile: null,
-  education: [],
+  profile:    null,
+  education:  [],
   employment: [],
-  works: [],
-  fundings: [],
-  // Static enrichment (not in ORCID)
+  works:      [],
+  pubMeta:    { featured: [], annotations: {}, additional: [] },
+  talks:      [],
+  grants:     [],
+  advisory:   [],
+  awards:     []
+};
+
+/* ────────────────────────────────────────────────────────────────
+   STATIC DATA  (not in ORCID)
+──────────────────────────────────────────────────────────────── */
+const STATIC = {
   talks: [
     {
-      id: 'talk_001',
-      type: 'Opening Keynote',
-      icon: '🎤',
+      id: 'talk_001', type: 'Opening Keynote', icon: '🎤',
       title: 'Understanding Humans, AIs, and the evolution of equitable societies',
       event: '8th Max Planck Symposium for Alumni and Early Career Researchers',
       theme: '"The rise of social, economic and environmental justice"',
@@ -1056,9 +1418,7 @@ let CV = {
       url: 'https://vimeo.com/853279504/3d417d279a'
     },
     {
-      id: 'talk_002',
-      type: 'TEDx Talk',
-      icon: '🔴',
+      id: 'talk_002', type: 'TEDx Talk', icon: '🔴',
       title: 'Why human behavior is at the center of education',
       event: 'TEDxLeipzigInternationalSchool',
       date: '16 June 2021',
@@ -1109,7 +1469,7 @@ let CV = {
       org: 'Food and Agriculture Organization of the United Nations (FAO)',
       body: 'FACE-NDC — Facility for Action for Climate Empowerment, FAO Zambia',
       period: '01.03.2023 – 28.02.2030',
-      funding: '€18,496,873',
+      funding: '€18,496,873 allocated',
       current: true,
       responsibilities: [
         'Technical guidance for teacher education training and sustainability-focused student thesis projects',
@@ -1131,15 +1491,13 @@ let CV = {
   ],
   awards: [
     {
-      id: 'award_001',
-      year: 2005,
+      id: 'award_001', year: 2005,
       title: 'KIDS Consortium Community Partner of the Year',
       org: 'KIDS Consortium',
       reason: 'Excellence in supporting school and community partners in service-learning project development'
     },
     {
-      id: 'award_002',
-      year: 2004,
+      id: 'award_002', year: 2004,
       title: 'Ecological Entrepreneurship Award',
       org: 'College of the Atlantic',
       reason: 'Excellence in undergraduate thesis work related to food systems education and community development'
@@ -1147,82 +1505,131 @@ let CV = {
   ]
 };
 
-// ══════════════════════════════════════════════════════════════════
-//  ORCID API FETCH
-// ══════════════════════════════════════════════════════════════════
-async function fetchORCID() {
+/* ────────────────────────────────────────────────────────────────
+   INIT — parallel fetch of ORCID + publications.json
+──────────────────────────────────────────────────────────────── */
+async function init() {
   setStatus('loading');
-  try {
-    // Fetch full record in one call
-    const res = await fetch(`${ORCID_BASE}/${ORCID_ID}/record`, { headers: HEADERS });
-    if (!res.ok) throw new Error(`ORCID API ${res.status}`);
-    const data = await res.json();
 
-    parseProfile(data);
-    parseEducation(data);
-    parseEmployment(data);
-    await parseWorks(data);
-
-    setStatus('live');
-    const now = new Date();
-    document.getElementById('last-sync').textContent =
-      `Synced ${now.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})}`;
-    document.getElementById('footer-sync').textContent =
-      ` · Last synced: ${now.toLocaleString('en-GB')}`;
-
-  } catch (err) {
-    console.error('ORCID fetch failed:', err);
-    setStatus('error');
-    loadFallback();
-  }
-
-  // Always render static sections
+  // Load static sections immediately
+  CV.talks    = STATIC.talks;
+  CV.grants   = STATIC.grants;
+  CV.advisory = STATIC.advisory;
+  CV.awards   = STATIC.awards;
   renderTalks();
   renderGrants();
   renderAdvisory();
   renderAwards();
-}
 
-function setStatus(state) {
-  const el = document.getElementById('orcid-status');
-  if (state === 'loading') {
-    el.className = 'status-pill status-loading';
-    el.innerHTML = '<span class="pulse"></span> Loading…';
-  } else if (state === 'live') {
-    el.className = 'status-pill status-live';
-    el.innerHTML = '<span class="pulse"></span> Live from ORCID';
+  // Parallel fetches
+  const [orcidResult, pubMetaResult] = await Promise.allSettled([
+    fetch(`${ORCID_BASE}/${ORCID_ID}/record`, { headers: { Accept: 'application/json' } })
+      .then(r => { if (!r.ok) throw new Error(`ORCID ${r.status}`); return r.json(); }),
+    fetch(PUB_JSON)
+      .then(r => { if (!r.ok) throw new Error(`pub json ${r.status}`); return r.json(); })
+  ]);
+
+  // Process publication annotations first so they're ready for rendering
+  if (pubMetaResult.status === 'fulfilled') {
+    processPubMeta(pubMetaResult.value);
   } else {
-    el.className = 'status-pill status-error';
-    el.innerHTML = '⚠ Offline data';
+    console.warn('Could not load publications.json:', pubMetaResult.reason);
+  }
+
+  // Process ORCID or fall back
+  if (orcidResult.status === 'fulfilled') {
+    const data = orcidResult.value;
+    parseProfile(data);
+    parseEducation(data);
+    parseEmployment(data);
+    parseWorks(data);
+    setStatus('live');
+    const now = new Date();
+    document.getElementById('last-sync').textContent =
+      `Synced ${now.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })}`;
+    document.getElementById('footer-sync').textContent  = `· Live from ORCID`;
+    document.getElementById('footer-sync-2').textContent = `· Last synced: ${now.toLocaleString('en-GB')}`;
+  } else {
+    console.warn('ORCID fetch failed:', orcidResult.reason);
+    setStatus('error');
+    loadFallback();
   }
 }
 
-// ──────────────────────────────────────────────────────────────────
-//  PARSERS
-// ──────────────────────────────────────────────────────────────────
+/* ────────────────────────────────────────────────────────────────
+   STATUS
+──────────────────────────────────────────────────────────────── */
+function setStatus(state) {
+  const el = document.getElementById('orcid-status');
+  const states = {
+    loading: ['status-loading', '<span class="pulse-dot"></span> Loading…'],
+    live:    ['status-live',    '<span class="pulse-dot"></span> Live from ORCID'],
+    error:   ['status-error',   '⚠ Offline data']
+  };
+  el.className = `status-pill ${states[state][0]}`;
+  el.innerHTML = states[state][1];
+}
+
+/* ────────────────────────────────────────────────────────────────
+   PUBLICATIONS.JSON META
+──────────────────────────────────────────────────────────────── */
+function processPubMeta(data) {
+  // Build annotation lookup by doi (normalised lowercase)
+  const annotMap = {};
+  (data.annotations || []).forEach(a => {
+    if (a.doi) annotMap[a.doi.toLowerCase()] = a.note;
+  });
+
+  // Build featured lookup
+  const featuredMap = {};
+  (data.featured || []).forEach(f => {
+    if (f.doi) featuredMap[f.doi.toLowerCase()] = f.annotation || null;
+  });
+
+  CV.pubMeta = {
+    featuredMap,
+    annotMap,
+    additional: data.additional || []
+  };
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ORCID PARSERS
+──────────────────────────────────────────────────────────────── */
 function parseProfile(data) {
-  const person = data.person;
-  const bio    = person?.biography?.content || '';
-  const name   = person?.name;
+  const person   = data.person;
+  const bio      = person?.biography?.content || '';
+  const name     = person?.name;
+  const keywords = person?.keywords?.keyword?.map(k => k.content) || [];
 
   CV.profile = {
-    given:  name?.['given-names']?.value  || 'Dustin',
-    family: name?.['family-name']?.value  || 'Eirdosh',
-    bio:    bio || 'I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.',
-    keywords: person?.keywords?.keyword?.map(k => k.content) || []
+    given:    name?.['given-names']?.value  || 'Dustin',
+    family:   name?.['family-name']?.value  || 'Eirdosh',
+    bio:      bio || defaultBio(),
+    keywords
   };
 
+  // About
   document.getElementById('about-content').innerHTML =
-    `<p class="about-text">${CV.profile.bio}</p>`;
+    `<div class="about-card"><p class="about-text">${CV.profile.bio}</p></div>`;
+
+  // Keywords in hero
+  if (keywords.length) {
+    document.getElementById('hero-keywords').innerHTML =
+      keywords.map(k => `<span class="keyword-chip">${k}</span>`).join('');
+  }
+}
+
+function defaultBio() {
+  return 'I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.';
 }
 
 function parseEducation(data) {
-  const items = data?.['activities-summary']?.educations?.['affiliation-group'] || [];
+  const groups = data?.['activities-summary']?.educations?.['affiliation-group'] || [];
   const parsed = [];
 
-  items.forEach(group => {
-    const sums = group?.summaries || [];
-    sums.forEach(s => {
+  groups.forEach(group => {
+    (group?.summaries || []).forEach(s => {
       const ed = s?.['education-summary'];
       if (!ed) return;
       parsed.push({
@@ -1237,26 +1644,24 @@ function parseEducation(data) {
     });
   });
 
-  // Fallback if ORCID is missing entries
-  if (parsed.length === 0) {
+  if (!parsed.length) {
     parsed.push(
-      { role:'PhD, Biology Education', org:'Friedrich Schiller University of Jena', city:'Jena', country:'DE', end:'2022', dept:'Hosted by MPI EVA, Leipzig — Magna Cum Laude (1,1)' },
-      { role:'M.Sc., International Food Business & Consumer Science', org:'University of Kassel', city:'Witzenhausen', country:'DE', end:'2015', dept:'Focus: Education for Sustainable Development' },
-      { role:'B.A., Human Ecology', org:'College of the Atlantic', city:'Bar Harbor, Maine', country:'US', end:'2004', dept:'Focus: Sustainability education & community development' }
+      { role:'PhD, Biology Education', org:'Friedrich Schiller University of Jena', dept:'Hosted by MPI EVA Leipzig — Magna Cum Laude (1,1)', city:'Jena', country:'DE', end:'2022' },
+      { role:'M.Sc., International Food Business & Consumer Science', org:'University of Kassel', dept:'Focus: Education for Sustainable Development', city:'Witzenhausen', country:'DE', end:'2015' },
+      { role:'B.A., Human Ecology', org:'College of the Atlantic', dept:'Focus: Sustainability education & community development', city:'Bar Harbor, Maine', country:'US', end:'2004' }
     );
   }
 
   CV.education = parsed;
-  renderTimeline('education-content', parsed);
+  renderTimeline('education-content', parsed, false);
 }
 
 function parseEmployment(data) {
-  const items = data?.['activities-summary']?.employments?.['affiliation-group'] || [];
+  const groups = data?.['activities-summary']?.employments?.['affiliation-group'] || [];
   const parsed = [];
 
-  items.forEach(group => {
-    const sums = group?.summaries || [];
-    sums.forEach(s => {
+  groups.forEach(group => {
+    (group?.summaries || []).forEach(s => {
       const em = s?.['employment-summary'];
       if (!em) return;
       parsed.push({
@@ -1272,13 +1677,13 @@ function parseEmployment(data) {
     });
   });
 
-  if (parsed.length === 0) {
+  if (!parsed.length) {
     parsed.push(
       { role:'Education Innovation Coordinator', org:'Max Planck Institute for Evolutionary Anthropology', dept:'Dept. of Comparative Cultural Psychology', city:'Leipzig', country:'DE', start:'2019', current:true },
       { role:'Guest Researcher', org:'Friedrich-Schiller-Universität Jena', dept:'AG Biologiedidaktik', city:'Jena', country:'DE', start:'2022', current:true },
       { role:'Co-Founder & Curriculum Designer', org:'Global ESD', dept:'Education for Sustainable Development', city:'International', country:'', start:'2015', current:true },
-      { role:'Research Assistant', org:'University of Leipzig', dept:'Biology Education Research Group, Faculty of Life Sciences', city:'Leipzig', country:'DE', start:'2017', end:'2019', current:false },
-      { role:'Project Leader & Curriculum Consultant', org:'The Positive Education Action-Research Lab / University of Toliara', dept:'ENS — Faculty of Educational Psychology', city:'Toliara', country:'MG', start:'2012', end:'2015', current:false },
+      { role:'Research Assistant', org:'University of Leipzig', dept:'Biology Education Research Group', city:'Leipzig', country:'DE', start:'2017', end:'2019', current:false },
+      { role:'Project Leader & Curriculum Consultant', org:'Positive Education Action-Research Lab / University of Toliara', dept:'ENS — Faculty of Educational Psychology', city:'Toliara', country:'MG', start:'2012', end:'2015', current:false },
       { role:'K-12 Service-Learning & Youth Advocacy Coordinator', org:'Mt. Desert Island Regional School Unit', dept:'Coordinated School Health Program', city:'Hancock County, Maine', country:'US', start:'2004', end:'2009', current:false }
     );
   }
@@ -1287,56 +1692,82 @@ function parseEmployment(data) {
   renderTimeline('experience-content', parsed, true);
 }
 
-async function parseWorks(data) {
+function parseWorks(data) {
   const groups = data?.['activities-summary']?.works?.group || [];
+  const seen   = new Set();
   const works  = [];
 
-  // Fetch all work summaries (already in record)
   groups.forEach(group => {
     const summary = group?.['work-summary']?.[0];
     if (!summary) return;
 
     const extIds = summary?.['external-ids']?.['external-id'] || [];
-    const doi    = extIds.find(e => e?.['external-id-type'] === 'doi')?.['external-id-value'] || null;
+    const doi    = extIds.find(e => e?.['external-id-type'] === 'doi')
+                         ?.['external-id-value']
+                         ?.replace(/^https?:\/\/doi\.org\//i, '')
+                         ?.toLowerCase()
+                   || null;
+
+    // Deduplicate by DOI
+    if (doi && seen.has(doi)) return;
+    if (doi) seen.add(doi);
 
     works.push({
-      putCode:  summary?.['put-code'],
-      title:    summary?.title?.title?.value || 'Untitled',
-      type:     summary?.type || 'other',
-      year:     summary?.['publication-date']?.year?.value || '',
-      journal:  summary?.['journal-title']?.value || '',
-      doi:      doi,
-      url:      doi ? `https://doi.org/${doi}` : (summary?.url?.value || null),
-      source:   'orcid'
+      putCode: summary?.['put-code'],
+      title:   summary?.title?.title?.value || 'Untitled',
+      type:    summary?.type || 'other',
+      year:    summary?.['publication-date']?.year?.value || '',
+      journal: summary?.['journal-title']?.value || '',
+      doi,
+      url:     doi
+                 ? `https://doi.org/${doi}`
+                 : (summary?.url?.value || null),
+      source: 'orcid'
     });
   });
 
-  // Sort by year desc
-  works.sort((a,b) => (b.year||0) - (a.year||0));
+  // Merge additional curated entries (avoid DOI duplication)
+  (CV.pubMeta.additional || []).forEach(pub => {
+    const d = pub.doi ? pub.doi.toLowerCase() : null;
+    if (d && seen.has(d)) return;
+    if (d) seen.add(d);
+    works.push({ ...pub, doi: d });
+  });
+
+  works.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
   CV.works = works;
 
-  document.getElementById('pub-count').textContent = works.length || '—';
+  document.getElementById('pub-count').textContent = works.length;
   renderPublications(works);
 }
 
-// ──────────────────────────────────────────────────────────────────
-//  RENDERERS
-// ──────────────────────────────────────────────────────────────────
-function renderTimeline(containerId, items, showCurrent=false) {
-  const el = document.getElementById(containerId);
-  if (!items.length) { el.innerHTML = '<p style="color:var(--ink-light);font-size:.85rem;">No data available.</p>'; return; }
+/* ────────────────────────────────────────────────────────────────
+   RENDERERS
+──────────────────────────────────────────────────────────────── */
 
-  el.innerHTML = `<div class="timeline">${items.map(item => {
+/* Timeline */
+function renderTimeline(containerId, items, showCurrent) {
+  const el = document.getElementById(containerId);
+  if (!items.length) {
+    el.innerHTML = '<p style="color:var(--ink-light);font-size:.85rem">No data available.</p>';
+    return;
+  }
+
+  el.innerHTML = `<div class="timeline">${items.map((item, i) => {
     const dateStr = item.end
       ? (item.start ? `${item.start}–${item.end}` : item.end)
-      : (item.start ? `${item.start}–` : '');
-
-    const locStr  = [item.city, item.country].filter(Boolean).join(', ');
+      : (item.start ? `${item.start}–pres.` : '');
+    const loc     = [item.city, item.country].filter(Boolean).join(', ');
     const current = showCurrent && item.current;
+    const isLast  = i === items.length - 1;
 
     return `
       <div class="timeline-item">
         <div class="timeline-date">${dateStr}</div>
+        <div class="timeline-line-col">
+          <div class="timeline-dot${current ? ' current' : ''}"></div>
+          ${!isLast ? '<div class="timeline-connector"></div>' : ''}
+        </div>
         <div>
           <div class="timeline-role">
             ${item.role}
@@ -1344,132 +1775,150 @@ function renderTimeline(containerId, items, showCurrent=false) {
           </div>
           <div class="timeline-org">${item.org}</div>
           ${item.dept ? `<div class="timeline-dept">${item.dept}</div>` : ''}
-          ${locStr    ? `<div class="timeline-loc">📍 ${locStr}</div>` : ''}
+          ${loc       ? `<div class="timeline-loc">📍 ${loc}</div>`    : ''}
         </div>
       </div>`;
   }).join('')}</div>`;
 }
 
-const TYPE_MAP = {
-  'JOURNAL_ARTICLE':   { label: 'Journal Article', icon: '📰', filter: 'journal-article' },
-  'BOOK_CHAPTER':      { label: 'Book Chapter',    icon: '📖', filter: 'book-chapter' },
-  'BOOK':              { label: 'Book',             icon: '📚', filter: 'other' },
-  'CONFERENCE_PAPER':  { label: 'Conference',       icon: '🎙', filter: 'other' },
-  'REPORT':            { label: 'Report',           icon: '📋', filter: 'other' },
-  'OTHER':             { label: 'Other',            icon: '📄', filter: 'other' }
-};
-
-function typeInfo(t) {
-  return TYPE_MAP[t?.toUpperCase()] || TYPE_MAP['OTHER'];
-}
-
-// Highlight DE's name in author strings
-function highlightSelf(authors) {
-  if (!authors) return '';
-  return authors
-    .replace(/Eirdosh,?\s*D\.?/gi,
-      '<span class="self">Eirdosh, D.</span>');
-}
-
+/* Publications */
 function renderPublications(works) {
+  const { featuredMap = {}, annotMap = {} } = CV.pubMeta;
+
+  // ── Featured section
+  const featuredWorks = works.filter(w => w.doi && featuredMap[w.doi]);
+
+  if (featuredWorks.length) {
+    document.getElementById('featured-publications-wrap').style.display = '';
+    document.getElementById('featured-publications').innerHTML =
+      featuredWorks.map(w => {
+        const annotation = featuredMap[w.doi];
+        const linkEl = w.url
+          ? `<a class="doi-link" href="${w.url}" target="_blank">Read ↗</a>`
+          : '';
+        return `
+          <div class="featured-card">
+            <div class="featured-label">Featured</div>
+            <div class="featured-title">
+              ${w.url ? `<a href="${w.url}" target="_blank">${w.title}</a>` : w.title}
+            </div>
+            <div class="featured-venue">${w.journal || ''} ${w.year ? '· ' + w.year : ''}</div>
+            ${annotation
+              ? `<div class="featured-annotation">${annotation}</div>`
+              : ''}
+            <div class="featured-footer">
+              ${linkEl}
+              ${w.source === 'curated' ? '<span class="chip chip-source-curated">Curated</span>' : ''}
+            </div>
+          </div>`;
+      }).join('');
+  }
+
+  // ── All publications list
   const container = document.getElementById('publications-content');
+
   if (!works.length) {
-    container.innerHTML = '<div class="error-box">No publications found in ORCID record.</div>';
+    container.innerHTML = '<div class="error-box">No publications found.</div>';
     return;
   }
 
+  const TYPE_ICONS = {
+    'journal-article':   '📰',
+    'book-chapter':      '📖',
+    'book':              '📚',
+    'practitioner-guide':'🗂',
+    'other':             '📄'
+  };
+
   container.innerHTML = works.map(w => {
-    const ti    = typeInfo(w.type);
-    const doiEl = w.doi
-      ? `<a class="doi-link" href="https://doi.org/${w.doi}" target="_blank">DOI ↗</a>`
-      : (w.url ? `<a class="doi-link" href="${w.url}" target="_blank">Link ↗</a>` : '');
+    const icon     = TYPE_ICONS[w.type?.toLowerCase()] || '📄';
+    const note     = w.doi ? annotMap[w.doi] : null;
+    const doiEl    = w.url
+      ? `<a class="doi-link" href="${w.url}" target="_blank">↗ Open</a>`
+      : '';
+    const isFeat   = w.doi && featuredMap[w.doi];
 
     return `
-      <div class="pub-card" data-type="${ti.filter}">
+      <div class="pub-card${note ? ' has-note' : ''}">
         <div class="pub-year-col">
-          <span class="pub-year">${w.year||'n.d.'}</span>
-          <span class="pub-type-icon">${ti.icon}</span>
+          <span class="pub-year">${w.year || 'n.d.'}</span>
+          <span class="pub-type-icon">${icon}</span>
         </div>
         <div>
           <div class="pub-title">
             ${w.url
               ? `<a href="${w.url}" target="_blank">${w.title}</a>`
-              : w.title
-            }
+              : w.title}
+            ${isFeat ? ' <span style="color:var(--teal);font-size:.7rem;">★</span>' : ''}
           </div>
           ${w.journal ? `<div class="pub-venue">${w.journal}</div>` : ''}
+          ${note      ? `<div class="pub-note">${note}</div>`       : ''}
           <div class="pub-footer">
-            <span class="tag">${ti.label}</span>
             ${doiEl}
+            ${w.source === 'curated'
+              ? '<span class="chip chip-source-curated">Curated</span>'
+              : ''}
           </div>
         </div>
       </div>`;
   }).join('');
-
-  initPubFilters();
 }
 
-function initPubFilters() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.pub-card').forEach(card => {
-        card.style.display =
-          (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
-      });
-    });
-  });
-}
-
+/* Talks */
 function renderTalks() {
   document.getElementById('talks-content').innerHTML = CV.talks.map(t => `
     <div class="talk-card">
-      <div class="talk-icon">${t.icon}</div>
+      <div class="talk-icon-wrap">${t.icon}</div>
       <div>
         <div class="talk-type">${t.type}</div>
         <div class="talk-title">${t.title}</div>
-        <div class="talk-meta">${t.event}${t.theme ? ' · ' + t.theme : ''} · ${t.date}</div>
-        <a class="doi-link" href="${t.url}" target="_blank">Watch ↗</a>
+        <div class="talk-meta">
+          ${t.event}${t.theme ? ' · ' + t.theme : ''} · ${t.date}
+        </div>
+        <a class="doi-link" href="${t.url}" target="_blank">Watch / Listen ↗</a>
       </div>
     </div>`).join('');
 }
 
+/* Grants */
 function renderGrants() {
   document.getElementById('grants-content').innerHTML = CV.grants.map(g => `
-    <div class="grant-card">
-      <div class="grant-title">${g.title}</div>
-      <div class="grant-meta">
-        ${g.amount ? `<span class="grant-amount">${g.amount}</span>` : ''}
-        <span class="grant-funder">📌 ${g.funder}</span>
-        <span class="grant-period">🗓 ${g.period}</span>
+    <div class="panel-card accent-left">
+      <div class="panel-title">${g.title}</div>
+      <div class="panel-meta">
+        ${g.amount ? `<span class="panel-meta-item highlight">💰 ${g.amount}</span>` : ''}
+        <span class="panel-meta-item">📌 ${g.funder}</span>
+        <span class="panel-meta-item">🗓 ${g.period}</span>
       </div>
-      <ul class="grant-roles">
+      <ul class="resp-list">
         ${g.roles.map(r => `<li>${r}</li>`).join('')}
       </ul>
     </div>`).join('');
 }
 
+/* Advisory */
 function renderAdvisory() {
   document.getElementById('advisory-content').innerHTML = CV.advisory.map(a => `
-    <div class="advisory-card">
-      <div class="advisory-role">${a.role}</div>
-      <div class="advisory-org">
-        ${a.url ? `<a href="${a.url}" target="_blank" style="color:inherit;text-decoration:none;">${a.org} ↗</a>` : a.org}
+    <div class="panel-card">
+      <div class="panel-role-label">${a.role}</div>
+      <div class="panel-org">
+        ${a.url
+          ? `<a href="${a.url}" target="_blank" style="color:inherit">${a.org} ↗</a>`
+          : a.org}
         ${a.current ? '<span class="badge-current">Current</span>' : ''}
       </div>
-      <div class="advisory-body">
+      <div class="panel-body">
         ${a.body}
-        ${a.period ? ' · ' + a.period : ''}
-        ${a.funding ? ' · Allocated: ' + a.funding : ''}
+        ${a.period  ? ' · ' + a.period  : ''}
+        ${a.funding ? ' · ' + a.funding : ''}
       </div>
-      <ul class="advisory-resp">
+      <ul class="resp-list">
         ${a.responsibilities.map(r => `<li>${r}</li>`).join('')}
       </ul>
     </div>`).join('');
 }
 
+/* Awards */
 function renderAwards() {
   document.getElementById('awards-content').innerHTML = CV.awards.map(a => `
     <div class="award-card">
@@ -1480,44 +1929,41 @@ function renderAwards() {
     </div>`).join('');
 }
 
-// ──────────────────────────────────────────────────────────────────
-//  OFFLINE FALLBACK (if ORCID API unreachable)
-// ──────────────────────────────────────────────────────────────────
+/* ────────────────────────────────────────────────────────────────
+   FALLBACK
+──────────────────────────────────────────────────────────────── */
 function loadFallback() {
-  // Profile
-  document.getElementById('about-content').innerHTML = `
-    <p class="about-text">I am interested in teaching and learning at the intersection of evolution, behavior, and sustainability science. Working through collaborations across scientific institutions, international non-profits, and local classrooms, our projects use human social behavior as a conceptual lens for interdisciplinary education.</p>`;
+  document.getElementById('about-content').innerHTML =
+    `<div class="about-card"><p class="about-text">${defaultBio()}</p></div>`;
 
-  // Education fallback
-  parseEducation({ 'activities-summary': {} });
-  parseEmployment({ 'activities-summary': {} });
+  parseEducation({});
+  parseEmployment({});
 
-  // Publications fallback — curated static list
-  const fallbackWorks = [
-    { title:"Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum", type:"JOURNAL_ARTICLE", year:"2023", journal:"Education Sciences 13(8), 797", doi:"10.3390/educsci13080797" },
-    { title:"A Community Science Model for Interdisciplinary Evolution Education and School Improvement", type:"BOOK_CHAPTER", year:"2023", journal:"Evolutionary Thinking Across Disciplines, Springer, pp.125–146", doi:"10.1007/978-3-031-33358-3_7" },
-    { title:"Teaching for the Interdisciplinary Understanding of Evolutionary Concepts", type:"BOOK_CHAPTER", year:"2023", journal:"Evolutionary Thinking Across Disciplines, Springer, pp.147–180", doi:"10.1007/978-3-031-33358-3_8" },
-    { title:"Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency", type:"JOURNAL_ARTICLE", year:"2023", journal:"Sustainability 15(9), 7413", doi:"10.3390/su15097413" },
-    { title:"Evolving cooperation and sustainability for common pool resources", type:"BOOK_CHAPTER", year:"2023", journal:"Learning evolution through socioscientific issues, UA Editora, pp.127–147", doi:"10.17617/2.3486776" },
-    { title:"Studying Great Apes and Cultural Diversity to Understand the Human Mind", type:"JOURNAL_ARTICLE", year:"2024", journal:"Frontiers for Young Minds 12", url:"https://kids.frontiersin.org/article/10.3389/frym.2024.1337514" },
-    { title:"Cooperation as a causal factor in human evolution: analysis of German high school biology textbooks", type:"JOURNAL_ARTICLE", year:"2022", journal:"Journal of Biological Education", doi:"10.1080/00219266.2021.2020875" },
-    { title:"Are Humans a Cooperative Species? Challenges & Opportunities for Teaching the Evolution of Human Prosociality", type:"JOURNAL_ARTICLE", year:"2021", journal:"The American Biology Teacher 83(6), 356–361", doi:"10.1525/abt.2021.83.6.356" },
-    { title:"What Is 'Fair' Is Not the Same Everywhere", type:"JOURNAL_ARTICLE", year:"2021", journal:"Frontiers for Young Minds 9", doi:"10.3389/frym.2021.580435" },
-    { title:"Evolving Schools in a Post-pandemic Context", type:"BOOK_CHAPTER", year:"2021", journal:"COVID-19: Paving the Way for a More Sustainable World, Springer, pp.465–480", doi:"10.1007/978-3-030-69284-1_24" },
-    { title:"Educational potential of teaching evolution as an interdisciplinary science", type:"JOURNAL_ARTICLE", year:"2020", journal:"Evolution: Education and Outreach 13, 25", doi:"10.1186/s12052-020-00138-4" },
-    { title:"Can the science of Prosocial be a part of evolution education?", type:"JOURNAL_ARTICLE", year:"2020", journal:"Evolution: Education and Outreach 13, 5", doi:"10.1186/s12052-020-00119-7" },
-    { title:"Causal Mapping as a Teaching Tool for Reflecting on Causation in Human Evolution", type:"JOURNAL_ARTICLE", year:"2020", journal:"Science & Education", doi:"10.1007/s11191-020-00157-z" },
-    { title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"BOOK_CHAPTER", year:"2019", journal:"Darwin's Roadmap to the Curriculum, Oxford University Press", doi:null }
-  ].map((w,i) => ({ ...w, putCode: `fallback_${i}`, url: w.url || (w.doi ? `https://doi.org/${w.doi}` : null) }));
+  const fallback = [
+    { putCode:'f01', title:"Understanding agency in evolutionary explanations: an assessment tool for biology education", type:"journal-article", year:"2026", journal:"Journal of Biological Education", doi:"10.1080/00219266.2025.2486963", url:"https://doi.org/10.1080/00219266.2025.2486963", source:'curated' },
+    { putCode:'f02', title:"Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum", type:"journal-article", year:"2023", journal:"Education Sciences 13(8), 797", doi:"10.3390/educsci13080797", url:"https://doi.org/10.3390/educsci13080797", source:'curated' },
+    { putCode:'f03', title:"Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency", type:"journal-article", year:"2023", journal:"Sustainability 15(9), 7413", doi:"10.3390/su15097413", url:"https://doi.org/10.3390/su15097413", source:'curated' },
+    { putCode:'f04', title:"A Community Science Model for Interdisciplinary Evolution Education and School Improvement", type:"book-chapter", year:"2023", journal:"Evolutionary Thinking Across Disciplines (Springer), pp. 125–146", doi:"10.1007/978-3-031-33358-3_7", url:"https://doi.org/10.1007/978-3-031-33358-3_7", source:'curated' },
+    { putCode:'f05', title:"Teaching for the Interdisciplinary Understanding of Evolutionary Concepts", type:"book-chapter", year:"2023", journal:"Evolutionary Thinking Across Disciplines (Springer), pp. 147–180", doi:"10.1007/978-3-031-33358-3_8", url:"https://doi.org/10.1007/978-3-031-33358-3_8", source:'curated' },
+    { putCode:'f06', title:"Evolving cooperation and sustainability for common pool resources", type:"book-chapter", year:"2023", journal:"Learning evolution through socioscientific issues (UA Editora)", doi:"10.17617/2.3486776", url:"http://doi.org/10.17617/2.3486776", source:'curated' },
+    { putCode:'f07', title:"Cooperation as a causal factor in human evolution: analysis of German high school biology textbooks", type:"journal-article", year:"2022", journal:"Journal of Biological Education", doi:"10.1080/00219266.2021.2020875", url:"https://doi.org/10.1080/00219266.2021.2020875", source:'curated' },
+    { putCode:'f08', title:"Are Humans a Cooperative Species? Challenges & Opportunities for Teaching the Evolution of Human Prosociality", type:"journal-article", year:"2021", journal:"The American Biology Teacher 83(6), 356–361", doi:"10.1525/abt.2021.83.6.356", url:"https://doi.org/10.1525/abt.2021.83.6.356", source:'curated' },
+    { putCode:'f09', title:"What Is 'Fair' Is Not the Same Everywhere", type:"journal-article", year:"2021", journal:"Frontiers for Young Minds 9", doi:"10.3389/frym.2021.580435", url:"https://doi.org/10.3389/frym.2021.580435", source:'curated' },
+    { putCode:'f10', title:"Evolving Schools in a Post-pandemic Context", type:"book-chapter", year:"2021", journal:"COVID-19: Paving the Way for a More Sustainable World (Springer)", doi:"10.1007/978-3-030-69284-1_24", url:"https://doi.org/10.1007/978-3-030-69284-1_24", source:'curated' },
+    { putCode:'f11', title:"Educational potential of teaching evolution as an interdisciplinary science", type:"journal-article", year:"2020", journal:"Evolution: Education and Outreach 13, 25", doi:"10.1186/s12052-020-00138-4", url:"https://doi.org/10.1186/s12052-020-00138-4", source:'curated' },
+    { putCode:'f12', title:"Can the science of Prosocial be a part of evolution education?", type:"journal-article", year:"2020", journal:"Evolution: Education and Outreach 13, 5", doi:"10.1186/s12052-020-00119-7", url:"https://doi.org/10.1186/s12052-020-00119-7", source:'curated' },
+    { putCode:'f13', title:"Causal Mapping as a Teaching Tool for Reflecting on Causation in Human Evolution", type:"journal-article", year:"2020", journal:"Science & Education", doi:"10.1007/s11191-020-00157-z", url:"https://doi.org/10.1007/s11191-020-00157-z", source:'curated' },
+    { putCode:'f14', title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"book-chapter", year:"2019", journal:"Darwin's Roadmap to the Curriculum (Oxford University Press)", doi:null, url:null, source:'curated' }
+  ];
 
-  CV.works = fallbackWorks;
-  document.getElementById('pub-count').textContent = fallbackWorks.length;
-  renderPublications(fallbackWorks);
+  CV.works = fallback;
+  document.getElementById('pub-count').textContent = fallback.length;
+  renderPublications(fallback);
 }
 
-// ══════════════════════════════════════════════════════════════════
-//  EXPORT FUNCTIONS
-// ══════════════════════════════════════════════════════════════════
+/* ────────────────────────────────────────────────────────────────
+   EXPORT
+──────────────────────────────────────────────────────────────── */
 function openExportModal()  { document.getElementById('export-modal').classList.add('open'); }
 function closeExportModal() { document.getElementById('export-modal').classList.remove('open'); }
 
@@ -1527,132 +1973,148 @@ document.getElementById('export-modal').addEventListener('click', function(e) {
 
 function exportPDF() {
   closeExportModal();
-  window.print();
+  setTimeout(() => window.print(), 200);
 }
 
 function exportJSON() {
   closeExportModal();
-  const exportData = {
+  const payload = {
     meta: {
-      schema_version: '1.1',
-      exported_at: new Date().toISOString(),
-      orcid: ORCID_ID,
-      source: `https://pub.orcid.org/v3.0/${ORCID_ID}/record`,
-      license: 'CC-BY 4.0'
+      schema_version: '1.2',
+      exported_at:    new Date().toISOString(),
+      orcid:          ORCID_ID,
+      source:         `https://pub.orcid.org/v3.0/${ORCID_ID}/record`,
+      license:        'CC-BY 4.0'
     },
-    profile: CV.profile,
-    education: CV.education,
+    profile:    CV.profile,
+    education:  CV.education,
     employment: CV.employment,
     publications: CV.works,
-    talks: CV.talks,
-    grants: CV.grants,
-    advisory: CV.advisory,
-    awards: CV.awards
+    featured_dois: Object.keys(CV.pubMeta.featuredMap || {}),
+    annotations:   CV.pubMeta.annotMap || {},
+    talks:     CV.talks,
+    grants:    CV.grants,
+    advisory:  CV.advisory,
+    awards:    CV.awards
   };
-  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-  downloadBlob(blob, 'dustin-eirdosh-cv.json');
+  downloadBlob(
+    new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }),
+    'dustin-eirdosh-cv.json'
+  );
 }
 
 function exportMarkdown() {
   closeExportModal();
-  const lines = [];
-  const now   = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
+  const { featuredMap = {}, annotMap = {} } = CV.pubMeta;
+  const now = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
+  const L   = [];
 
-  lines.push(`# Dustin Eirdosh, PhD`);
-  lines.push(`> Educational innovation for understanding the human condition`);
-  lines.push(``);
-  lines.push(`**Email:** dustin.eirdosh@eva.mpg.de  `);
-  lines.push(`**ORCID:** [0000-0002-3836-1501](https://orcid.org/0000-0002-3836-1501)  `);
-  lines.push(`**Web:** [openevo.eva.mpg.de](http://openevo.eva.mpg.de) | [GlobalESD.org](http://www.GlobalESD.org)  `);
-  lines.push(`*CV generated: ${now}*`);
-  lines.push(``);
+  L.push(`# Dustin Eirdosh, PhD`);
+  L.push(`> Educational innovation for understanding the human condition`);
+  L.push(``);
+  L.push(`**Email:** dustin.eirdosh@eva.mpg.de  `);
+  L.push(`**ORCID:** [0000-0002-3836-1501](https://orcid.org/0000-0002-3836-1501)  `);
+  L.push(`**Web:** [openevo.eva.mpg.de](http://openevo.eva.mpg.de) · [GlobalESD.org](http://www.GlobalESD.org)  `);
+  L.push(`*CV generated: ${now}*`);
+  L.push(``);
 
-  // About
   if (CV.profile?.bio) {
-    lines.push(`## About`);
-    lines.push(CV.profile.bio);
-    lines.push(``);
+    L.push(`## About`);
+    L.push(CV.profile.bio);
+    L.push(``);
   }
 
-  // Education
-  lines.push(`## Education & Training`);
-  CV.education.forEach(e => {
-    const date = e.end || e.start || '';
-    lines.push(`- **${date}** — ${e.role}, *${e.org}*, ${e.city}`);
-    if (e.dept) lines.push(`  - ${e.dept}`);
-  });
-  lines.push(``);
+  if (CV.profile?.keywords?.length) {
+    L.push(`**Research keywords:** ${CV.profile.keywords.join(' · ')}`);
+    L.push(``);
+  }
 
-  // Experience
-  lines.push(`## Professional Experience`);
+  L.push(`## Education & Training`);
+  CV.education.forEach(e => {
+    const d = e.end || e.start || '';
+    L.push(`- **${d}** — ${e.role}, *${e.org}*${e.city ? ', ' + e.city : ''}`);
+    if (e.dept) L.push(`  - ${e.dept}`);
+  });
+  L.push(``);
+
+  L.push(`## Professional Experience`);
   CV.employment.forEach(e => {
     const period = e.end ? `${e.start}–${e.end}` : `${e.start}–present`;
-    lines.push(`- **${period}** — ${e.role}${e.current ? ' *(current)*' : ''}`);
-    lines.push(`  - ${e.org}${e.dept ? ', ' + e.dept : ''}${e.city ? ', ' + e.city : ''}`);
+    L.push(`- **${period}** — ${e.role}${e.current ? ' *(current)*' : ''}`);
+    L.push(`  - ${e.org}${e.dept ? ', ' + e.dept : ''}${e.city ? ', ' + e.city : ''}`);
   });
-  lines.push(``);
+  L.push(``);
 
-  // Publications
-  lines.push(`## Publications`);
+  const featuredPubs = CV.works.filter(w => w.doi && featuredMap[w.doi]);
+  if (featuredPubs.length) {
+    L.push(`## ★ Featured Publications`);
+    featuredPubs.forEach(w => {
+      const link = w.url ? ` — [Open](${w.url})` : '';
+      L.push(`### ${w.title}`);
+      L.push(`*${w.journal || ''}* · ${w.year || 'n.d.'}${link}`);
+      const ann = featuredMap[w.doi];
+      if (ann) L.push(`\n> ${ann}\n`);
+    });
+    L.push(``);
+  }
+
+  L.push(`## All Publications`);
   CV.works.forEach(w => {
-    const link = w.doi ? ` — [DOI](https://doi.org/${w.doi})` : (w.url ? ` — [Link](${w.url})` : '');
-    lines.push(`- **${w.year||'n.d.'}** — ${w.title}. *${w.journal||''}*${link}`);
+    const link = w.url ? ` — [Link](${w.url})` : '';
+    const note = w.doi ? annotMap[w.doi] : null;
+    L.push(`- **${w.year || 'n.d.'}** — ${w.title}. *${w.journal || ''}*${link}`);
+    if (note) L.push(`  > ${note}`);
   });
-  lines.push(``);
+  L.push(``);
 
-  // Talks
-  lines.push(`## Talks & Media`);
+  L.push(`## Talks & Media`);
   CV.talks.forEach(t => {
-    lines.push(`- **${t.type}** (${t.date}) — [${t.title}](${t.url})`);
-    lines.push(`  - ${t.event}`);
+    L.push(`- **${t.type}** (${t.date}) — [${t.title}](${t.url})`);
+    L.push(`  - ${t.event}`);
   });
-  lines.push(``);
+  L.push(``);
 
-  // Grants
-  lines.push(`## Grants & Funding`);
+  L.push(`## Grants & Funding`);
   CV.grants.forEach(g => {
-    lines.push(`- **${g.title}**`);
-    lines.push(`  - Funder: ${g.funder}${g.amount ? ' | Amount: ' + g.amount : ''} | ${g.period}`);
-    g.roles.forEach(r => lines.push(`  - ${r}`));
+    L.push(`- **${g.title}** · ${g.funder}${g.amount ? ' · ' + g.amount : ''} · ${g.period}`);
+    g.roles.forEach(r => L.push(`  - ${r}`));
   });
-  lines.push(``);
+  L.push(``);
 
-  // Advisory
-  lines.push(`## Advisory & Innovation Roles`);
+  L.push(`## Advisory & Innovation Roles`);
   CV.advisory.forEach(a => {
-    lines.push(`- **${a.role}**, ${a.org}${a.current ? ' *(current)*' : ''}`);
-    lines.push(`  - ${a.body}`);
-    a.responsibilities.forEach(r => lines.push(`  - ${r}`));
+    L.push(`- **${a.role}**, ${a.org}${a.current ? ' *(current)*' : ''}`);
+    L.push(`  - ${a.body}${a.period ? ' · ' + a.period : ''}`);
+    a.responsibilities.forEach(r => L.push(`  - ${r}`));
   });
-  lines.push(``);
+  L.push(``);
 
-  // Awards
-  lines.push(`## Awards & Recognition`);
+  L.push(`## Awards & Recognition`);
   CV.awards.forEach(a => {
-    lines.push(`- **${a.year}** — ${a.title}, *${a.org}*`);
-    lines.push(`  - ${a.reason}`);
+    L.push(`- **${a.year}** — ${a.title}, *${a.org}*`);
+    L.push(`  - ${a.reason}`);
   });
-  lines.push(``);
-  lines.push(`---`);
-  lines.push(`*Data sourced from ORCID (${ORCID_ID}) and curated records. Generated ${now}.*`);
+  L.push(``);
+  L.push(`---`);
+  L.push(`*Data sourced from ORCID (${ORCID_ID}) and curated records. Generated ${now}.*`);
 
-  const blob = new Blob([lines.join('\n')], { type: 'text/markdown' });
-  downloadBlob(blob, 'dustin-eirdosh-cv.md');
+  downloadBlob(
+    new Blob([L.join('\n')], { type: 'text/markdown' }),
+    'dustin-eirdosh-cv.md'
+  );
 }
 
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
-  const a   = document.createElement('a');
-  a.href    = url;
-  a.download = filename;
+  const a   = Object.assign(document.createElement('a'), { href: url, download: filename });
   a.click();
   URL.revokeObjectURL(url);
 }
 
-// ══════════════════════════════════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════════════════════════════════
-fetchORCID();
+/* ────────────────────────────────────────────────────────────────
+   START
+──────────────────────────────────────────────────────────────── */
+init();
 </script>
 </body>
 </html>
