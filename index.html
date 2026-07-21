@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dustin Eirdosh, PhD — CV</title>
+  <meta name="description" content="Dustin Eirdosh, PhD — Education Innovation Coordinator &amp; Researcher at the Max Planck Institute for Evolutionary Anthropology. Interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Dustin Eirdosh, PhD — CV" />
+  <meta property="og:description" content="Education Innovation Coordinator &amp; Researcher — interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dustin Eirdosh, PhD — CV" />
+  <meta name="twitter:description" content="Education Innovation Coordinator &amp; Researcher — interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
+  <meta name="twitter:image" content="assets/og-image.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
@@ -64,6 +78,10 @@
 
     a { color: var(--steel); text-decoration: none; }
     a:hover { color: var(--teal); }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
 
     /* ══════════════════════════════════════════════════════
        TOP NAV
@@ -115,7 +133,20 @@
       color:      var(--teal);
     }
 
-    .nav-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .nav-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: center; }
+
+    .nav-toggle {
+      display:       none;
+      background:    none;
+      border:        none;
+      font-size:     1.25rem;
+      line-height:   1;
+      color:         var(--navy);
+      cursor:        pointer;
+      padding:       4px 8px;
+      border-radius: var(--radius-sm);
+    }
+    .nav-toggle:hover { background: var(--surface-2); }
 
     /* ══════════════════════════════════════════════════════
        BUTTONS
@@ -197,6 +228,18 @@
       width:  240px; height: 240px;
       background: var(--teal-light);
       bottom: -100px; left: 40px;
+    }
+
+    /* decorative concept-graph motif — a quiet nod to the knowledge-graph work in Research Lab */
+    .hero-graph-motif {
+      position:      absolute;
+      right:         -10px;
+      top:           -10px;
+      width:         360px;
+      height:        360px;
+      opacity:       .16;
+      pointer-events: none;
+      z-index:       0;
     }
 
     .hero-grid {
@@ -337,6 +380,10 @@
       border:     1px solid rgba(231,111,81,.3);
     }
 
+    /* on light cards (e.g. Research Lab section), the live/error pills need dark-surface variants */
+    .status-pill.status-live.on-light   { background: var(--teal-pale); color: #1a7f73; border-color: var(--teal-light); }
+    .status-pill.status-error.on-light  { background: #FFF5F5; color: #9B4141; border-color: #FED7D7; }
+
     .pulse-dot {
       width:         7px;
       height:        7px;
@@ -423,6 +470,57 @@
       line-height: 1.8;
       color:       var(--ink);
       max-width:   680px;
+    }
+
+    /* Values / DEI expandable panel */
+    .values-panel {
+      margin-top:    16px;
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      padding:       4px 20px;
+      box-shadow:    var(--shadow-sm);
+    }
+    .values-summary {
+      cursor:        pointer;
+      font-weight:   600;
+      font-size:     .88rem;
+      color:         var(--navy);
+      padding:       14px 0;
+      list-style:    none;
+      display:       flex;
+      align-items:   center;
+      gap:           8px;
+    }
+    .values-summary::-webkit-details-marker { display: none; }
+    .values-summary::after {
+      content:    '▾';
+      margin-left: auto;
+      color:      var(--ink-light);
+      transition: transform var(--transition);
+    }
+    .values-panel[open] .values-summary::after { transform: rotate(180deg); }
+    .values-body {
+      font-size:     .85rem;
+      color:         var(--ink-mid);
+      line-height:   1.7;
+      padding-bottom: 18px;
+    }
+    .values-body p { margin-bottom: 12px; }
+    .collab-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap:                   10px;
+      margin-top:            14px;
+    }
+    .collab-chip {
+      background:    var(--grad-subtle);
+      border-left:   3px solid var(--teal-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding:       10px 12px;
+      font-size:     .78rem;
+      color:         var(--ink-mid);
+      line-height:   1.5;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -761,6 +859,90 @@
     }
 
     /* ══════════════════════════════════════════════════════
+       RESEARCH LAB  (Computational Curriculum Studies / OECB)
+    ══════════════════════════════════════════════════════ */
+    .apps-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap:                   14px;
+    }
+    .app-card {
+      display:        flex;
+      gap:             14px;
+      align-items:     flex-start;
+      background:      var(--grad-accent);
+      color:           #fff;
+      border-radius:   var(--radius);
+      padding:         18px 20px;
+      text-decoration: none;
+      box-shadow:      0 4px 14px rgba(42,157,143,.25);
+      transition:      all var(--transition);
+    }
+    .app-card:hover {
+      transform:  translateY(-2px);
+      box-shadow: 0 8px 22px rgba(42,157,143,.35);
+      color:      #fff;
+    }
+    .app-card-icon {
+      width:          32px;
+      height:         32px;
+      border-radius:  50%;
+      background:     rgba(255,255,255,.2);
+      display:        flex;
+      align-items:    center;
+      justify-content: center;
+      flex-shrink:    0;
+      font-size:      .78rem;
+    }
+    .app-card-name { font-weight: 700; font-size: .88rem; margin-bottom: 4px; }
+    .app-card-desc { font-size: .78rem; color: rgba(255,255,255,.88); line-height: 1.5; }
+
+    .repo-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap:                   14px;
+    }
+    .repo-card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      padding:       16px 18px;
+      box-shadow:    var(--shadow-sm);
+      display:       flex;
+      flex-direction: column;
+      gap:           8px;
+      transition:    all var(--transition);
+    }
+    .repo-card:hover {
+      box-shadow:   var(--shadow-md);
+      border-color: var(--steel-light);
+      transform:    translateY(-2px);
+    }
+    .repo-card-head {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      gap:             8px;
+      flex-wrap:       wrap;
+    }
+    .repo-name {
+      font-weight:  600;
+      font-size:    .8rem;
+      color:        var(--navy);
+      font-family:  'Courier New', monospace;
+    }
+    .repo-blurb { font-size: .78rem; color: var(--ink-mid); line-height: 1.55; flex: 1; }
+    .repo-footer {
+      display:     flex;
+      align-items: center;
+      gap:         10px;
+      flex-wrap:   wrap;
+      font-size:   .72rem;
+      color:       var(--ink-light);
+    }
+    .repo-stat { display: inline-flex; align-items: center; gap: 3px; }
+
+    /* ══════════════════════════════════════════════════════
        TALKS
     ══════════════════════════════════════════════════════ */
     .talks-list { display: flex; flex-direction: column; gap: 14px; }
@@ -817,7 +999,7 @@
     }
 
     /* ══════════════════════════════════════════════════════
-       PANEL CARD  (grants / advisory)
+       PANEL CARD  (grants / advisory / featured project)
     ══════════════════════════════════════════════════════ */
     .panel-card {
       background:    var(--surface);
@@ -1132,11 +1314,28 @@
       .hero { padding: 36px 24px 32px; margin: 0 -24px 40px; }
       .hero-grid { grid-template-columns: 1fr; }
       .orcid-card { display: none; }
+      .hero-graph-motif { display: none; }
       .timeline-item { grid-template-columns: 80px 16px 1fr; gap: 0 10px; }
       .featured-grid { grid-template-columns: 1fr; }
       .awards-grid   { grid-template-columns: 1fr; }
-      .nav-links     { display: none; }
-      .top-nav       { padding: 0 16px; }
+      .top-nav       { padding: 0 16px; position: relative; }
+
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-links {
+        display:       none;
+        position:      absolute;
+        top:           52px;
+        left:          0;
+        right:         0;
+        flex-direction: column;
+        background:    var(--bg);
+        border-bottom: 1px solid var(--border);
+        box-shadow:    var(--shadow-md);
+        padding:       6px 16px 14px;
+        justify-content: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 6px; }
     }
 
     /* ══════════════════════════════════════════════════════
@@ -1144,7 +1343,7 @@
     ══════════════════════════════════════════════════════ */
     @media print {
       .top-nav, .nav-actions, .btn, .modal-overlay,
-      .hero::before, .hero::after { display: none !important; }
+      .hero::before, .hero::after, .hero-graph-motif { display: none !important; }
       body { font-size: 11pt; background: white; color: black; }
       .hero {
         background: white !important;
@@ -1156,7 +1355,7 @@
       }
       .hero * { color: #1D3557 !important; }
       .pub-card, .panel-card, .talk-card, .award-card,
-      .featured-card, .about-card {
+      .featured-card, .about-card, .repo-card, .app-card {
         box-shadow: none;
         break-inside: avoid;
         border-color: #ccc;
@@ -1169,11 +1368,12 @@
 <!-- ── Top Nav ──────────────────────────────────────────────────── -->
 <nav class="top-nav">
   <span class="nav-name">Dustin Eirdosh, PhD</span>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="#about">About</a>
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
     <a href="#publications">Publications</a>
+    <a href="#research-lab">Research Lab</a>
     <a href="#talks">Talks</a>
     <a href="#grants">Grants</a>
     <a href="#advisory">Advisory</a>
@@ -1181,6 +1381,7 @@
   </div>
   <div class="nav-actions">
     <button class="btn btn-outline" onclick="openExportModal()">↓ Export</button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
   </div>
 </nav>
 
@@ -1189,6 +1390,24 @@
 
   <!-- Hero ─────────────────────────────────────────────────────── -->
   <header class="hero">
+    <svg class="hero-graph-motif" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#ffffff" stroke-width="1.2" fill="none">
+        <line x1="230" y1="150" x2="150" y2="60"/>
+        <line x1="230" y1="150" x2="320" y2="90"/>
+        <line x1="230" y1="150" x2="300" y2="220"/>
+        <line x1="230" y1="150" x2="180" y2="260"/>
+        <line x1="230" y1="150" x2="90" y2="180"/>
+        <line x1="150" y1="60" x2="320" y2="90"/>
+        <line x1="300" y1="220" x2="180" y2="260"/>
+      </g>
+      <circle cx="230" cy="150" r="9" fill="#2A9D8F"/>
+      <circle cx="150" cy="60"  r="5" fill="#fff"/>
+      <circle cx="320" cy="90"  r="5" fill="#fff"/>
+      <circle cx="300" cy="220" r="5" fill="#fff"/>
+      <circle cx="180" cy="260" r="5" fill="#fff"/>
+      <circle cx="90"  cy="180" r="5" fill="#fff"/>
+    </svg>
+
     <div class="hero-grid">
       <div>
         <h1 class="hero-name">Dustin Eirdosh, <em>PhD</em></h1>
@@ -1197,8 +1416,9 @@
         <div class="hero-keywords" id="hero-keywords">
           <!-- populated from ORCID keywords -->
         </div>
-        <div class="hero-links">
+        <div class="hero-links" id="hero-links">
           <a class="hero-link" href="http://openevo.eva.mpg.de" target="_blank">🌱 OpenEvo</a>
+          <a class="hero-link" href="https://github.com/openevo-ccs" target="_blank">🧬 OpenEvo CCS Lab</a>
           <a class="hero-link" href="http://www.GlobalESD.org" target="_blank">🌍 GlobalESD</a>
           <a class="hero-link" href="https://www.linkedin.com/in/dustin-eirdosh/" target="_blank">💼 LinkedIn</a>
           <a class="hero-link" href="https://www.researchgate.net/profile/Dustin-Eirdosh" target="_blank">📄 ResearchGate</a>
@@ -1293,6 +1513,22 @@
     </div>
   </section>
 
+  <!-- Research Lab ─────────────────────────────────────────────── -->
+  <section class="section" id="research-lab">
+    <div class="section-header">
+      <div class="section-icon">🧬</div>
+      <h2 class="section-title">Computational Curriculum Studies</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div id="ccs-content">
+      <div class="about-card" style="margin-bottom:24px;">
+        <div class="sk-line sk-medium skeleton"></div>
+        <div class="sk-line sk-full skeleton"></div>
+        <div class="sk-line sk-long skeleton"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Talks ────────────────────────────────────────────────────── -->
   <section class="section" id="talks">
     <div class="section-header">
@@ -1336,7 +1572,8 @@
   <!-- Footer ───────────────────────────────────────────────────── -->
   <footer class="footer">
     <span>
-      Data sourced from <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">ORCID Public API</a>
+      Data sourced from <a href="https://orcid.org/0000-0002-3836-1501" target="_blank">ORCID Public API</a>,
+      <a href="https://github.com/openevo-ccs" target="_blank">the OpenEvo CCS Lab</a>
       + <a href="data/publications.json" target="_blank">curated records</a>.
       <span id="footer-sync-2"></span>
     </span>
@@ -1387,27 +1624,40 @@
 ──────────────────────────────────────────────────────────────── */
 const ORCID_ID   = '0000-0002-3836-1501';
 const ORCID_BASE = 'https://pub.orcid.org/v3.0';
-const PUB_JSON   = 'data/publications.json';
+const GITHUB_ORG = 'openevo-ccs';
+
+const DATA_FILES = {
+  publications: 'data/publications.json',
+  profile:      'data/profile.json',
+  talks:        'data/talks.json',
+  advisory:     'data/advisory.json',
+  grants:       'data/grants.json',
+  awards:       'data/awards.json',
+  ccsLab:       'data/ccs_lab.json'
+};
 
 /* ────────────────────────────────────────────────────────────────
    STATE
 ──────────────────────────────────────────────────────────────── */
 let CV = {
-  profile:    null,
-  education:  [],
-  employment: [],
-  works:      [],
-  pubMeta:    { featured: [], annotations: {}, additional: [] },
-  talks:      [],
-  grants:     [],
-  advisory:   [],
-  awards:     []
+  profileMeta: null,   // from data/profile.json
+  orcid:       { bio: null, keywords: [] },
+  education:   [],
+  employment:  [],
+  works:       [],
+  pubMeta:     { featuredMap: {}, annotMap: {}, additional: [] },
+  talks:       [],
+  grants:      [],
+  advisory:    [],
+  awards:      [],
+  ccsLab:      null,   // from data/ccs_lab.json
+  ccsRepos:    {}       // live GitHub API data, keyed by repo name
 };
 
 /* ────────────────────────────────────────────────────────────────
-   STATIC DATA  (not in ORCID)
+   FALLBACK DATA  (used only if the matching fetch fails)
 ──────────────────────────────────────────────────────────────── */
-const STATIC = {
+const FALLBACK = {
   talks: [
     {
       id: 'talk_001', type: 'Opening Keynote', icon: '🎤',
@@ -1475,7 +1725,6 @@ const STATIC = {
         'Technical guidance for teacher education training and sustainability-focused student thesis projects',
         'Guidance for University-Assisted Community Science Lab models in regional schools'
       ]
-
     }
   ],
   awards: [
@@ -1491,41 +1740,74 @@ const STATIC = {
       org: 'College of the Atlantic',
       reason: 'Excellence in undergraduate thesis work related to food systems education and community development'
     }
-  ]
+  ],
+  ccsLab: {
+    org: 'openevo-ccs',
+    org_url: 'https://github.com/openevo-ccs',
+    name: 'OpenEvo CCS Lab',
+    tagline: 'Computational Curriculum Studies',
+    eyebrow: 'Current Research Direction',
+    intro: 'Our earlier work treated evolutionary and behavioral science as an interdisciplinary lens for curriculum design. The OpenEvo CCS Lab extends that instinct computationally: representing curricula as structured, comparable knowledge graphs so researchers can see where interdisciplinary concepts cohere across grade bands and subjects, and where they don\u2019t.',
+    apps: [
+      { name: 'ConceptBase Explorer', description: 'Interactive app for browsing the knowledge graph — no setup required.', url: 'https://openevo-ccs.github.io/conceptbase/' },
+      { name: 'eva_buch Explorer', description: 'Interactive topic-modelling browser for German curriculum documents.', url: 'https://openevo-ccs.github.io/eva_buch/' }
+    ],
+    featured_repos: [
+      { repo: 'conceptbase', blurb: 'Ontology, vocabularies, and schemas for the whole ecosystem — the OECB core.' },
+      { repo: 'oe-interdisciplinary-k12', blurb: 'A reference K–12 learning progression model spanning biology, social studies, and computer science.' },
+      { repo: 'bio-core-k12', blurb: 'A reference K–12 learning progression model for evolutionary biology.' },
+      { repo: 'eva_buch', blurb: 'German-language topic-modelling dataset and visualizations on evolutionary anthropology in curricula.' }
+    ]
+  }
 };
 
 /* ────────────────────────────────────────────────────────────────
-   INIT — parallel fetch of ORCID + publications.json
+   INIT — parallel fetch of ORCID + all JSON data files + GitHub API
 ──────────────────────────────────────────────────────────────── */
 async function init() {
   setStatus('loading');
 
-  // Load static sections immediately
-  CV.talks    = STATIC.talks;
-  CV.grants   = STATIC.grants;
-  CV.advisory = STATIC.advisory;
-  CV.awards   = STATIC.awards;
-  renderTalks();
-  renderGrants();
-  renderAdvisory();
-  renderAwards();
+  const fetchJSON = (url) => fetch(url).then(r => { if (!r.ok) throw new Error(`${url} ${r.status}`); return r.json(); });
 
-  // Parallel fetches
-  const [orcidResult, pubMetaResult] = await Promise.allSettled([
+  const [
+    orcidResult, pubMetaResult, profileResult, talksResult,
+    advisoryResult, grantsResult, awardsResult, ccsLabResult, ghResult
+  ] = await Promise.allSettled([
     fetch(`${ORCID_BASE}/${ORCID_ID}/record`, { headers: { Accept: 'application/json' } })
       .then(r => { if (!r.ok) throw new Error(`ORCID ${r.status}`); return r.json(); }),
-    fetch(PUB_JSON)
-      .then(r => { if (!r.ok) throw new Error(`pub json ${r.status}`); return r.json(); })
+    fetchJSON(DATA_FILES.publications),
+    fetchJSON(DATA_FILES.profile),
+    fetchJSON(DATA_FILES.talks),
+    fetchJSON(DATA_FILES.advisory),
+    fetchJSON(DATA_FILES.grants),
+    fetchJSON(DATA_FILES.awards),
+    fetchJSON(DATA_FILES.ccsLab),
+    fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100`, { headers: { Accept: 'application/vnd.github+json' } })
+      .then(r => { if (!r.ok) throw new Error(`GitHub ${r.status}`); return r.json(); })
   ]);
 
-  // Process publication annotations first so they're ready for rendering
+  // Publication annotations first, so they're ready when works render
   if (pubMetaResult.status === 'fulfilled') {
     processPubMeta(pubMetaResult.value);
   } else {
     console.warn('Could not load publications.json:', pubMetaResult.reason);
   }
 
-  // Process ORCID or fall back
+  // Profile (About / DEI / featured project / hero links)
+  CV.profileMeta = profileResult.status === 'fulfilled' ? profileResult.value.profile : null;
+  if (profileResult.status !== 'fulfilled') console.warn('Could not load profile.json:', profileResult.reason);
+
+  // Talks / Grants / Advisory / Awards — each falls back independently if its file is missing
+  CV.talks    = talksResult.status    === 'fulfilled' ? talksResult.value.talks       : FALLBACK.talks;
+  CV.grants   = grantsResult.status   === 'fulfilled' ? grantsResult.value.grants     : FALLBACK.grants;
+  CV.advisory = advisoryResult.status === 'fulfilled' ? advisoryResult.value.advisory : FALLBACK.advisory;
+  CV.awards   = awardsResult.status   === 'fulfilled' ? awardsResult.value.awards     : FALLBACK.awards;
+  renderTalks();
+  renderGrants();
+  renderAdvisory();
+  renderAwards();
+
+  // ORCID-derived sections (education / experience / publications)
   if (orcidResult.status === 'fulfilled') {
     const data = orcidResult.value;
     parseProfile(data);
@@ -1543,10 +1825,29 @@ async function init() {
     setStatus('error');
     loadFallback();
   }
+
+  // About section combines profile.json (preferred) + ORCID bio (fallback)
+  renderAbout();
+  renderHeroLinks();
+
+  // Research Lab — CCS Lab framing (curated) + live GitHub repo stats
+  CV.ccsLab = ccsLabResult.status === 'fulfilled' ? ccsLabResult.value.ccs_lab : FALLBACK.ccsLab;
+  if (ccsLabResult.status !== 'fulfilled') console.warn('Could not load ccs_lab.json:', ccsLabResult.reason);
+
+  if (ghResult.status === 'fulfilled') {
+    const map = {};
+    (ghResult.value || []).forEach(r => { map[r.name] = r; });
+    CV.ccsRepos = map;
+    renderCcsLab('live');
+  } else {
+    console.warn('GitHub API fetch failed:', ghResult.reason);
+    CV.ccsRepos = {};
+    renderCcsLab('error');
+  }
 }
 
 /* ────────────────────────────────────────────────────────────────
-   STATUS
+   STATUS  (ORCID badge in hero)
 ──────────────────────────────────────────────────────────────── */
 function setStatus(state) {
   const el = document.getElementById('orcid-status');
@@ -1563,13 +1864,11 @@ function setStatus(state) {
    PUBLICATIONS.JSON META
 ──────────────────────────────────────────────────────────────── */
 function processPubMeta(data) {
-  // Build annotation lookup by doi (normalised lowercase)
   const annotMap = {};
   (data.annotations || []).forEach(a => {
     if (a.doi) annotMap[a.doi.toLowerCase()] = a.note;
   });
 
-  // Build featured lookup
   const featuredMap = {};
   (data.featured || []).forEach(f => {
     if (f.doi) featuredMap[f.doi.toLowerCase()] = f.annotation || null;
@@ -1588,21 +1887,10 @@ function processPubMeta(data) {
 function parseProfile(data) {
   const person   = data.person;
   const bio      = person?.biography?.content || '';
-  const name     = person?.name;
   const keywords = person?.keywords?.keyword?.map(k => k.content) || [];
 
-  CV.profile = {
-    given:    name?.['given-names']?.value  || 'Dustin',
-    family:   name?.['family-name']?.value  || 'Eirdosh',
-    bio:      bio || defaultBio(),
-    keywords
-  };
+  CV.orcid = { bio: bio || null, keywords };
 
-  // About
-  document.getElementById('about-content').innerHTML =
-    `<div class="about-card"><p class="about-text">${CV.profile.bio}</p></div>`;
-
-  // Keywords in hero
   if (keywords.length) {
     document.getElementById('hero-keywords').innerHTML =
       keywords.map(k => `<span class="keyword-chip">${k}</span>`).join('');
@@ -1616,15 +1904,12 @@ function defaultBio() {
 function parseEducation(data) {
   const parsed = [];
 
-  // ORCID splits academic credentials across two separate groups:
-  // 'educations' (degrees) and 'qualifications' (also used for degrees by some institutions)
   const eduGroups  = data?.['activities-summary']?.educations?.['affiliation-group']    || [];
   const qualGroups = data?.['activities-summary']?.qualifications?.['affiliation-group'] || [];
   const allGroups  = [...eduGroups, ...qualGroups];
 
   allGroups.forEach(group => {
     (group?.summaries || []).forEach(s => {
-      // summaries can be keyed as 'education-summary' or 'qualification-summary'
       const ed = s?.['education-summary'] || s?.['qualification-summary'];
       if (!ed) return;
 
@@ -1640,10 +1925,8 @@ function parseEducation(data) {
     });
   });
 
-  // Sort by end year descending (most recent first)
   parsed.sort((a, b) => (parseInt(b.end) || 0) - (parseInt(a.end) || 0));
 
-  // Fallback if ORCID returns nothing at all
   if (!parsed.length) {
     parsed.push(
       { role:'PhD, Biology Education', org:'Friedrich Schiller University of Jena', dept:'Hosted by MPI EVA Leipzig — Magna Cum Laude (1,1)', city:'Jena', country:'DE', end:'2022' },
@@ -1708,7 +1991,6 @@ function parseWorks(data) {
                          ?.toLowerCase()
                    || null;
 
-    // Deduplicate by DOI
     if (doi && seen.has(doi)) return;
     if (doi) seen.add(doi);
 
@@ -1726,7 +2008,6 @@ function parseWorks(data) {
     });
   });
 
-  // Merge additional curated entries (avoid DOI duplication)
   (CV.pubMeta.additional || []).forEach(pub => {
     const d = pub.doi ? pub.doi.toLowerCase() : null;
     if (d && seen.has(d)) return;
@@ -1745,7 +2026,71 @@ function parseWorks(data) {
    RENDERERS
 ──────────────────────────────────────────────────────────────── */
 
-/* Timeline */
+/* About: bio (profile.json preferred, ORCID fallback) + featured project + DEI/values panel */
+function renderAbout() {
+  const profile = CV.profileMeta || {};
+  const bio = profile.about || CV.orcid.bio || defaultBio();
+
+  let html = `<div class="about-card"><p class="about-text">${bio}</p></div>`;
+
+  if (profile.featured_project) {
+    const fp = profile.featured_project;
+    html += `
+      <div class="panel-card accent-left" style="margin-top:16px;">
+        <div class="panel-role-label">Featured Project</div>
+        <div class="panel-org">
+          ${fp.url ? `<a href="${fp.url}" target="_blank" style="color:inherit">${fp.name} ↗</a>` : fp.name}
+        </div>
+        <div class="panel-body">${fp.description}</div>
+        <ul class="resp-list">
+          ${(fp.roles || []).map(r => `<li>${r}</li>`).join('')}
+        </ul>
+      </div>`;
+  }
+
+  if (profile.dei_statement) {
+    const dei = profile.dei_statement;
+    const paragraphs = dei.body.split('\n\n').map(p => `<p>${p}</p>`).join('');
+    const collabHtml = (dei.collaborations || []).map(c => `
+      <div class="collab-chip">
+        <strong>${c.collaborator}</strong>${c.duration_years ? ` · ${c.duration_years} yrs` : ''}<br>
+        <span>${c.focus}</span><br>
+        <span style="color:var(--ink-faint)">📍 ${c.location}</span>
+      </div>`).join('');
+
+    html += `
+      <details class="values-panel">
+        <summary class="values-summary">🤝 ${dei.title}</summary>
+        <div class="values-body">
+          ${paragraphs}
+          <div class="collab-grid">${collabHtml}</div>
+        </div>
+      </details>`;
+  }
+
+  document.getElementById('about-content').innerHTML = html;
+}
+
+/* Hero links: re-render from profile.json if it loaded; otherwise keep the static markup already in the HTML */
+function renderHeroLinks() {
+  const profile = CV.profileMeta;
+  if (!profile) return;
+
+  const order = ['OpenEvo Project', 'OpenEvo CCS Lab', 'GlobalESD', 'LinkedIn', 'ResearchGate'];
+  const icons = { 'OpenEvo Project':'🌱', 'OpenEvo CCS Lab':'🧬', 'GlobalESD':'🌍', 'LinkedIn':'💼', 'ResearchGate':'📄' };
+  const presence = profile.online_presence || [];
+  const found = order.map(name => presence.find(p => p.platform === name)).filter(Boolean);
+
+  if (!found.length) return;
+
+  let html = found.map(p => `<a class="hero-link" href="${p.url}" target="_blank">${icons[p.platform] || '🔗'} ${p.platform}</a>`).join('');
+  if (profile.contact?.email) {
+    html += `<a class="hero-link" href="mailto:${profile.contact.email}">✉️ Email</a>`;
+  }
+  document.getElementById('hero-links').innerHTML = html;
+}
+
+/* Timeline (Education / Experience) */
 function renderTimeline(containerId, items, showCurrent) {
   const el = document.getElementById(containerId);
   if (!items.length) {
@@ -1785,7 +2130,6 @@ function renderTimeline(containerId, items, showCurrent) {
 function renderPublications(works) {
   const { featuredMap = {}, annotMap = {} } = CV.pubMeta;
 
-  // ── Featured section
   const featuredWorks = works.filter(w => w.doi && featuredMap[w.doi]);
 
   if (featuredWorks.length) {
@@ -1814,7 +2158,6 @@ function renderPublications(works) {
       }).join('');
   }
 
-  // ── All publications list
   const container = document.getElementById('publications-content');
 
   if (!works.length) {
@@ -1864,11 +2207,85 @@ function renderPublications(works) {
   }).join('');
 }
 
+/* Research Lab: OpenEvo CCS Lab / OpenEvo ConceptBase (OECB) */
+function ccsStatusMarkup(state) {
+  if (state === 'live') {
+    return `<span class="status-pill status-live on-light"><span class="pulse-dot"></span> Live from GitHub</span>`;
+  }
+  return `<span class="status-pill status-error on-light">⚠ Cached repo list</span>`;
+}
+
+function renderCcsLab(status) {
+  const meta = CV.ccsLab;
+  const wrap = document.getElementById('ccs-content');
+
+  if (!meta) {
+    wrap.innerHTML = '<div class="error-box">Research lab data is temporarily unavailable — visit the <a href="https://github.com/openevo-ccs" target="_blank">OpenEvo CCS Lab on GitHub</a> directly.</div>';
+    return;
+  }
+
+  const repoMap = CV.ccsRepos || {};
+
+  const appsHtml = (meta.apps || []).map(a => `
+    <a class="app-card" href="${a.url}" target="_blank" rel="noopener">
+      <div class="app-card-icon">▶</div>
+      <div>
+        <div class="app-card-name">${a.name}</div>
+        <div class="app-card-desc">${a.description}</div>
+      </div>
+    </a>`).join('');
+
+  const repoCardsHtml = (meta.featured_repos || []).map(fr => {
+    const live    = repoMap[fr.repo] || {};
+    const stars   = typeof live.stargazers_count === 'number' ? live.stargazers_count : null;
+    const lang    = live.language || '';
+    const updated = live.updated_at
+      ? new Date(live.updated_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })
+      : '';
+    const url = live.html_url || `${meta.org_url}/${fr.repo}`;
+
+    return `
+      <div class="repo-card">
+        <div class="repo-card-head">
+          <span class="repo-name">📦 ${fr.repo}</span>
+          ${lang ? `<span class="chip chip-type">${lang}</span>` : ''}
+        </div>
+        <div class="repo-blurb">${fr.blurb}</div>
+        <div class="repo-footer">
+          ${stars !== null ? `<span class="repo-stat">★ ${stars}</span>` : ''}
+          ${updated ? `<span class="repo-stat">Updated ${updated}</span>` : ''}
+          <a class="doi-link" href="${url}" target="_blank">View repo ↗</a>
+        </div>
+      </div>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    ${meta.eyebrow ? `<p class="subheading" style="margin-bottom:18px;">${meta.eyebrow}</p>` : ''}
+    <div class="about-card" style="margin-bottom:28px;">
+      <div class="panel-org" style="margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+        <a href="${meta.org_url}" target="_blank" style="color:inherit">${meta.name} ↗</a>
+        ${ccsStatusMarkup(status)}
+      </div>
+      <p class="about-text" style="font-size:.92rem;">${meta.intro}</p>
+    </div>
+
+    <p class="subheading">Try it live</p>
+    <div class="apps-grid">${appsHtml}</div>
+
+    <p class="subheading" style="margin-top:28px;">Ecosystem repositories</p>
+    <div class="repo-grid">${repoCardsHtml}</div>
+
+    <div style="text-align:center;margin-top:20px;">
+      <a class="btn btn-outline" href="${meta.org_url}" target="_blank">View all repositories on GitHub ↗</a>
+    </div>
+  `;
+}
+
 /* Talks */
 function renderTalks() {
   document.getElementById('talks-content').innerHTML = CV.talks.map(t => `
     <div class="talk-card">
-      <div class="talk-icon-wrap">${t.icon}</div>
+      <div class="talk-icon-wrap">${t.icon || '🎤'}</div>
       <div>
         <div class="talk-type">${t.type}</div>
         <div class="talk-title">${t.title}</div>
@@ -1930,16 +2347,13 @@ function renderAwards() {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   FALLBACK
+   FALLBACK  (ORCID unreachable — education/employment/publications)
 ──────────────────────────────────────────────────────────────── */
 function loadFallback() {
-  document.getElementById('about-content').innerHTML =
-    `<div class="about-card"><p class="about-text">${defaultBio()}</p></div>`;
-
   parseEducation({});
   parseEmployment({});
 
-  const fallback = [
+  const fallbackWorks = [
     { putCode:'f01', title:"Understanding agency in evolutionary explanations: an assessment tool for biology education", type:"journal-article", year:"2026", journal:"Journal of Biological Education", doi:"10.1080/00219266.2025.2486963", url:"https://doi.org/10.1080/00219266.2025.2486963", source:'curated' },
     { putCode:'f02', title:"Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum", type:"journal-article", year:"2023", journal:"Education Sciences 13(8), 797", doi:"10.3390/educsci13080797", url:"https://doi.org/10.3390/educsci13080797", source:'curated' },
     { putCode:'f03', title:"Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency", type:"journal-article", year:"2023", journal:"Sustainability 15(9), 7413", doi:"10.3390/su15097413", url:"https://doi.org/10.3390/su15097413", source:'curated' },
@@ -1956,10 +2370,24 @@ function loadFallback() {
     { putCode:'f14', title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"book-chapter", year:"2019", journal:"Darwin's Roadmap to the Curriculum (Oxford University Press)", doi:null, url:null, source:'curated' }
   ];
 
-  CV.works = fallback;
-  document.getElementById('pub-count').textContent = fallback.length;
-  renderPublications(fallback);
+  CV.works = fallbackWorks;
+  document.getElementById('pub-count').textContent = fallbackWorks.length;
+  renderPublications(fallbackWorks);
 }
+
+/* ────────────────────────────────────────────────────────────────
+   MOBILE NAV
+──────────────────────────────────────────────────────────────── */
+const navToggle = document.getElementById('nav-toggle');
+const navLinks  = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
 
 /* ────────────────────────────────────────────────────────────────
    EXPORT
@@ -1980,22 +2408,23 @@ function exportJSON() {
   closeExportModal();
   const payload = {
     meta: {
-      schema_version: '1.2',
+      schema_version: '1.3',
       exported_at:    new Date().toISOString(),
       orcid:          ORCID_ID,
       source:         `https://pub.orcid.org/v3.0/${ORCID_ID}/record`,
       license:        'CC-BY 4.0'
     },
-    profile:    CV.profile,
-    education:  CV.education,
-    employment: CV.employment,
+    profile:      CV.profileMeta,
+    education:    CV.education,
+    employment:   CV.employment,
     publications: CV.works,
     featured_dois: Object.keys(CV.pubMeta.featuredMap || {}),
     annotations:   CV.pubMeta.annotMap || {},
-    talks:     CV.talks,
-    grants:    CV.grants,
-    advisory:  CV.advisory,
-    awards:    CV.awards
+    talks:         CV.talks,
+    grants:        CV.grants,
+    advisory:      CV.advisory,
+    awards:        CV.awards,
+    research_lab:  { ...CV.ccsLab, live_repo_stats: CV.ccsRepos }
   };
   downloadBlob(
     new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }),
@@ -2008,24 +2437,24 @@ function exportMarkdown() {
   const { featuredMap = {}, annotMap = {} } = CV.pubMeta;
   const now = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
   const L   = [];
+  const profile = CV.profileMeta || {};
 
   L.push(`# Dustin Eirdosh, PhD`);
   L.push(`> Educational innovation for understanding the human condition`);
   L.push(``);
-  L.push(`**Email:** dustin.eirdosh@eva.mpg.de  `);
+  L.push(`**Email:** ${profile.contact?.email || 'dustin.eirdosh@eva.mpg.de'}  `);
   L.push(`**ORCID:** [0000-0002-3836-1501](https://orcid.org/0000-0002-3836-1501)  `);
-  L.push(`**Web:** [openevo.eva.mpg.de](http://openevo.eva.mpg.de) · [GlobalESD.org](http://www.GlobalESD.org)  `);
+  L.push(`**Web:** [openevo.eva.mpg.de](http://openevo.eva.mpg.de) · [GlobalESD.org](http://www.GlobalESD.org) · [OpenEvo CCS Lab](https://github.com/openevo-ccs)  `);
   L.push(`*CV generated: ${now}*`);
   L.push(``);
 
-  if (CV.profile?.bio) {
-    L.push(`## About`);
-    L.push(CV.profile.bio);
-    L.push(``);
-  }
+  const bio = profile.about || CV.orcid.bio || defaultBio();
+  L.push(`## About`);
+  L.push(bio);
+  L.push(``);
 
-  if (CV.profile?.keywords?.length) {
-    L.push(`**Research keywords:** ${CV.profile.keywords.join(' · ')}`);
+  if (CV.orcid.keywords?.length) {
+    L.push(`**Research keywords:** ${CV.orcid.keywords.join(' · ')}`);
     L.push(``);
   }
 
@@ -2067,6 +2496,20 @@ function exportMarkdown() {
   });
   L.push(``);
 
+  if (CV.ccsLab) {
+    L.push(`## Computational Curriculum Studies — OpenEvo CCS Lab`);
+    L.push(CV.ccsLab.intro || '');
+    L.push(``);
+    (CV.ccsLab.featured_repos || []).forEach(fr => {
+      L.push(`- **${fr.repo}** — ${fr.blurb} ([GitHub](${CV.ccsLab.org_url}/${fr.repo}))`);
+    });
+    L.push(``);
+    (CV.ccsLab.apps || []).forEach(a => {
+      L.push(`- [${a.name}](${a.url}) — ${a.description}`);
+    });
+    L.push(``);
+  }
+
   L.push(`## Talks & Media`);
   CV.talks.forEach(t => {
     L.push(`- **${t.type}** (${t.date}) — [${t.title}](${t.url})`);
@@ -2089,6 +2532,12 @@ function exportMarkdown() {
   });
   L.push(``);
 
+  if (profile.dei_statement) {
+    L.push(`## ${profile.dei_statement.title}`);
+    L.push(profile.dei_statement.body);
+    L.push(``);
+  }
+
   L.push(`## Awards & Recognition`);
   CV.awards.forEach(a => {
     L.push(`- **${a.year}** — ${a.title}, *${a.org}*`);
@@ -2096,7 +2545,7 @@ function exportMarkdown() {
   });
   L.push(``);
   L.push(`---`);
-  L.push(`*Data sourced from ORCID (${ORCID_ID}) and curated records. Generated ${now}.*`);
+  L.push(`*Data sourced from ORCID (${ORCID_ID}), the OpenEvo CCS Lab, and curated records. Generated ${now}.*`);
 
   downloadBlob(
     new Blob([L.join('\n')], { type: 'text/markdown' }),

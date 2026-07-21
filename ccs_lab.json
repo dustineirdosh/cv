@@ -1,0 +1,47 @@
+{
+  "ccs_lab": {
+    "org": "openevo-ccs",
+    "org_url": "https://github.com/openevo-ccs",
+    "org_home": "http://openevo.eva.mpg.de",
+    "name": "OpenEvo CCS Lab",
+    "tagline": "Computational Curriculum Studies",
+    "eyebrow": "Current Research Direction",
+    "intro": "Our earlier work treated evolutionary and behavioral science as an interdisciplinary lens for curriculum design — causal mapping, cooperation across textbooks, the Community Science Lab model. The OpenEvo CCS Lab extends that same instinct computationally: we represent curricula themselves — standards, learning progressions, competency frameworks — as structured, comparable knowledge graphs, so researchers and policymakers can see where interdisciplinary concepts cohere across grade bands and subjects, and where they don't.",
+    "flagship": {
+      "repo": "conceptbase",
+      "name": "OpenEvo ConceptBase (OECB)",
+      "description": "The semantic backbone of the lab: a shared, version-controlled ontology and controlled vocabularies (profiled against SKOS, IEEE LOM, schema.org, and 1EdTech CASE) that let independently maintained curriculum models describe their content in a common, interoperable language — without imposing a single 'correct' curriculum.",
+      "url": "https://github.com/openevo-ccs/conceptbase"
+    },
+    "apps": [
+      {
+        "name": "ConceptBase Explorer",
+        "description": "Interactive app for browsing the knowledge graph — no setup required. See how a single concept is defined across disciplines, and trace alignments across grade bands.",
+        "url": "https://openevo-ccs.github.io/conceptbase/"
+      },
+      {
+        "name": "eva_buch Explorer",
+        "description": "Interactive topic-modelling browser for German curriculum documents, supporting Dr. Susan Hanisch's forthcoming (2027) book on teaching evolutionary anthropology in schools.",
+        "url": "https://openevo-ccs.github.io/eva_buch/"
+      }
+    ],
+    "featured_repos": [
+      {
+        "repo": "conceptbase",
+        "blurb": "Ontology, vocabularies, and schemas for the whole ecosystem — the OECB core."
+      },
+      {
+        "repo": "oe-interdisciplinary-k12",
+        "blurb": "A reference K–12 learning progression model spanning biology, social studies, and computer science."
+      },
+      {
+        "repo": "bio-core-k12",
+        "blurb": "A reference K–12 learning progression model for evolutionary biology."
+      },
+      {
+        "repo": "eva_buch",
+        "blurb": "German-language topic-modelling dataset and visualizations on evolutionary anthropology in curricula."
+      }
+    ]
+  }
+}

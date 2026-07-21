@@ -22,6 +22,12 @@
         "type": "project"
       },
       {
+        "platform": "OpenEvo CCS Lab",
+        "label": "github.com/openevo-ccs",
+        "url": "https://github.com/openevo-ccs",
+        "type": "project"
+      },
+      {
         "platform": "Max Planck Institute Profile",
         "label": "MPI EVA Staff Page",
         "url": "https://www.eva.mpg.de/comparative-cultural-psychology/staff/dustin-eirdosh/",

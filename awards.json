@@ -1,0 +1,18 @@
+{
+  "awards": [
+    {
+      "id": "award_001",
+      "year": 2005,
+      "title": "KIDS Consortium Community Partner of the Year",
+      "org": "KIDS Consortium",
+      "reason": "Excellence in supporting school and community partners in service-learning project development"
+    },
+    {
+      "id": "award_002",
+      "year": 2004,
+      "title": "Ecological Entrepreneurship Award",
+      "org": "College of the Atlantic",
+      "reason": "Excellence in undergraduate thesis work related to food systems education and community development"
+    }
+  ]
+}

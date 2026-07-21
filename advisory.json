@@ -1,0 +1,29 @@
+{
+  "advisory": [
+    {
+      "id": "adv_001",
+      "role": "Education Domain Co-Lead (with Susan Hanisch)",
+      "org": "Cultural Evolution Society Transformation Fund",
+      "body": "Sustainability Applied Working Group",
+      "url": "https://ces-transformationfund.org/our-projects/sustainability-awg/",
+      "current": true,
+      "responsibilities": [
+        "Facilitating multi-stakeholder collaboration for applied cultural evolutionary change and sustainable development in education",
+        "Developing a policy brief relating applied cultural evolution to Education for Sustainable Development"
+      ]
+    },
+    {
+      "id": "adv_002",
+      "role": "Scientific Advisory Board Member",
+      "org": "Food and Agriculture Organization of the United Nations (FAO)",
+      "body": "FACE-NDC — Facility for Action for Climate Empowerment, FAO Zambia",
+      "period": "01.03.2023 – 28.02.2030",
+      "funding": "€18,496,873 allocated",
+      "current": true,
+      "responsibilities": [
+        "Technical guidance for teacher education training and sustainability-focused student thesis projects",
+        "Guidance for University-Assisted Community Science Lab models in regional schools"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "grants": [
+    {
+      "id": "grant_001",
+      "title": "Developing a field approach to cultural evolution",
+      "funder": "John Templeton Foundation",
+      "period": "March 2022 – December 2024",
+      "amount": "$3,130,761",
+      "roles": [
+        "Grant conceptualization for viewing schools as field sites for community-based research",
+        "Involved in drafting of the proposal",
+        "Supporting Leipzig field site projects"
+      ]
+    },
+    {
+      "id": "grant_002",
+      "title": "Amselo — Agent-based models of social-ecological systems with NetLogo",
+      "funder": "Joachim Herz Stiftung",
+      "period": "October 2022 – September 2025",
+      "amount": null,
+      "roles": [
+        "Supported conceptualization of the proposal",
+        "Development and dissemination of outputs"
+      ]
+    }
+  ]
+}
