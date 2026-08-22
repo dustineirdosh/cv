@@ -22,38 +22,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
+  <!-- Shared OpenEvo CCS Lab design tokens (surfaces, text, borders, accent
+       colors, radii) - loaded before this page's own <style>, which now
+       consumes them directly rather than keeping its own color palette.
+       See openevo-core/design-system/README.md. -->
+  <link rel="stylesheet" href="https://openevo-ccs.github.io/openevo-core/design-system/tokens.css" />
+
   <style>
     /* ══════════════════════════════════════════════════════
-       DESIGN TOKENS  (OpenEvo palette)
+       DESIGN TOKENS  (OpenEvo palette — full swap to openevo-core)
+
+       Color values here are aliases onto the shared tokens above
+       (openevo-core/design-system/tokens.css): --series-a (blue) replaces
+       the old steel/navy-accent hue, --series-b (green) replaces the old
+       teal accent, --text-primary/--page-plane replace the old navy ink /
+       blue-tinted page background, and --critical replaces the old
+       bespoke coral error color. Lighter/paler tints are derived from
+       those same tokens with color-mix() rather than re-hardcoded, so
+       there's a single source of truth for every hue on the page.
+       --surface, --border, --radius and --radius-sm are still not
+       redeclared at all - they fall straight through to the shared
+       tokens. Font stack, radius-lg/pill, gradients and shadows stay as
+       this page's own layout-level extras (not part of the shared set).
     ══════════════════════════════════════════════════════ */
     :root {
-      --navy:          #1D3557;
-      --steel:         #457B9D;
-      --steel-light:   #A8C8E0;
-      --teal:          #2A9D8F;
-      --teal-light:    #A8D8D4;
-      --teal-pale:     #E8F5F4;
-      --bg:            #F0F4F8;
-      --surface:       #FFFFFF;
-      --surface-2:     #EEF2F7;
-      --border:        #DEE2E6;
-      --border-focus:  #457B9D;
-      --ink:           #1D3557;
-      --ink-mid:       #457B9D;
-      --ink-light:     #6B849A;
-      --ink-faint:     #9AB0C0;
+      --navy:          var(--text-primary);
+      --steel:         var(--series-a);
+      --steel-light:   color-mix(in srgb, var(--series-a) 45%, white);
+      --teal:          var(--series-b);
+      --teal-light:    color-mix(in srgb, var(--series-b) 45%, white);
+      --teal-pale:     color-mix(in srgb, var(--series-b) 10%, white);
+      --bg:            var(--page-plane);
+      --surface:       var(--surface-2);   /* shared token from openevo-core: #fff, exact match */
+      --surface-soft:  var(--surface-1);   /* shared token: was CV-specific #EEF2F7 */
+      --border-focus:  var(--series-a);
+      --ink:           var(--text-primary);
+      --ink-mid:       var(--series-a);
+      --ink-light:     var(--text-secondary);
+      --ink-faint:     var(--text-muted);
+      --error:         var(--critical);
+      --error-light:   color-mix(in srgb, var(--critical) 45%, white);
+      --error-pale:    color-mix(in srgb, var(--critical) 8%, white);
 
-      --grad-hero:     linear-gradient(135deg, #1D3557 0%, #457B9D 100%);
-      --grad-accent:   linear-gradient(135deg, #2A9D8F 0%, #457B9D 100%);
-      --grad-subtle:   linear-gradient(135deg, #EEF2F7 0%, #E8F5F4 100%);
+      --grad-hero:     linear-gradient(135deg, var(--text-primary) 0%, var(--series-a) 100%);
+      --grad-accent:   linear-gradient(135deg, var(--series-b) 0%, var(--series-a) 100%);
+      --grad-subtle:   linear-gradient(135deg, var(--surface-1) 0%, color-mix(in srgb, var(--series-b) 8%, white) 100%);
 
-      --shadow-sm:     0 1px 8px rgba(29,53,87,.06);
-      --shadow-md:     0 4px 20px rgba(29,53,87,.10);
-      --shadow-lg:     0 8px 32px rgba(29,53,87,.15);
-      --shadow-hero:   0 4px 20px rgba(29,53,87,.25);
+      --shadow-sm:     0 1px 8px rgba(11,11,11,.06);
+      --shadow-md:     0 4px 20px rgba(11,11,11,.10);
+      --shadow-lg:     0 8px 32px rgba(11,11,11,.15);
+      --shadow-hero:   0 4px 20px rgba(11,11,11,.25);
 
-      --radius-sm:     6px;
-      --radius:        12px;
       --radius-lg:     16px;
       --radius-pill:   100px;
 
@@ -146,7 +165,7 @@
       padding:       4px 8px;
       border-radius: var(--radius-sm);
     }
-    .nav-toggle:hover { background: var(--surface-2); }
+    .nav-toggle:hover { background: var(--surface-soft); }
 
     /* ══════════════════════════════════════════════════════
        BUTTONS
@@ -181,11 +200,11 @@
     .btn-solid {
       background: var(--grad-hero);
       color:      #fff;
-      box-shadow: 0 2px 8px rgba(29,53,87,.20);
+      box-shadow: 0 2px 8px rgba(11,11,11,.20);
     }
     .btn-solid:hover {
       transform:  translateY(-1px);
-      box-shadow: 0 4px 14px rgba(29,53,87,.30);
+      box-shadow: 0 4px 14px rgba(11,11,11,.30);
     }
 
     /* ══════════════════════════════════════════════════════
@@ -238,6 +257,19 @@
       width:         360px;
       height:        360px;
       opacity:       .16;
+      pointer-events: none;
+      z-index:       0;
+    }
+
+    /* three.js-animated version of the same motif, progressively enhances
+       the static SVG above (see the module script near the end of body) */
+    .hero-graph-3d {
+      position:      absolute;
+      right:         -10px;
+      top:           -10px;
+      width:         360px;
+      height:        360px;
+      opacity:       .2;
       pointer-events: none;
       z-index:       0;
     }
@@ -363,9 +395,9 @@
     }
 
     .status-live {
-      background: rgba(42,157,143,.25);
-      color:      #a8e6df;
-      border:     1px solid rgba(42,157,143,.35);
+      background: color-mix(in srgb, var(--series-b) 25%, transparent);
+      color:      color-mix(in srgb, var(--series-b) 55%, white);
+      border:     1px solid color-mix(in srgb, var(--series-b) 35%, transparent);
     }
 
     .status-loading {
@@ -375,14 +407,14 @@
     }
 
     .status-error {
-      background: rgba(231,111,81,.2);
-      color:      #f4a995;
-      border:     1px solid rgba(231,111,81,.3);
+      background: color-mix(in srgb, var(--critical) 20%, transparent);
+      color:      color-mix(in srgb, var(--critical) 45%, white);
+      border:     1px solid color-mix(in srgb, var(--critical) 30%, transparent);
     }
 
     /* on light cards (e.g. Research Lab section), the live/error pills need dark-surface variants */
-    .status-pill.status-live.on-light   { background: var(--teal-pale); color: #1a7f73; border-color: var(--teal-light); }
-    .status-pill.status-error.on-light  { background: #FFF5F5; color: #9B4141; border-color: #FED7D7; }
+    .status-pill.status-live.on-light   { background: var(--teal-pale); color: var(--series-b); border-color: var(--teal-light); }
+    .status-pill.status-error.on-light  { background: var(--error-pale); color: var(--critical); border-color: color-mix(in srgb, var(--critical) 25%, white); }
 
     .pulse-dot {
       width:         7px;
@@ -429,7 +461,7 @@
       justify-content: center;
       font-size:     .9rem;
       flex-shrink:   0;
-      box-shadow:    0 2px 6px rgba(42,157,143,.25);
+      box-shadow:    0 2px 6px color-mix(in srgb, var(--series-b) 25%, transparent);
     }
 
     .section-title {
@@ -441,7 +473,7 @@
     .section-count {
       font-size:     .72rem;
       color:         var(--ink-light);
-      background:    var(--surface-2);
+      background:    var(--surface-soft);
       border:        1px solid var(--border);
       padding:       2px 8px;
       border-radius: var(--radius-pill);
@@ -569,7 +601,7 @@
       background:    var(--grad-accent);
       flex-shrink:   0;
       margin-top:    5px;
-      box-shadow:    0 0 0 3px rgba(42,157,143,.15);
+      box-shadow:    0 0 0 3px color-mix(in srgb, var(--series-b) 15%, transparent);
     }
 
     .timeline-dot.current {
@@ -577,8 +609,8 @@
     }
 
     @keyframes pulse-dot {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(42,157,143,.15); }
-      50%       { box-shadow: 0 0 0 6px rgba(42,157,143,.08); }
+      0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--series-b) 15%, transparent); }
+      50%       { box-shadow: 0 0 0 6px color-mix(in srgb, var(--series-b) 8%, transparent); }
     }
 
     .timeline-connector {
@@ -744,7 +776,7 @@
       font-size:     .72rem;
       font-weight:   700;
       color:         var(--steel);
-      background:    var(--surface-2);
+      background:    var(--surface-soft);
       border:        1px solid var(--border);
       padding:       3px 5px;
       border-radius: var(--radius-sm);
@@ -784,7 +816,7 @@
       line-height:   1.55;
       margin-bottom: 8px;
       padding:       8px 10px;
-      background:    var(--surface-2);
+      background:    var(--surface-soft);
       border-radius: var(--radius-sm);
       border-left:   2px solid var(--steel-light);
     }
@@ -807,15 +839,15 @@
     }
 
     .chip-type {
-      background: var(--surface-2);
+      background: var(--surface-soft);
       color:      var(--ink-light);
       border:     1px solid var(--border);
     }
 
     .chip-source-curated {
-      background: #EEF2F7;
+      background: var(--surface-soft);
       color:      var(--steel);
-      border:     1px solid #C5D0DC;
+      border:     1px solid color-mix(in srgb, var(--series-a) 20%, white);
     }
 
     .chip-oa {
@@ -861,6 +893,13 @@
     /* ══════════════════════════════════════════════════════
        RESEARCH LAB  (Computational Curriculum Studies / OECB)
     ══════════════════════════════════════════════════════ */
+    .ccs-org-avatar {
+      width:         26px;
+      height:        26px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right:  2px;
+    }
     .apps-grid {
       display:               grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -875,12 +914,12 @@
       border-radius:   var(--radius);
       padding:         18px 20px;
       text-decoration: none;
-      box-shadow:      0 4px 14px rgba(42,157,143,.25);
+      box-shadow:      0 4px 14px color-mix(in srgb, var(--series-b) 25%, transparent);
       transition:      all var(--transition);
     }
     .app-card:hover {
       transform:  translateY(-2px);
-      box-shadow: 0 8px 22px rgba(42,157,143,.35);
+      box-shadow: 0 8px 22px color-mix(in srgb, var(--series-b) 35%, transparent);
       color:      #fff;
     }
     .app-card-icon {
@@ -893,7 +932,9 @@
       justify-content: center;
       flex-shrink:    0;
       font-size:      .78rem;
+      overflow:       hidden;
     }
+    .app-card-icon img { width: 20px; height: 20px; object-fit: contain; }
     .app-card-name { font-weight: 700; font-size: .88rem; margin-bottom: 4px; }
     .app-card-desc { font-size: .78rem; color: rgba(255,255,255,.88); line-height: 1.5; }
 
@@ -906,7 +947,7 @@
       background:    var(--surface);
       border:        1px solid var(--border);
       border-radius: var(--radius);
-      padding:       16px 18px;
+      overflow:      hidden;
       box-shadow:    var(--shadow-sm);
       display:       flex;
       flex-direction: column;
@@ -917,6 +958,15 @@
       box-shadow:   var(--shadow-md);
       border-color: var(--steel-light);
       transform:    translateY(-2px);
+    }
+    .repo-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .repo-card-thumb {
+      width:       100%;
+      height:      86px;
+      object-fit:  cover;
+      object-position: left center;
+      display:     block;
+      background:  var(--surface-soft);
     }
     .repo-card-head {
       display:         flex;
@@ -941,6 +991,92 @@
       color:       var(--ink-light);
     }
     .repo-stat { display: inline-flex; align-items: center; gap: 3px; }
+
+    /* ══════════════════════════════════════════════════════
+       UMAP 3D PREVIEW  (eva_buch topic-space projection)
+    ══════════════════════════════════════════════════════ */
+    .umap-preview {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow:    var(--shadow-sm);
+      padding:       20px 22px;
+      margin-top:    28px;
+    }
+    .umap-explainer {
+      font-size:   .84rem;
+      color:       var(--ink-mid);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .umap-explainer strong { color: var(--ink); }
+    .umap-stage {
+      position:      relative;
+      border-radius: var(--radius-sm);
+      overflow:      hidden;
+      background:    var(--grad-subtle);
+      border:        1px solid var(--border);
+    }
+    .umap-stage canvas {
+      display: block;
+      width:   100%;
+      height:  380px;
+      cursor:  grab;
+      touch-action: none;
+    }
+    .umap-stage.dragging canvas { cursor: grabbing; }
+    .umap-legend {
+      position:       absolute;
+      top:            10px;
+      left:           10px;
+      display:        flex;
+      flex-direction: column;
+      gap:            5px;
+      background:     color-mix(in srgb, var(--surface) 88%, transparent);
+      border:         1px solid var(--border);
+      border-radius:  var(--radius-sm);
+      padding:        8px 11px;
+      font-size:      .68rem;
+      color:          var(--ink-mid);
+      pointer-events: none;
+      backdrop-filter: blur(3px);
+    }
+    .umap-legend-row { display: flex; align-items: center; gap: 6px; }
+    .umap-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .umap-caption {
+      position:       absolute;
+      left:           10px;
+      right:          10px;
+      bottom:         10px;
+      background:     color-mix(in srgb, var(--surface) 92%, transparent);
+      border:         1px solid var(--border);
+      border-radius:  var(--radius-sm);
+      padding:        9px 12px;
+      font-size:      .74rem;
+      line-height:    1.5;
+      color:          var(--ink);
+      pointer-events: none;
+      backdrop-filter: blur(3px);
+      max-height:     92px;
+      overflow:       auto;
+    }
+    .umap-caption .umap-caption-subject {
+      font-weight:    700;
+      font-size:      .66rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color:          var(--ink-light);
+      display:        block;
+      margin-bottom:  3px;
+    }
+    .umap-loading {
+      display:        flex;
+      align-items:    center;
+      justify-content: center;
+      height:         380px;
+      font-size:      .8rem;
+      color:          var(--ink-faint);
+    }
 
     /* ══════════════════════════════════════════════════════
        TALKS
@@ -973,7 +1109,7 @@
       justify-content: center;
       font-size:      1.1rem;
       flex-shrink:    0;
-      box-shadow:     0 2px 8px rgba(29,53,87,.2);
+      box-shadow:     0 2px 8px rgba(11,11,11,.2);
     }
 
     .talk-type {
@@ -1072,7 +1208,7 @@
       color:         var(--ink-light);
       padding:       3px 0 3px 14px;
       position:      relative;
-      border-bottom: 1px solid var(--surface-2);
+      border-bottom: 1px solid var(--surface-soft);
     }
     .resp-list li:last-child { border-bottom: none; }
 
@@ -1187,11 +1323,11 @@
        ERROR STATE
     ══════════════════════════════════════════════════════ */
     .error-box {
-      background:    #FFF5F5;
-      border:        1px solid #FED7D7;
+      background:    var(--error-pale);
+      border:        1px solid color-mix(in srgb, var(--critical) 25%, white);
       border-radius: var(--radius-sm);
       padding:       16px 20px;
-      color:         #742A2A;
+      color:         color-mix(in srgb, var(--critical) 70%, black);
       font-size:     .84rem;
     }
 
@@ -1221,7 +1357,7 @@
       display:         none;
       position:        fixed;
       inset:           0;
-      background:      rgba(29,53,87,.5);
+      background:      rgba(11,11,11,.5);
       backdrop-filter: blur(4px);
       z-index:         300;
       align-items:     center;
@@ -1248,7 +1384,7 @@
     .modal-close {
       position:   absolute;
       top:        14px; right: 14px;
-      background: var(--surface-2);
+      background: var(--surface-soft);
       border:     none;
       width:      28px; height: 28px;
       border-radius: 50%;
@@ -1314,7 +1450,7 @@
       .hero { padding: 36px 24px 32px; margin: 0 -24px 40px; }
       .hero-grid { grid-template-columns: 1fr; }
       .orcid-card { display: none; }
-      .hero-graph-motif { display: none; }
+      .hero-graph-motif, .hero-graph-3d { display: none; }
       .timeline-item { grid-template-columns: 80px 16px 1fr; gap: 0 10px; }
       .featured-grid { grid-template-columns: 1fr; }
       .awards-grid   { grid-template-columns: 1fr; }
@@ -1343,17 +1479,17 @@
     ══════════════════════════════════════════════════════ */
     @media print {
       .top-nav, .nav-actions, .btn, .modal-overlay,
-      .hero::before, .hero::after, .hero-graph-motif { display: none !important; }
+      .hero::before, .hero::after, .hero-graph-motif, .hero-graph-3d { display: none !important; }
       body { font-size: 11pt; background: white; color: black; }
       .hero {
         background: white !important;
-        border: 2px solid #1D3557;
-        color: #1D3557 !important;
+        border: 2px solid var(--text-primary);
+        color: var(--text-primary) !important;
         box-shadow: none;
         margin: 0 0 24pt;
         border-radius: 0;
       }
-      .hero * { color: #1D3557 !important; }
+      .hero * { color: var(--text-primary) !important; }
       .pub-card, .panel-card, .talk-card, .award-card,
       .featured-card, .about-card, .repo-card, .app-card {
         box-shadow: none;
@@ -1400,13 +1536,14 @@
         <line x1="150" y1="60" x2="320" y2="90"/>
         <line x1="300" y1="220" x2="180" y2="260"/>
       </g>
-      <circle cx="230" cy="150" r="9" fill="#2A9D8F"/>
+      <circle cx="230" cy="150" r="9" fill="#008300"/>
       <circle cx="150" cy="60"  r="5" fill="#fff"/>
       <circle cx="320" cy="90"  r="5" fill="#fff"/>
       <circle cx="300" cy="220" r="5" fill="#fff"/>
       <circle cx="180" cy="260" r="5" fill="#fff"/>
       <circle cx="90"  cy="180" r="5" fill="#fff"/>
     </svg>
+    <canvas class="hero-graph-3d" id="hero-graph-3d" aria-hidden="true"></canvas>
 
     <div class="hero-grid">
       <div>
@@ -1527,6 +1664,22 @@
         <div class="sk-line sk-long skeleton"></div>
       </div>
     </div>
+
+    <div class="umap-preview">
+      <p class="subheading" style="margin-bottom:10px;">Preview: what eva_buch actually looks at (in 3D)</p>
+      <p class="umap-explainer">
+        Each point below is one excerpt from a real German K–12 curriculum standard that mentions
+        evolution. <strong>eva_buch</strong> uses a language model (BERTopic) to group excerpts that
+        discuss similar ideas, then a second technique (<strong>UMAP</strong>) arranges those groups in
+        3D space so excerpts with related meaning sit near each other. Most excerpts in this topic (green)
+        come from Biology standards — the highlighted colors are the rarer excerpts where the same idea
+        turns up in Ethics/Philosophy, History, or Psychology curricula instead: exactly the kind of
+        cross-subject connection this research lab tries to make visible.
+      </p>
+      <div class="umap-stage" id="umap-stage">
+        <div class="umap-loading" id="umap-loading">Loading 3D preview…</div>
+      </div>
+    </div>
   </section>
 
   <!-- Talks ────────────────────────────────────────────────────── -->
@@ -1627,13 +1780,13 @@ const ORCID_BASE = 'https://pub.orcid.org/v3.0';
 const GITHUB_ORG = 'openevo-ccs';
 
 const DATA_FILES = {
-  publications: 'data/publications.json',
-  profile:      'data/profile.json',
-  talks:        'data/talks.json',
-  advisory:     'data/advisory.json',
-  grants:       'data/grants.json',
-  awards:       'data/awards.json',
-  ccsLab:       'data/ccs_lab.json'
+  publications: 'publications.json',
+  profile:      'profile.json',
+  talks:        'talks.json',
+  advisory:     'advisory.json',
+  grants:       'grants.json',
+  awards:       'awards.json',
+  ccsLab:       'ccs_lab.json'
 };
 
 /* ────────────────────────────────────────────────────────────────
@@ -2226,9 +2379,11 @@ function renderCcsLab(status) {
 
   const repoMap = CV.ccsRepos || {};
 
+  const orgAvatar = `https://github.com/${meta.org}.png?size=80`;
+
   const appsHtml = (meta.apps || []).map(a => `
     <a class="app-card" href="${a.url}" target="_blank" rel="noopener">
-      <div class="app-card-icon">▶</div>
+      <div class="app-card-icon"><img src="${orgAvatar}" alt="" loading="lazy" /></div>
       <div>
         <div class="app-card-name">${a.name}</div>
         <div class="app-card-desc">${a.description}</div>
@@ -2243,18 +2398,22 @@ function renderCcsLab(status) {
       ? new Date(live.updated_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })
       : '';
     const url = live.html_url || `${meta.org_url}/${fr.repo}`;
+    const thumb = `https://opengraph.githubassets.com/1/${meta.org}/${fr.repo}`;
 
     return `
       <div class="repo-card">
-        <div class="repo-card-head">
-          <span class="repo-name">📦 ${fr.repo}</span>
-          ${lang ? `<span class="chip chip-type">${lang}</span>` : ''}
-        </div>
-        <div class="repo-blurb">${fr.blurb}</div>
-        <div class="repo-footer">
-          ${stars !== null ? `<span class="repo-stat">★ ${stars}</span>` : ''}
-          ${updated ? `<span class="repo-stat">Updated ${updated}</span>` : ''}
-          <a class="doi-link" href="${url}" target="_blank">View repo ↗</a>
+        <img class="repo-card-thumb" src="${thumb}" alt="" loading="lazy" onerror="this.remove()" />
+        <div class="repo-card-body">
+          <div class="repo-card-head">
+            <span class="repo-name">📦 ${fr.repo}</span>
+            ${lang ? `<span class="chip chip-type">${lang}</span>` : ''}
+          </div>
+          <div class="repo-blurb">${fr.blurb}</div>
+          <div class="repo-footer">
+            ${stars !== null ? `<span class="repo-stat">★ ${stars}</span>` : ''}
+            ${updated ? `<span class="repo-stat">Updated ${updated}</span>` : ''}
+            <a class="doi-link" href="${url}" target="_blank">View repo ↗</a>
+          </div>
         </div>
       </div>`;
   }).join('');
@@ -2263,6 +2422,7 @@ function renderCcsLab(status) {
     ${meta.eyebrow ? `<p class="subheading" style="margin-bottom:18px;">${meta.eyebrow}</p>` : ''}
     <div class="about-card" style="margin-bottom:28px;">
       <div class="panel-org" style="margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+        <img class="ccs-org-avatar" src="${orgAvatar}" alt="" loading="lazy" onerror="this.remove()" />
         <a href="${meta.org_url}" target="_blank" style="color:inherit">${meta.name} ↗</a>
         ${ccsStatusMarkup(status)}
       </div>
@@ -2564,6 +2724,268 @@ function downloadBlob(blob, filename) {
    START
 ──────────────────────────────────────────────────────────────── */
 init();
+</script>
+
+<!-- Progressive enhancement: animates the static concept-graph motif above
+     with three.js. Skips entirely (leaving the static SVG in place) on
+     small screens, when the user prefers reduced motion, or if the CDN
+     can't be reached — so nothing ever looks broken. -->
+<script type="module">
+(async () => {
+  const svg    = document.querySelector('.hero-graph-motif');
+  const canvas = document.getElementById('hero-graph-3d');
+  if (!svg || !canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.innerWidth <= 640) return;
+
+  let THREE;
+  try {
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  } catch {
+    return; // offline / blocked CDN — static SVG stays as the fallback
+  }
+
+  const SIZE = 360;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  renderer.setSize(SIZE, SIZE, false);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 1, 1000);
+  camera.position.set(0, 0, 260);
+
+  // Same node layout as the static SVG — one central "concept" node with
+  // five satellites and two cross-links — lifted into a shallow 3D shell.
+  const nodePositions = [
+    [0, 0, 0],
+    [-40, 55, 30],
+    [55, 38, -20],
+    [42, -42, 25],
+    [-25, -58, -15],
+    [-75, -5, 10],
+  ];
+  const edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 2], [3, 4]];
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  const nodeGeo = new THREE.SphereGeometry(1, 12, 12);
+  nodePositions.forEach(([x, y, z], i) => {
+    const isCenter = i === 0;
+    const mesh = new THREE.Mesh(
+      nodeGeo,
+      new THREE.MeshBasicMaterial({ color: isCenter ? 0x008300 : 0xffffff })
+    );
+    mesh.position.set(x, y, z);
+    mesh.scale.setScalar(isCenter ? 6 : 3.4);
+    group.add(mesh);
+  });
+
+  const linePositions = [];
+  edges.forEach(([a, b]) => linePositions.push(...nodePositions[a], ...nodePositions[b]));
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
+  group.add(new THREE.LineSegments(lineGeo, lineMat));
+
+  svg.style.display = 'none';
+
+  let tabVisible = !document.hidden;
+  document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
+
+  let inView = true;
+  new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
+
+  const clock = new THREE.Clock();
+  (function tick() {
+    requestAnimationFrame(tick);
+    if (!tabVisible || !inView) return;
+    const t = clock.getElapsedTime();
+    group.rotation.y = t * 0.08;
+    group.rotation.x = Math.sin(t * 0.05) * 0.15;
+    renderer.render(scene, camera);
+  })();
+})();
+</script>
+
+<!-- eva_buch 3D UMAP preview: a real (trimmed) export of eva_buch's own
+     BERTopic + UMAP output for the "Evolution" topic (see
+     eva_buch_preview.json), rendered as a draggable three.js point cloud.
+     Independent of the hero script above and of ccs_lab.json's fetch -
+     it always attempts to load, and fails to a plain link if the data or
+     the three.js CDN aren't reachable. -->
+<script type="module">
+(async () => {
+  const stage = document.getElementById('umap-stage');
+  const loading = document.getElementById('umap-loading');
+  if (!stage) return;
+
+  const fallback = (msg) => {
+    if (loading) loading.textContent = msg;
+  };
+
+  let THREE, data;
+  try {
+    [THREE, data] = await Promise.all([
+      import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'),
+      fetch('eva_buch_preview.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    ]);
+  } catch {
+    fallback('Preview unavailable right now — see the live eva_buch Explorer above.');
+    return;
+  }
+  if (!data.points || !data.points.length) {
+    fallback('Preview unavailable right now — see the live eva_buch Explorer above.');
+    return;
+  }
+
+  const SUBJECT_LABELS = {
+    'Bio': 'Biology',
+    'Ethik, Philo': 'Ethics / Philosophy',
+    'Geschichte': 'History',
+    'Psychologie': 'Psychology'
+  };
+  const root = getComputedStyle(document.documentElement);
+  const tok = (name, fallbackHex) => (root.getPropertyValue(name) || fallbackHex).trim();
+  const PALETTE = [
+    tok('--series-b', '#008300'),
+    tok('--series-a', '#2a78d6'),
+    tok('--warning',  '#fab219'),
+    tok('--critical', '#d03b3b')
+  ];
+
+  loading.remove();
+  const canvas = document.createElement('canvas');
+  const legend = document.createElement('div');
+  legend.className = 'umap-legend';
+  legend.innerHTML = data.subjects.map((s, i) => `
+    <div class="umap-legend-row">
+      <span class="umap-legend-dot" style="background:${PALETTE[i % PALETTE.length]}"></span>
+      <span>${SUBJECT_LABELS[s] || s}</span>
+    </div>`).join('');
+  const caption = document.createElement('div');
+  caption.className = 'umap-caption';
+  const captionSubject = document.createElement('span');
+  captionSubject.className = 'umap-caption-subject';
+  const captionBody = document.createElement('span');
+  const setCaption = (subjectText, bodyText) => {
+    captionSubject.textContent = subjectText;
+    captionBody.textContent = bodyText;
+  };
+  caption.appendChild(captionSubject);
+  caption.appendChild(captionBody);
+  setCaption(
+    `${data.points.length} excerpts · ${data.topic} topic`,
+    'Drag to rotate. Hover or tap a point to read the curriculum excerpt it comes from.'
+  );
+  stage.appendChild(canvas);
+  stage.appendChild(legend);
+  stage.appendChild(caption);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 1, 500);
+
+  function setSize() {
+    const w = stage.clientWidth;
+    const h = 380;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  setSize();
+  window.addEventListener('resize', setSize);
+
+  // Center and scale the raw UMAP coordinates to a fixed stage size.
+  const n = data.points.length;
+  const raw = data.points.map(p => p.p);
+  const min = [0, 1, 2].map(k => Math.min(...raw.map(v => v[k])));
+  const max = [0, 1, 2].map(k => Math.max(...raw.map(v => v[k])));
+  const center = [0, 1, 2].map(k => (min[k] + max[k]) / 2);
+  const extent = Math.max(...[0, 1, 2].map(k => max[k] - min[k]));
+  const scale = 64 / extent;
+
+  const positions = new Float32Array(n * 3);
+  const colors    = new Float32Array(n * 3);
+  const colorObjs = PALETTE.map(hex => new THREE.Color(hex));
+  for (let i = 0; i < n; i++) {
+    const [x, y, z] = raw[i];
+    positions[i * 3]     = (x - center[0]) * scale;
+    positions[i * 3 + 1] = (y - center[1]) * scale;
+    positions[i * 3 + 2] = (z - center[2]) * scale;
+    const c = colorObjs[data.points[i].s % colorObjs.length];
+    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const material = new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.88, sizeAttenuation: true });
+  const points = new THREE.Points(geometry, material);
+  const group = new THREE.Group();
+  group.add(points);
+  scene.add(group);
+
+  camera.position.set(0, 0, 92);
+
+  const raycaster = new THREE.Raycaster();
+  raycaster.params.Points.threshold = 1.8;
+  const pointer = new THREE.Vector2();
+
+  function updateCaptionFromPointer(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    const hit = raycaster.intersectObject(points)[0];
+    if (!hit) return;
+    const d = data.points[hit.index];
+    const subject = SUBJECT_LABELS[data.subjects[d.s]] || data.subjects[d.s];
+    setCaption(subject, d.e);
+    lastInteraction = performance.now();
+  }
+
+  let dragging = false, lastX = 0, lastY = 0, lastInteraction = 0;
+  canvas.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    stage.classList.add('dragging');
+    lastX = e.clientX; lastY = e.clientY;
+    canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    lastInteraction = performance.now();
+    if (dragging) {
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      lastX = e.clientX; lastY = e.clientY;
+      group.rotation.y += dx * 0.006;
+      group.rotation.x = Math.max(-1.1, Math.min(1.1, group.rotation.x + dy * 0.006));
+    } else {
+      updateCaptionFromPointer(e.clientX, e.clientY);
+    }
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => canvas.addEventListener(ev, () => {
+    dragging = false;
+    stage.classList.remove('dragging');
+  }));
+  canvas.addEventListener('click', (e) => updateCaptionFromPointer(e.clientX, e.clientY));
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tabVisible = !document.hidden;
+  document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
+  let inView = true;
+  new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
+
+  (function tick(t) {
+    requestAnimationFrame(tick);
+    if (!tabVisible || !inView) return;
+    if (!dragging && !prefersReduced && performance.now() - lastInteraction > 1800) {
+      group.rotation.y += 0.0016;
+    }
+    renderer.render(scene, camera);
+  })();
+})();
 </script>
 </body>
 </html>
