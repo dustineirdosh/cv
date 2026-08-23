@@ -15,11 +15,6 @@
     },
     "apps": [
       {
-        "name": "ConceptBase Explorer",
-        "description": "Interactive app for browsing the knowledge graph — no setup required. See how a single concept is defined across disciplines, and trace alignments across grade bands.",
-        "url": "https://openevo-ccs.github.io/conceptbase/"
-      },
-      {
         "name": "eva_buch Explorer",
         "description": "Interactive topic-modelling browser for German curriculum documents, supporting Dr. Susan Hanisch's forthcoming (2027) book on teaching evolutionary anthropology in schools.",
         "url": "https://openevo-ccs.github.io/eva_buch/"
@@ -29,14 +24,6 @@
       {
         "repo": "conceptbase",
         "blurb": "Ontology, vocabularies, and schemas for the whole ecosystem — the OECB core."
-      },
-      {
-        "repo": "oe-interdisciplinary-k12",
-        "blurb": "A reference K–12 learning progression model spanning biology, social studies, and computer science."
-      },
-      {
-        "repo": "bio-core-k12",
-        "blurb": "A reference K–12 learning progression model for evolutionary biology."
       },
       {
         "repo": "eva_buch",
