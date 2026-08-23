@@ -1687,7 +1687,7 @@
     </div>
 
     <div class="umap-preview">
-      <p class="subheading" style="margin-bottom:10px;">Preview: three concepts as eva_buch sees them (in 3D)</p>
+      <p class="subheading" style="margin-bottom:10px;">Preview: Mensch vs. Evolution, as eva_buch sees them (in 3D)</p>
       <p class="umap-explainer">
         Each point below is one excerpt from a real German K–12 curriculum standard that mentions the
         concept named above it. <strong>eva_buch</strong> uses a language model (BERTopic) to group
@@ -1709,13 +1709,6 @@
           <div class="umap-panel-title">Evolution <span>— Evolution</span></div>
           <p class="umap-panel-caption" id="umap-caption-evolution"></p>
           <div class="umap-stage" id="umap-stage-evolution">
-            <div class="umap-loading">Loading 3D preview…</div>
-          </div>
-        </div>
-        <div class="umap-panel">
-          <div class="umap-panel-title">Behavior <span>— Verhalten</span></div>
-          <p class="umap-panel-caption" id="umap-caption-verhalten"></p>
-          <div class="umap-stage" id="umap-stage-verhalten">
             <div class="umap-loading">Loading 3D preview…</div>
           </div>
         </div>
@@ -2170,10 +2163,22 @@ function parseEmployment(data) {
 }
 
 function parseWorks(data) {
-  const groups = data?.['activities-summary']?.works?.group || [];
-  const seen   = new Set();
-  const works  = [];
+  const seen  = new Set();
+  const works = [];
 
+  // Curated data (publications.json's additional[]) is canonical and
+  // always wins over ORCID's raw fields for a given DOI - ORCID pulls
+  // straight from Crossref/journal metadata and can carry known errors
+  // (e.g. a print-issue year where the citable date is online-first) that
+  // only get fixed here, not upstream. ORCID is only used to fill in
+  // works that aren't in the curated set at all.
+  (CV.pubMeta.additional || []).forEach(pub => {
+    const d = pub.doi ? pub.doi.toLowerCase() : null;
+    if (d) seen.add(d);
+    works.push({ ...pub, doi: d });
+  });
+
+  const groups = data?.['activities-summary']?.works?.group || [];
   groups.forEach(group => {
     const summary = group?.['work-summary']?.[0];
     if (!summary) return;
@@ -2200,13 +2205,6 @@ function parseWorks(data) {
                  : (summary?.url?.value || null),
       source: 'orcid'
     });
-  });
-
-  (CV.pubMeta.additional || []).forEach(pub => {
-    const d = pub.doi ? pub.doi.toLowerCase() : null;
-    if (d && seen.has(d)) return;
-    if (d) seen.add(d);
-    works.push({ ...pub, doi: d });
   });
 
   works.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
@@ -2850,7 +2848,7 @@ init();
 </script>
 
 <!-- eva_buch 3D UMAP preview: real (trimmed + Mensch-sampled) exports of
-     eva_buch's own BERTopic + UMAP output for three concepts (see
+     eva_buch's own BERTopic + UMAP output for two contrasting concepts (see
      scripts/build_eva_buch_preview.py and eva_buch_preview.json), each
      rendered as its own draggable, idle-auto-rotating three.js point
      cloud. Independent of the hero script above and of ccs_lab.json's
@@ -2860,8 +2858,7 @@ init();
 (async () => {
   const panels = [
     { id: 'mensch',    topic: 'Mensch' },
-    { id: 'evolution', topic: 'Evolution' },
-    { id: 'verhalten', topic: 'Verhalten' }
+    { id: 'evolution', topic: 'Evolution' }
   ];
   const stages = Object.fromEntries(panels.map(p => [p.id, document.getElementById(`umap-stage-${p.id}`)]));
   if (!Object.values(stages).some(Boolean)) return;
@@ -2914,19 +2911,14 @@ init();
   const pct = (dist, subject) => Math.round(dist[subject] ?? 0);
   const CAPTIONS = {
     Mensch: (dist) =>
-      `The most interdisciplinary of the three: excerpts mentioning humanity are actually
-       philosophy-led, not biology-led — Ethics/Philosophy ${pct(dist,'Ethik, Philo')}%,
-       Biology ${pct(dist,'Bio')}%, History ${pct(dist,'Geschichte')}%, and Social Studies
+      `Genuinely interdisciplinary: excerpts mentioning humanity are actually philosophy-led,
+       not biology-led — Ethics/Philosophy ${pct(dist,'Ethik, Philo')}%, Biology
+       ${pct(dist,'Bio')}%, History ${pct(dist,'Geschichte')}%, and Social Studies
        ${pct(dist,'Sozialkunde')}% all carry a real share.`,
     Evolution: (dist) =>
-      `The most biology-anchored of the three: ${pct(dist,'Bio')}% of excerpts come from
-       Biology standards, with only occasional crossover into Ethics/Philosophy, History,
-       or Psychology.`,
-    Verhalten: (dist) =>
-      `The most evenly cross-disciplinary: Biology ${pct(dist,'Bio')}%, Psychology
-       ${pct(dist,'Psychologie')}%, Social Studies ${pct(dist,'Sozialkunde')}%, and
-       Ethics/Philosophy ${pct(dist,'Ethik, Philo')}% each carry a meaningful share - a
-       genuinely cross-cutting behavioral-science concept.`
+      `By contrast, biology-anchored: ${pct(dist,'Bio')}% of excerpts come from Biology
+       standards, with only occasional crossover into Ethics/Philosophy, History, or
+       Psychology.`
   };
 
   panels.forEach(({ id, topic }) => {

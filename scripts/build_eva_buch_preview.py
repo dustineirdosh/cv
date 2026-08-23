@@ -2,14 +2,14 @@
 """Rebuild eva_buch_preview.json from eva_buch's real per-concept UMAP exports.
 
 Reads bertopic/src/data/<Concept>.json from a sibling eva_buch checkout
-(openevo-ccs-lab/eva_buch), for the three concepts shown on the CV site:
-Mensch (Human), Evolution, Verhalten (Behavior). Outliers are dropped
+(openevo-ccs-lab/eva_buch), for the two contrasting concepts shown on the
+CV site: Mensch (Human) vs. Evolution. Outliers are dropped
 (is_outlier: true) - same rule the original single-concept preview used.
-Mensch's corpus is far larger than the other two (~3785 vs ~850 non-outlier
+Mensch's corpus is far larger than Evolution's (~3785 vs ~868 non-outlier
 excerpts), so it's stratified-sampled down to roughly match, keeping its
 real per-subject proportions. Subject-to-color index is assigned from one
 global, alphabetically-independent list so the same subject gets the same
-color across all three panels.
+color across both panels.
 
 Run from anywhere; paths are relative to this script's location, assuming
 the usual sibling-repo layout (D:\\dev\\eirdosh_cv and
@@ -35,7 +35,6 @@ RANDOM_SEED = 42
 CONCEPTS = [
     ("Mensch", "Human"),
     ("Evolution", "Evolution"),
-    ("Verhalten", "Behavior"),
 ]
 
 

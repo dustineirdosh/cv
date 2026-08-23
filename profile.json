@@ -71,9 +71,9 @@
       "description": "The OpenEvo Learning and Research Hubs provide access to open education resources, and tools for interdisciplinary educational innovation research within our Educational Design Concept and Theory of School Improvement.",
       "roles": [
         "Team management and partnership coordination",
+        "Architecting a linked-data ecosystem of interoperable knowledge bases (concepts, theory, literature, competencies) for computational curriculum research and design",
+        "Applying FAIR data principles — and the emerging FAIR Theory specification — to make curriculum theory, evidence, and design artifacts machine-actionable and interoperable across the ecosystem",
         "Theory and research methods development",
-        "WordPress site design and management",
-        "Moodle module development",
         "Content development and curation",
         "Grant writing and project sustainability planning"
       ]

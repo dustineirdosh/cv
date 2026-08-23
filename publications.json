@@ -143,6 +143,17 @@
       "doi": null,
       "url": null,
       "source": "curated"
+    },
+    {
+      "putCode": "static_011",
+      "title": "Understanding agency in evolutionary explanations: an assessment tool for biology education",
+      "type": "journal-article",
+      "year": "2025",
+      "journal": "Journal of Biological Education, 60(3), 341–370",
+      "doi": "10.1080/00219266.2025.2486963",
+      "url": "https://doi.org/10.1080/00219266.2025.2486963",
+      "source": "curated",
+      "note": "Year corrected to 2025 (citable online-first date, Crossref-verified) - ORCID's own record still shows 2026, the print-issue date; matches LiteratureBase's hanisch-2025 canonical record."
     }
   ]
 }
