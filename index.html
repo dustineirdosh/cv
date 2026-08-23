@@ -6,17 +6,17 @@
   <title>Dustin Eirdosh, PhD — CV</title>
   <meta name="description" content="Dustin Eirdosh, PhD — Education Innovation Coordinator &amp; Researcher at the Max Planck Institute for Evolutionary Anthropology. Interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
 
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Dustin Eirdosh, PhD — CV" />
   <meta property="og:description" content="Education Innovation Coordinator &amp; Researcher — interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
-  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:image" content="og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Dustin Eirdosh, PhD — CV" />
   <meta name="twitter:description" content="Education Innovation Coordinator &amp; Researcher — interdisciplinary curriculum design, evolution education, and computational curriculum studies." />
-  <meta name="twitter:image" content="assets/og-image.png" />
+  <meta name="twitter:image" content="og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1010,6 +1010,27 @@
       margin-bottom: 14px;
     }
     .umap-explainer strong { color: var(--ink); }
+    .umap-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:                   18px;
+    }
+    .umap-panel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .umap-panel-title {
+      font-size:   .92rem;
+      font-weight: 700;
+      color:       var(--ink);
+    }
+    .umap-panel-title span {
+      font-weight: 400;
+      color:       var(--ink-light);
+      font-size:   .78rem;
+    }
+    .umap-panel-caption {
+      font-size:   .76rem;
+      line-height: 1.5;
+      color:       var(--ink-mid);
+    }
     .umap-stage {
       position:      relative;
       border-radius: var(--radius-sm);
@@ -1020,7 +1041,7 @@
     .umap-stage canvas {
       display: block;
       width:   100%;
-      height:  380px;
+      height:  300px;
       cursor:  grab;
       touch-action: none;
     }
@@ -1073,7 +1094,7 @@
       display:        flex;
       align-items:    center;
       justify-content: center;
-      height:         380px;
+      height:         300px;
       font-size:      .8rem;
       color:          var(--ink-faint);
     }
@@ -1666,18 +1687,38 @@
     </div>
 
     <div class="umap-preview">
-      <p class="subheading" style="margin-bottom:10px;">Preview: what eva_buch actually looks at (in 3D)</p>
+      <p class="subheading" style="margin-bottom:10px;">Preview: three concepts as eva_buch sees them (in 3D)</p>
       <p class="umap-explainer">
-        Each point below is one excerpt from a real German K–12 curriculum standard that mentions
-        evolution. <strong>eva_buch</strong> uses a language model (BERTopic) to group excerpts that
-        discuss similar ideas, then a second technique (<strong>UMAP</strong>) arranges those groups in
-        3D space so excerpts with related meaning sit near each other. Most excerpts in this topic (green)
-        come from Biology standards — the highlighted colors are the rarer excerpts where the same idea
-        turns up in Ethics/Philosophy, History, or Psychology curricula instead: exactly the kind of
-        cross-subject connection this research lab tries to make visible.
+        Each point below is one excerpt from a real German K–12 curriculum standard that mentions the
+        concept named above it. <strong>eva_buch</strong> uses a language model (BERTopic) to group
+        excerpts that discuss similar ideas, then a second technique (<strong>UMAP</strong>) arranges
+        those groups in 3D space so excerpts with related meaning sit near each other. Color marks which
+        school subject each excerpt comes from — how mixed the colors are is a rough visual read on how
+        interdisciplinary that concept actually is across the curriculum, versus how concentrated in one
+        subject.
       </p>
-      <div class="umap-stage" id="umap-stage">
-        <div class="umap-loading" id="umap-loading">Loading 3D preview…</div>
+      <div class="umap-grid">
+        <div class="umap-panel">
+          <div class="umap-panel-title">Human <span>— Mensch</span></div>
+          <p class="umap-panel-caption" id="umap-caption-mensch"></p>
+          <div class="umap-stage" id="umap-stage-mensch">
+            <div class="umap-loading">Loading 3D preview…</div>
+          </div>
+        </div>
+        <div class="umap-panel">
+          <div class="umap-panel-title">Evolution <span>— Evolution</span></div>
+          <p class="umap-panel-caption" id="umap-caption-evolution"></p>
+          <div class="umap-stage" id="umap-stage-evolution">
+            <div class="umap-loading">Loading 3D preview…</div>
+          </div>
+        </div>
+        <div class="umap-panel">
+          <div class="umap-panel-title">Behavior <span>— Verhalten</span></div>
+          <p class="umap-panel-caption" id="umap-caption-verhalten"></p>
+          <div class="umap-stage" id="umap-stage-verhalten">
+            <div class="umap-loading">Loading 3D preview…</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2514,7 +2555,7 @@ function loadFallback() {
   parseEmployment({});
 
   const fallbackWorks = [
-    { putCode:'f01', title:"Understanding agency in evolutionary explanations: an assessment tool for biology education", type:"journal-article", year:"2026", journal:"Journal of Biological Education", doi:"10.1080/00219266.2025.2486963", url:"https://doi.org/10.1080/00219266.2025.2486963", source:'curated' },
+    { putCode:'f01', title:"Understanding agency in evolutionary explanations: an assessment tool for biology education", type:"journal-article", year:"2025", journal:"Journal of Biological Education 60(3), 341-370", doi:"10.1080/00219266.2025.2486963", url:"https://doi.org/10.1080/00219266.2025.2486963", source:'curated' },
     { putCode:'f02', title:"Developing Teacher Competencies for Teaching Evolution across the Primary School Curriculum", type:"journal-article", year:"2023", journal:"Education Sciences 13(8), 797", doi:"10.3390/educsci13080797", url:"https://doi.org/10.3390/educsci13080797", source:'curated' },
     { putCode:'f03', title:"Behavioral Science and Education for Sustainable Development: Towards Metacognitive Competency", type:"journal-article", year:"2023", journal:"Sustainability 15(9), 7413", doi:"10.3390/su15097413", url:"https://doi.org/10.3390/su15097413", source:'curated' },
     { putCode:'f04', title:"A Community Science Model for Interdisciplinary Evolution Education and School Improvement", type:"book-chapter", year:"2023", journal:"Evolutionary Thinking Across Disciplines (Springer), pp. 125–146", doi:"10.1007/978-3-031-33358-3_7", url:"https://doi.org/10.1007/978-3-031-33358-3_7", source:'curated' },
@@ -2808,21 +2849,27 @@ init();
 })();
 </script>
 
-<!-- eva_buch 3D UMAP preview: a real (trimmed) export of eva_buch's own
-     BERTopic + UMAP output for the "Evolution" topic (see
-     eva_buch_preview.json), rendered as a draggable three.js point cloud.
-     Independent of the hero script above and of ccs_lab.json's fetch -
-     it always attempts to load, and fails to a plain link if the data or
-     the three.js CDN aren't reachable. -->
+<!-- eva_buch 3D UMAP preview: real (trimmed + Mensch-sampled) exports of
+     eva_buch's own BERTopic + UMAP output for three concepts (see
+     scripts/build_eva_buch_preview.py and eva_buch_preview.json), each
+     rendered as its own draggable, idle-auto-rotating three.js point
+     cloud. Independent of the hero script above and of ccs_lab.json's
+     fetch - always attempts to load, fails each panel independently to a
+     plain message if the data or the three.js CDN aren't reachable. -->
 <script type="module">
 (async () => {
-  const stage = document.getElementById('umap-stage');
-  const loading = document.getElementById('umap-loading');
-  if (!stage) return;
+  const panels = [
+    { id: 'mensch',    topic: 'Mensch' },
+    { id: 'evolution', topic: 'Evolution' },
+    { id: 'verhalten', topic: 'Verhalten' }
+  ];
+  const stages = Object.fromEntries(panels.map(p => [p.id, document.getElementById(`umap-stage-${p.id}`)]));
+  if (!Object.values(stages).some(Boolean)) return;
 
-  const fallback = (msg) => {
+  const failAll = (msg) => panels.forEach(p => {
+    const loading = stages[p.id]?.querySelector('.umap-loading');
     if (loading) loading.textContent = msg;
-  };
+  });
 
   let THREE, data;
   try {
@@ -2831,11 +2878,11 @@ init();
       fetch('eva_buch_preview.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     ]);
   } catch {
-    fallback('Preview unavailable right now — see the live eva_buch Explorer above.');
+    failAll('Preview unavailable right now — see the live eva_buch Explorer above.');
     return;
   }
-  if (!data.points || !data.points.length) {
-    fallback('Preview unavailable right now — see the live eva_buch Explorer above.');
+  if (!data.concepts || !data.concepts.length) {
+    failAll('Preview unavailable right now — see the live eva_buch Explorer above.');
     return;
   }
 
@@ -2843,148 +2890,198 @@ init();
     'Bio': 'Biology',
     'Ethik, Philo': 'Ethics / Philosophy',
     'Geschichte': 'History',
-    'Psychologie': 'Psychology'
+    'Psychologie': 'Psychology',
+    'Sozialkunde': 'Social Studies'
   };
   const root = getComputedStyle(document.documentElement);
   const tok = (name, fallbackHex) => (root.getPropertyValue(name) || fallbackHex).trim();
+  // One global palette keyed by data.subjects' index, so a subject is the
+  // same color in every panel even when a given concept's cloud doesn't
+  // happen to include every subject.
   const PALETTE = [
     tok('--series-b', '#008300'),
     tok('--series-a', '#2a78d6'),
     tok('--warning',  '#fab219'),
-    tok('--critical', '#d03b3b')
+    tok('--critical', '#d03b3b'),
+    tok('--series-c', '#8855dd')
   ];
-
-  loading.remove();
-  const canvas = document.createElement('canvas');
-  const legend = document.createElement('div');
-  legend.className = 'umap-legend';
-  legend.innerHTML = data.subjects.map((s, i) => `
-    <div class="umap-legend-row">
-      <span class="umap-legend-dot" style="background:${PALETTE[i % PALETTE.length]}"></span>
-      <span>${SUBJECT_LABELS[s] || s}</span>
-    </div>`).join('');
-  const caption = document.createElement('div');
-  caption.className = 'umap-caption';
-  const captionSubject = document.createElement('span');
-  captionSubject.className = 'umap-caption-subject';
-  const captionBody = document.createElement('span');
-  const setCaption = (subjectText, bodyText) => {
-    captionSubject.textContent = subjectText;
-    captionBody.textContent = bodyText;
-  };
-  caption.appendChild(captionSubject);
-  caption.appendChild(captionBody);
-  setCaption(
-    `${data.points.length} excerpts · ${data.topic} topic`,
-    'Drag to rotate. Hover or tap a point to read the curriculum excerpt it comes from.'
-  );
-  stage.appendChild(canvas);
-  stage.appendChild(legend);
-  stage.appendChild(caption);
-
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
-
-  const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, 1, 1, 500);
-
-  function setSize() {
-    const w = stage.clientWidth;
-    const h = 380;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-  setSize();
-  window.addEventListener('resize', setSize);
-
-  // Center and scale the raw UMAP coordinates to a fixed stage size.
-  const n = data.points.length;
-  const raw = data.points.map(p => p.p);
-  const min = [0, 1, 2].map(k => Math.min(...raw.map(v => v[k])));
-  const max = [0, 1, 2].map(k => Math.max(...raw.map(v => v[k])));
-  const center = [0, 1, 2].map(k => (min[k] + max[k]) / 2);
-  const extent = Math.max(...[0, 1, 2].map(k => max[k] - min[k]));
-  const scale = 64 / extent;
-
-  const positions = new Float32Array(n * 3);
-  const colors    = new Float32Array(n * 3);
   const colorObjs = PALETTE.map(hex => new THREE.Color(hex));
-  for (let i = 0; i < n; i++) {
-    const [x, y, z] = raw[i];
-    positions[i * 3]     = (x - center[0]) * scale;
-    positions[i * 3 + 1] = (y - center[1]) * scale;
-    positions[i * 3 + 2] = (z - center[2]) * scale;
-    const c = colorObjs[data.points[i].s % colorObjs.length];
-    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
-  }
 
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  const material = new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.88, sizeAttenuation: true });
-  const points = new THREE.Points(geometry, material);
-  const group = new THREE.Group();
-  group.add(points);
-  scene.add(group);
+  // Hand-written per-concept framing, but the percentages inside are
+  // interpolated from the data file's own real distribution_pct at render
+  // time - if the export script is ever rerun against updated eva_buch
+  // source data, this text can't drift out of sync with what's plotted.
+  const pct = (dist, subject) => Math.round(dist[subject] ?? 0);
+  const CAPTIONS = {
+    Mensch: (dist) =>
+      `The most interdisciplinary of the three: excerpts mentioning humanity are actually
+       philosophy-led, not biology-led — Ethics/Philosophy ${pct(dist,'Ethik, Philo')}%,
+       Biology ${pct(dist,'Bio')}%, History ${pct(dist,'Geschichte')}%, and Social Studies
+       ${pct(dist,'Sozialkunde')}% all carry a real share.`,
+    Evolution: (dist) =>
+      `The most biology-anchored of the three: ${pct(dist,'Bio')}% of excerpts come from
+       Biology standards, with only occasional crossover into Ethics/Philosophy, History,
+       or Psychology.`,
+    Verhalten: (dist) =>
+      `The most evenly cross-disciplinary: Biology ${pct(dist,'Bio')}%, Psychology
+       ${pct(dist,'Psychologie')}%, Social Studies ${pct(dist,'Sozialkunde')}%, and
+       Ethics/Philosophy ${pct(dist,'Ethik, Philo')}% each carry a meaningful share - a
+       genuinely cross-cutting behavioral-science concept.`
+  };
 
-  camera.position.set(0, 0, 92);
+  panels.forEach(({ id, topic }) => {
+    const stage = stages[id];
+    const loading = stage?.querySelector('.umap-loading');
+    const concept = data.concepts.find(c => c.topic === topic);
+    const captionEl = document.getElementById(`umap-caption-${id}`);
 
-  const raycaster = new THREE.Raycaster();
-  raycaster.params.Points.threshold = 1.8;
-  const pointer = new THREE.Vector2();
+    if (!stage || !concept || !concept.points?.length) {
+      if (loading) loading.textContent = 'Preview unavailable right now — see the live eva_buch Explorer above.';
+      return;
+    }
+    if (captionEl && CAPTIONS[topic]) captionEl.textContent = CAPTIONS[topic](concept.distribution_pct || {}).replace(/\s+/g, ' ').trim();
 
-  function updateCaptionFromPointer(clientX, clientY) {
-    const rect = canvas.getBoundingClientRect();
-    pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-    const hit = raycaster.intersectObject(points)[0];
-    if (!hit) return;
-    const d = data.points[hit.index];
-    const subject = SUBJECT_LABELS[data.subjects[d.s]] || data.subjects[d.s];
-    setCaption(subject, d.e);
-    lastInteraction = performance.now();
-  }
-
-  let dragging = false, lastX = 0, lastY = 0, lastInteraction = 0;
-  canvas.addEventListener('pointerdown', (e) => {
-    dragging = true;
-    stage.classList.add('dragging');
-    lastX = e.clientX; lastY = e.clientY;
-    canvas.setPointerCapture(e.pointerId);
+    mountPanel(stage, concept);
   });
-  canvas.addEventListener('pointermove', (e) => {
-    lastInteraction = performance.now();
-    if (dragging) {
-      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+
+  function mountPanel(stage, concept) {
+    stage.querySelector('.umap-loading')?.remove();
+    const canvas = document.createElement('canvas');
+    const legend = document.createElement('div');
+    legend.className = 'umap-legend';
+    const conceptSubjects = [...new Set(concept.points.map(p => data.subjects[p.s]))];
+    legend.innerHTML = conceptSubjects.map(s => {
+      const i = data.subjects.indexOf(s);
+      return `
+        <div class="umap-legend-row">
+          <span class="umap-legend-dot" style="background:${PALETTE[i % PALETTE.length]}"></span>
+          <span>${SUBJECT_LABELS[s] || s}</span>
+        </div>`;
+    }).join('');
+    const caption = document.createElement('div');
+    caption.className = 'umap-caption';
+    const captionSubject = document.createElement('span');
+    captionSubject.className = 'umap-caption-subject';
+    const captionBody = document.createElement('span');
+    const setCaption = (subjectText, bodyText) => {
+      captionSubject.textContent = subjectText;
+      captionBody.textContent = bodyText;
+    };
+    caption.appendChild(captionSubject);
+    caption.appendChild(captionBody);
+    setCaption(
+      `${concept.points.length} excerpts · ${concept.topic_en} (${concept.topic})`,
+      'Drag to rotate. Hover or tap a point to read the curriculum excerpt it comes from.'
+    );
+    stage.appendChild(canvas);
+    stage.appendChild(legend);
+    stage.appendChild(caption);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 1, 500);
+
+    function setSize() {
+      const w = stage.clientWidth;
+      const h = 300;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    setSize();
+    window.addEventListener('resize', setSize);
+
+    // Center and scale this concept's raw UMAP coordinates independently -
+    // each concept's cloud has its own extent, so a shared scale would make
+    // some panels look like tight dots and others overflow the stage.
+    const n = concept.points.length;
+    const raw = concept.points.map(p => p.p);
+    const min = [0, 1, 2].map(k => Math.min(...raw.map(v => v[k])));
+    const max = [0, 1, 2].map(k => Math.max(...raw.map(v => v[k])));
+    const center = [0, 1, 2].map(k => (min[k] + max[k]) / 2);
+    const extent = Math.max(...[0, 1, 2].map(k => max[k] - min[k]));
+    const scale = 64 / extent;
+
+    const positions = new Float32Array(n * 3);
+    const colors    = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) {
+      const [x, y, z] = raw[i];
+      positions[i * 3]     = (x - center[0]) * scale;
+      positions[i * 3 + 1] = (y - center[1]) * scale;
+      positions[i * 3 + 2] = (z - center[2]) * scale;
+      const c = colorObjs[concept.points[i].s % colorObjs.length];
+      colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const material = new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.88, sizeAttenuation: true });
+    const points = new THREE.Points(geometry, material);
+    const group = new THREE.Group();
+    group.add(points);
+    scene.add(group);
+
+    camera.position.set(0, 0, 92);
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.params.Points.threshold = 1.8;
+    const pointer = new THREE.Vector2();
+
+    function updateCaptionFromPointer(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObject(points)[0];
+      if (!hit) return;
+      const d = concept.points[hit.index];
+      const subject = SUBJECT_LABELS[data.subjects[d.s]] || data.subjects[d.s];
+      setCaption(subject, d.e);
+      lastInteraction = performance.now();
+    }
+
+    let dragging = false, lastX = 0, lastY = 0, lastInteraction = 0;
+    canvas.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      stage.classList.add('dragging');
       lastX = e.clientX; lastY = e.clientY;
-      group.rotation.y += dx * 0.006;
-      group.rotation.x = Math.max(-1.1, Math.min(1.1, group.rotation.x + dy * 0.006));
-    } else {
-      updateCaptionFromPointer(e.clientX, e.clientY);
-    }
-  });
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => canvas.addEventListener(ev, () => {
-    dragging = false;
-    stage.classList.remove('dragging');
-  }));
-  canvas.addEventListener('click', (e) => updateCaptionFromPointer(e.clientX, e.clientY));
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener('pointermove', (e) => {
+      lastInteraction = performance.now();
+      if (dragging) {
+        const dx = e.clientX - lastX, dy = e.clientY - lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        group.rotation.y += dx * 0.006;
+        group.rotation.x = Math.max(-1.1, Math.min(1.1, group.rotation.x + dy * 0.006));
+      } else {
+        updateCaptionFromPointer(e.clientX, e.clientY);
+      }
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => canvas.addEventListener(ev, () => {
+      dragging = false;
+      stage.classList.remove('dragging');
+    }));
+    canvas.addEventListener('click', (e) => updateCaptionFromPointer(e.clientX, e.clientY));
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let tabVisible = !document.hidden;
-  document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
-  let inView = true;
-  new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tabVisible = !document.hidden;
+    document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
+    let inView = true;
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
 
-  (function tick(t) {
-    requestAnimationFrame(tick);
-    if (!tabVisible || !inView) return;
-    if (!dragging && !prefersReduced && performance.now() - lastInteraction > 1800) {
-      group.rotation.y += 0.0016;
-    }
-    renderer.render(scene, camera);
-  })();
+    (function tick(t) {
+      requestAnimationFrame(tick);
+      if (!tabVisible || !inView) return;
+      if (!dragging && !prefersReduced && performance.now() - lastInteraction > 1800) {
+        group.rotation.y += 0.0016;
+      }
+      renderer.render(scene, camera);
+    })();
+  }
 })();
 </script>
 </body>
