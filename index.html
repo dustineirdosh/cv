@@ -2563,7 +2563,11 @@ function loadFallback() {
     { putCode:'f11', title:"Educational potential of teaching evolution as an interdisciplinary science", type:"journal-article", year:"2020", journal:"Evolution: Education and Outreach 13, 25", doi:"10.1186/s12052-020-00138-4", url:"https://doi.org/10.1186/s12052-020-00138-4", source:'curated' },
     { putCode:'f12', title:"Can the science of Prosocial be a part of evolution education?", type:"journal-article", year:"2020", journal:"Evolution: Education and Outreach 13, 5", doi:"10.1186/s12052-020-00119-7", url:"https://doi.org/10.1186/s12052-020-00119-7", source:'curated' },
     { putCode:'f13', title:"Causal Mapping as a Teaching Tool for Reflecting on Causation in Human Evolution", type:"journal-article", year:"2020", journal:"Science & Education", doi:"10.1007/s11191-020-00157-z", url:"https://doi.org/10.1007/s11191-020-00157-z", source:'curated' },
-    { putCode:'f14', title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"book-chapter", year:"2019", journal:"Darwin's Roadmap to the Curriculum (Oxford University Press)", doi:null, url:null, source:'curated' }
+    { putCode:'f14', title:"The Role of Evolutionary Studies in Education for Sustainable Development", type:"book-chapter", year:"2019", journal:"Darwin's Roadmap to the Curriculum (Oxford University Press)", doi:null, url:null, source:'curated' },
+    { putCode:'f15', title:"Learning to navigate change: Case studies in education across cultural boundaries", type:"book-chapter", year:"2025", journal:"A Field Guide to Cross-Cultural Research on Childhood Learning (Open Book Publishers), pp. 267–308", doi:"10.11647/obp.0440.08", url:"https://doi.org/10.11647/obp.0440.08", source:'curated' },
+    { putCode:'f16', title:"A transdisciplinary approach to growing an applied science of cultural evolution for a sustainable future", type:"journal-article", year:"2025", journal:"Philosophical Transactions of the Royal Society B 380(1940)", doi:"10.1098/rstb.2024.0263", url:"https://doi.org/10.1098/rstb.2024.0263", source:'curated' },
+    { putCode:'f17', title:"Children and adults across 15 countries believe in human uniqueness of mind: a cross-cultural investigation of cross-species mind perception", type:"journal-article", year:"2025", journal:"Journal of Environmental Psychology 109, 102861", doi:"10.1016/j.jenvp.2025.102861", url:"https://doi.org/10.1016/j.jenvp.2025.102861", source:'curated' },
+    { putCode:'f18', title:"Adolescents' approval of normative and non-normative pro-environmental protest tactics", type:"journal-article", year:"2026", journal:"Global Environmental Psychology (Author Accepted Manuscript)", doi:null, url:null, source:'curated' }
   ];
 
   CV.works = fallbackWorks;
@@ -2763,14 +2767,20 @@ init();
 </script>
 
 <!-- Progressive enhancement: animates the static concept-graph motif above
-     with three.js. Skips entirely (leaving the static SVG in place) on
-     small screens, when the user prefers reduced motion, or if the CDN
-     can't be reached — so nothing ever looks broken. -->
+     with three.js — a denser knowledge-graph lattice (one hub, two
+     secondary hubs, a ring of leaves, cross-links between them) that
+     drifts on its own and gently tilts toward the pointer while hovered.
+     Colors are read live from the shared OpenEvo design tokens
+     (--series-a / --series-b) rather than hardcoded, so the motif always
+     matches the palette in tokens.css. Skips entirely (leaving the static
+     SVG in place) on small screens, when the user prefers reduced motion,
+     or if the CDN can't be reached — so nothing ever looks broken. -->
 <script type="module">
 (async () => {
   const svg    = document.querySelector('.hero-graph-motif');
   const canvas = document.getElementById('hero-graph-3d');
-  if (!svg || !canvas) return;
+  const hero   = document.querySelector('.hero');
+  if (!svg || !canvas || !hero) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.innerWidth <= 640) return;
 
@@ -2781,6 +2791,17 @@ init();
     return; // offline / blocked CDN — static SVG stays as the fallback
   }
 
+  // Pull live token values so the motif is always in sync with tokens.css,
+  // not a hardcoded guess at what --series-a/--series-b currently resolve to.
+  const rootStyle  = getComputedStyle(document.documentElement);
+  const tokenColor = (name, fallback) => {
+    const v = rootStyle.getPropertyValue(name).trim();
+    return v ? new THREE.Color(v) : new THREE.Color(fallback);
+  };
+  const hubColor    = tokenColor('--series-b', '#008300'); // green — the "concept" hub
+  const branchColor = tokenColor('--series-a', '#2a78d6'); // blue — secondary hubs
+  const leafColor   = new THREE.Color(0xffffff);
+
   const SIZE = 360;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
@@ -2788,40 +2809,87 @@ init();
 
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, 1, 1, 1000);
-  camera.position.set(0, 0, 260);
+  camera.position.set(0, 0, 300);
 
-  // Same node layout as the static SVG — one central "concept" node with
-  // five satellites and two cross-links — lifted into a shallow 3D shell.
+  // Deterministic pseudo-random layout (seeded, not Math.random) so the
+  // graph looks organic but is stable across reloads.
+  let seed = 1337;
+  const rand = () => {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
+
+  // One central hub, two secondary hubs orbiting it, and a ring of leaf
+  // nodes distributed around both — a small interdisciplinary "concept
+  // graph" rather than a single star, echoing the ConceptBase motif.
+  const hubIdx = 0;
+  const secondaryIdx = [1, 2];
   const nodePositions = [
     [0, 0, 0],
-    [-40, 55, 30],
-    [55, 38, -20],
-    [42, -42, 25],
-    [-25, -58, -15],
-    [-75, -5, 10],
+    [-70, 45, -15],
+    [72, -38, 20],
   ];
-  const edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 2], [3, 4]];
+  const leafStart = nodePositions.length;
+  const LEAF_COUNT = 11;
+  for (let i = 0; i < LEAF_COUNT; i++) {
+    const golden = i * 2.399963; // golden angle, for even spherical spread
+    const radius = 55 + rand() * 30;
+    const phi    = Math.acos(1 - 2 * ((i + 0.5) / LEAF_COUNT));
+    nodePositions.push([
+      radius * Math.sin(phi) * Math.cos(golden),
+      radius * Math.sin(phi) * Math.sin(golden),
+      radius * Math.cos(phi) * 0.6,
+    ]);
+  }
+
+  const edges = [];
+  edges.push([hubIdx, secondaryIdx[0]], [hubIdx, secondaryIdx[1]]);
+  // attach each leaf to whichever hub (central or secondary) is nearest
+  for (let i = leafStart; i < nodePositions.length; i++) {
+    const candidates = [hubIdx, ...secondaryIdx];
+    let nearest = candidates[0], best = Infinity;
+    candidates.forEach(c => {
+      const [ax, ay, az] = nodePositions[c], [bx, by, bz] = nodePositions[i];
+      const d = (ax-bx)**2 + (ay-by)**2 + (az-bz)**2;
+      if (d < best) { best = d; nearest = c; }
+    });
+    edges.push([nearest, i]);
+  }
+  // a handful of cross-links between nearby leaves, for a denser mesh
+  for (let i = leafStart; i < nodePositions.length; i++) {
+    const [ax, ay, az] = nodePositions[i];
+    let nearest = -1, best = Infinity;
+    for (let j = leafStart; j < nodePositions.length; j++) {
+      if (j === i) continue;
+      const [bx, by, bz] = nodePositions[j];
+      const d = (ax-bx)**2 + (ay-by)**2 + (az-bz)**2;
+      if (d < best) { best = d; nearest = j; }
+    }
+    if (nearest !== -1 && !edges.some(([a,b]) => (a===i&&b===nearest)||(a===nearest&&b===i))) {
+      edges.push([i, nearest]);
+    }
+  }
 
   const group = new THREE.Group();
   scene.add(group);
 
   const nodeGeo = new THREE.SphereGeometry(1, 12, 12);
-  nodePositions.forEach(([x, y, z], i) => {
-    const isCenter = i === 0;
-    const mesh = new THREE.Mesh(
-      nodeGeo,
-      new THREE.MeshBasicMaterial({ color: isCenter ? 0x008300 : 0xffffff })
-    );
+  const nodeMeshes = nodePositions.map(([x, y, z], i) => {
+    const isHub = i === hubIdx;
+    const isSecondary = secondaryIdx.includes(i);
+    const color = isHub ? hubColor : (isSecondary ? branchColor : leafColor);
+    const mesh = new THREE.Mesh(nodeGeo, new THREE.MeshBasicMaterial({ color }));
     mesh.position.set(x, y, z);
-    mesh.scale.setScalar(isCenter ? 6 : 3.4);
+    mesh.scale.setScalar(isHub ? 6 : (isSecondary ? 4.4 : 2.8));
     group.add(mesh);
+    return mesh;
   });
 
   const linePositions = [];
   edges.forEach(([a, b]) => linePositions.push(...nodePositions[a], ...nodePositions[b]));
   const lineGeo = new THREE.BufferGeometry();
   lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-  const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.45 });
   group.add(new THREE.LineSegments(lineGeo, lineMat));
 
   svg.style.display = 'none';
@@ -2832,13 +2900,48 @@ init();
   let inView = true;
   new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
 
+  // Mouse tracking: while hovering the hero, the graph tilts toward the
+  // pointer (parallax); otherwise it eases back into its own slow drift.
+  let pointerActive = false;
+  let targetTiltX = 0, targetTiltY = 0;
+  hero.addEventListener('pointermove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+    const ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+    targetTiltY = nx * 0.5;
+    targetTiltX = -ny * 0.35;
+    pointerActive = true;
+  });
+  hero.addEventListener('pointerleave', () => { pointerActive = false; });
+
   const clock = new THREE.Clock();
+  let driftX = 0, driftY = 0;
   (function tick() {
     requestAnimationFrame(tick);
     if (!tabVisible || !inView) return;
     const t = clock.getElapsedTime();
-    group.rotation.y = t * 0.08;
-    group.rotation.x = Math.sin(t * 0.05) * 0.15;
+    const idleY = t * 0.08;
+    const idleX = Math.sin(t * 0.05) * 0.15;
+
+    if (pointerActive) {
+      driftX += (targetTiltX - driftX) * 0.06;
+      driftY += (targetTiltY - driftY) * 0.06;
+      group.rotation.x = idleX + driftX;
+      group.rotation.y = idleY + driftY;
+    } else {
+      driftX += (0 - driftX) * 0.03;
+      driftY += (0 - driftY) * 0.03;
+      group.rotation.x = idleX + driftX;
+      group.rotation.y = idleY + driftY;
+    }
+
+    // subtle per-node twinkle so the graph reads as "alive", not just spinning
+    nodeMeshes.forEach((mesh, i) => {
+      if (i === hubIdx) return;
+      const s = 1 + Math.sin(t * 1.4 + i * 1.7) * 0.12;
+      mesh.scale.setScalar((secondaryIdx.includes(i) ? 4.4 : 2.8) * s);
+    });
+
     renderer.render(scene, camera);
   })();
 })();

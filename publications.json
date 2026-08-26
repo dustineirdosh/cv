@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Curated publication annotations and featured flags. These are merged with live ORCID data by index.html at runtime. Match publications to ORCID records via doi or putCode.",
-    "last_updated": "2024-08"
+    "last_updated": "2026-08"
   },
   "featured": [
     {
@@ -19,6 +19,14 @@
     {
       "doi": "10.1007/s11191-020-00157-z",
       "annotation": "Introduces causal mapping as a classroom tool for helping students navigate the multiple and interacting causes of human behavioral evolution — addressing a persistent misconception challenge in evolution education."
+    },
+    {
+      "doi": "10.1080/00219266.2025.2486963",
+      "annotation": "Introduces and validates a new assessment tool for measuring how students reason about agency in evolutionary explanations — distinguishing organism-level agential thinking from mechanistic misconceptions, and giving biology educators a concrete instrument for a notoriously hard-to-diagnose construct."
+    },
+    {
+      "doi": "10.11647/obp.0440.08",
+      "annotation": "A set of case studies examining how schooling and community-based social learning traditions interact — sometimes in tension, sometimes in synergy — across culturally diverse settings, contributing to a broader interdisciplinary field guide for cross-cultural research on childhood learning."
     }
   ],
   "annotations": [
@@ -154,6 +162,46 @@
       "url": "https://doi.org/10.1080/00219266.2025.2486963",
       "source": "curated",
       "note": "Year corrected to 2025 (citable online-first date, Crossref-verified) - ORCID's own record still shows 2026, the print-issue date; matches LiteratureBase's hanisch-2025 canonical record."
+    },
+    {
+      "putCode": "static_012",
+      "title": "Learning to navigate change: Case studies in education across cultural boundaries",
+      "type": "book-chapter",
+      "year": "2025",
+      "journal": "A Field Guide to Cross-Cultural Research on Childhood Learning: Theoretical, Methodological, Practical, and Ethical Considerations for an Interdisciplinary Field (Open Book Publishers), pp. 267–308",
+      "doi": "10.11647/obp.0440.08",
+      "url": "https://doi.org/10.11647/obp.0440.08",
+      "source": "curated"
+    },
+    {
+      "putCode": "static_013",
+      "title": "A transdisciplinary approach to growing an applied science of cultural evolution for a sustainable future",
+      "type": "journal-article",
+      "year": "2025",
+      "journal": "Philosophical Transactions of the Royal Society B, 380(1940)",
+      "doi": "10.1098/rstb.2024.0263",
+      "url": "https://doi.org/10.1098/rstb.2024.0263",
+      "source": "curated"
+    },
+    {
+      "putCode": "static_014",
+      "title": "Children and adults across 15 countries believe in human uniqueness of mind: a cross-cultural investigation of cross-species mind perception",
+      "type": "journal-article",
+      "year": "2025",
+      "journal": "Journal of Environmental Psychology, 109, 102861",
+      "doi": "10.1016/j.jenvp.2025.102861",
+      "url": "https://doi.org/10.1016/j.jenvp.2025.102861",
+      "source": "curated"
+    },
+    {
+      "putCode": "static_015",
+      "title": "Adolescents' approval of normative and non-normative pro-environmental protest tactics",
+      "type": "journal-article",
+      "year": "2026",
+      "journal": "Global Environmental Psychology (Author Accepted Manuscript)",
+      "doi": null,
+      "url": null,
+      "source": "curated"
     }
   ]
 }
