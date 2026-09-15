@@ -206,6 +206,11 @@
       transform:  translateY(-1px);
       box-shadow: 0 4px 14px rgba(11,11,11,.30);
     }
+    .btn:disabled {
+      opacity:        .55;
+      cursor:         default;
+      pointer-events: none;
+    }
 
     /* ══════════════════════════════════════════════════════
        PAGE WRAP
@@ -1100,6 +1105,146 @@
     }
 
     /* ══════════════════════════════════════════════════════
+       AI AGENT DESIGN  (MIMO — simulated concept sketch, no
+       live model/backend anywhere in this block)
+    ══════════════════════════════════════════════════════ */
+    .mimo-card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      padding:       24px 28px;
+      box-shadow:    var(--shadow-sm);
+    }
+    .mimo-heading {
+      font-family: var(--font-serif);
+      font-size:   1.15rem;
+      color:       var(--navy);
+      margin-bottom: 10px;
+    }
+    .mimo-intro {
+      font-size:   .92rem;
+      line-height: 1.7;
+      color:       var(--ink-mid);
+      max-width:   680px;
+      margin-bottom: 24px;
+    }
+    .mimo-widget {
+      display:               grid;
+      grid-template-columns: 180px 1fr;
+      gap:                   28px;
+      align-items:           start;
+      margin-bottom:         18px;
+    }
+    .mimo-orb-col {
+      display:        flex;
+      flex-direction: column;
+      align-items:    center;
+      gap:            10px;
+    }
+    .mimo-orb-stage canvas {
+      display:       block;
+      width:         160px;
+      height:        160px;
+      border-radius: 50%;
+      background:    var(--grad-subtle);
+      border:        1px solid var(--border);
+      box-shadow:    var(--shadow-sm);
+    }
+    .mimo-orb-status {
+      font-size:      .7rem;
+      font-weight:    600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color:          var(--ink-light);
+      min-height:     1.2em;
+      text-align:     center;
+    }
+    .mimo-info-col { min-width: 0; }
+    .mimo-tabs {
+      display:       flex;
+      flex-wrap:     wrap;
+      gap:           8px;
+      margin-bottom: 12px;
+    }
+    .mimo-tab {
+      font-family:   var(--font);
+      font-size:     .76rem;
+      font-weight:   600;
+      padding:       6px 14px;
+      border-radius: var(--radius-pill);
+      border:        1.5px solid var(--border);
+      background:    var(--surface-soft);
+      color:         var(--ink-mid);
+      cursor:        pointer;
+      transition:    all var(--transition);
+    }
+    .mimo-tab:hover { border-color: var(--teal); color: var(--teal); }
+    .mimo-tab.is-active {
+      background:   var(--grad-accent);
+      border-color: transparent;
+      color:        #fff;
+    }
+    .mimo-panel {
+      font-size:   .86rem;
+      line-height: 1.7;
+      color:       var(--ink);
+    }
+    .mimo-panel-title {
+      font-weight:   700;
+      font-size:     .88rem;
+      color:         var(--ink);
+      margin-bottom: 6px;
+    }
+    .mimo-disclosure {
+      font-size:   .74rem;
+      font-style:  italic;
+      color:       var(--ink-faint);
+      border-top:  1px dashed var(--border);
+      padding-top: 12px;
+    }
+    .mimo-netlogo { margin-top: 26px; }
+    .mimo-netlogo-caption {
+      font-size:     .82rem;
+      line-height:   1.6;
+      color:         var(--ink-mid);
+      max-width:     640px;
+      margin-bottom: 12px;
+    }
+    .mimo-netlogo-stage {
+      display:         flex;
+      justify-content: center;
+      padding:         10px;
+      border:          1px solid var(--border);
+      border-radius:   var(--radius-sm);
+      background:      var(--grad-subtle);
+    }
+    .mimo-netlogo-stage canvas {
+      display:       block;
+      max-width:     100%;
+      height:        auto;
+      border-radius: var(--radius-sm);
+    }
+    .mimo-netlogo-controls {
+      display:       flex;
+      align-items:   center;
+      flex-wrap:     wrap;
+      gap:           14px;
+      margin-top:    12px;
+    }
+    .mimo-netlogo-note {
+      font-size:  .78rem;
+      font-style: italic;
+      color:      var(--ink-mid);
+    }
+    .mimo-discussion {
+      font-size:   .9rem;
+      line-height: 1.75;
+      color:       var(--ink);
+      max-width:   700px;
+      margin-top:  26px;
+    }
+
+    /* ══════════════════════════════════════════════════════
        TALKS
     ══════════════════════════════════════════════════════ */
     .talks-list { display: flex; flex-direction: column; gap: 14px; }
@@ -1475,6 +1620,7 @@
       .timeline-item { grid-template-columns: 80px 16px 1fr; gap: 0 10px; }
       .featured-grid { grid-template-columns: 1fr; }
       .awards-grid   { grid-template-columns: 1fr; }
+      .mimo-widget   { grid-template-columns: 1fr; }
       .top-nav       { padding: 0 16px; position: relative; }
 
       .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
@@ -1531,6 +1677,7 @@
     <a href="#experience">Experience</a>
     <a href="#publications">Publications</a>
     <a href="#research-lab">Research Lab</a>
+    <a href="#ai-agent-design">AI Agent Design</a>
     <a href="#talks">Talks</a>
     <a href="#grants">Grants</a>
     <a href="#advisory">Advisory</a>
@@ -1713,6 +1860,123 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- AI Agent Design (MIMO) ───────────────────────────────────── -->
+  <section class="section" id="ai-agent-design">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <h2 class="section-title">AI Agent Design</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="mimo-card">
+      <p class="subheading" style="margin-bottom:10px;">Concept sketch — not a live agent</p>
+      <h3 class="mimo-heading">MIMO — a curriculum meta-modeling agent</h3>
+      <p class="mimo-intro">
+        MIMO is a design sketch, not a working system: an idea for an agent that would sit alongside
+        OpenEvo ConceptBase, reading two independently authored curriculum models and mapping their
+        concepts against the shared OECB vocabulary to show where their structures actually align,
+        diverge, or have no counterpart at all. It does not exist as software. The orb, buttons, and toy
+        model below are a simulated mockup — pressing the button plays a short scripted animation, and
+        nothing here calls a real model, API, or curriculum data.
+      </p>
+
+      <div class="mimo-widget">
+        <div class="mimo-orb-col">
+          <div class="mimo-orb-stage">
+            <canvas id="mimo-orb" width="160" height="160" aria-hidden="true"></canvas>
+          </div>
+          <p class="mimo-orb-status" id="mimo-orb-status" aria-live="polite">idle</p>
+          <button class="btn btn-outline" id="mimo-run-btn" type="button">✦ Run a meta-modeling pass</button>
+        </div>
+
+        <div class="mimo-info-col">
+          <div class="mimo-tabs" role="tablist" aria-label="About MIMO">
+            <button class="mimo-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="mimo-panel-what" data-panel="what">What It Is</button>
+            <button class="mimo-tab" type="button" role="tab" aria-selected="false" aria-controls="mimo-panel-how" data-panel="how">How It Works</button>
+            <button class="mimo-tab" type="button" role="tab" aria-selected="false" aria-controls="mimo-panel-why" data-panel="why">Why It Matters</button>
+          </div>
+          <div class="mimo-panel" id="mimo-panel-what" role="tabpanel">
+            <p class="mimo-panel-title">What MIMO Is</p>
+            <p>
+              MIMO — a working name, short for something like "meta-model orchestrator" — is a sketch
+              for an agent that would help compare curriculum models rather than write curriculum
+              itself. Two research teams, ministries, or teacher-educator groups can describe the same
+              topic in incompatible terms; MIMO's job, on paper, would be to read each model against
+              the OpenEvo ConceptBase's shared vocabulary and surface where concepts already
+              correspond, where they diverge, and where one model has no counterpart in the other —
+              always as a suggestion for a person to confirm, revise, or reject, never as an automatic
+              edit.
+            </p>
+          </div>
+          <div class="mimo-panel" id="mimo-panel-how" role="tabpanel" hidden>
+            <p class="mimo-panel-title">How It Would Work</p>
+            <p>
+              The sketch assumes MIMO would sit between independently maintained curriculum models
+              and the OpenEvo ConceptBase — a version-controlled vocabulary already profiled against
+              SKOS, IEEE LOM, schema.org, and 1EdTech CASE — using that vocabulary as a common
+              reference point rather than a master taxonomy. Concepts, competencies, and literature
+              described as FAIR Theory-style machine-actionable records would let an agent align terms
+              by structure rather than exact wording, and log every suggested connection as an
+              editable, attributable proposal rather than a silent edit. None of this is built. What
+              follows is a static mockup standing in for that idea.
+            </p>
+          </div>
+          <div class="mimo-panel" id="mimo-panel-why" role="tabpanel" hidden>
+            <p class="mimo-panel-title">Why It Matters</p>
+            <p>
+              Curriculum work in this lab has never assumed a single correct model. An eight-year
+              collaboration with Dr. Josia Razafindramanana on teacher education around common-pool
+              resource management in Madagascar, and community forest educators in Pemba who built
+              their own lessons and reflections from the team's agent-based models, both depend on
+              treating local educators as co-researchers rather than recipients of an imported
+              curriculum. A tool like MIMO is meant to support that same participatory style of
+              meta-modeling, and would only be worth building if it kept that leadership with the
+              people closest to the classroom.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mimo-disclosure">
+        This entire section is a hand-scripted simulation running in your browser — no live agent,
+        model, or curriculum data is connected.
+      </p>
+
+      <div class="mimo-netlogo">
+        <p class="subheading" style="margin-top:26px;">Micro-demo — a NetLogo-style toy model</p>
+        <p class="mimo-netlogo-caption">
+          The grid below is a small hand-built agent-based model, not real curriculum data. Each dot
+          stands for a concept as described by a different curriculum model; a simple local rule
+          nudges dots toward same-colored neighbors over a few ticks. It's a loose toy version of the
+          turtles-and-rules modeling the lab uses, in earnest, for the Pemba and Madagascar
+          common-pool-resource work.
+        </p>
+        <div class="mimo-netlogo-stage">
+          <canvas id="mimo-netlogo" width="320" height="200"></canvas>
+        </div>
+        <div class="mimo-netlogo-controls">
+          <button class="btn btn-outline" id="mimo-netlogo-btn" type="button">▶ Run micro-model</button>
+          <p class="mimo-netlogo-note" id="mimo-netlogo-note" aria-live="polite" hidden></p>
+        </div>
+      </div>
+
+      <p class="mimo-discussion">
+        A concept like MIMO only makes sense inside a participatory approach to curriculum design,
+        where meta-modeling means describing many people's models in a common language rather than
+        replacing them with one official version. That instinct comes directly from the lab's
+        Community Science Lab work: an eight-year collaboration with Dr. Josia Razafindramanana on
+        teacher-education innovations around common-pool resource management in Madagascar's forests,
+        and community forest educators in Pemba who took the team's agent-based models of resource
+        sustainability and built their own lessons and reflections from them. Computational curriculum
+        studies gives that instinct new tools — shared ontologies like OECB, FAIR-aligned data, topic
+        models of standards documents — but the underlying commitment stays the same across teacher
+        education, professional development, and interdisciplinary didactics: educators and
+        communities remain authors of their own curriculum theory, and any future agent in this space
+        would have to earn a place by strengthening that authorship, not quietly replacing it.
+      </p>
     </div>
   </section>
 
@@ -3174,6 +3438,253 @@ init();
       renderer.render(scene, camera);
     })();
   }
+})();
+</script>
+
+<!-- MIMO: a purely simulated, front-end-only mockup for the "AI Agent Design"
+     concept sketch above (see the section's own disclosure text). No network
+     calls, no model, no backend - just a canvas animation, a tab switcher,
+     and a tiny hand-built agent-based toy model, all self-contained here. -->
+<script>
+(() => {
+  function cssVar(name, fallback) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+
+  /* ── Orb: idle "breathing" blob; a button press plays a short scripted
+     "activity" animation with cycling status phrases, then settles back to
+     idle. Nothing here is connected to a model of any kind. ── */
+  function initOrb(canvas, statusEl, runBtn) {
+    const idleLabel = 'idle';
+    const phrases = ['scanning concept map A', 'scanning concept map B', 'checking OECB terms', 'flagging for review'];
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const size = 160;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    ctx.scale(dpr, dpr);
+
+    const colorA = cssVar('--series-a', '#2a78d6');
+    const colorB = cssVar('--series-b', '#008300');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let state = 'idle'; // 'idle' | 'active'
+    let activeEndsAt = 0;
+
+    function draw(t) {
+      const cx = size / 2, cy = size / 2;
+      const active = state === 'active';
+      const wobble = Math.sin(t / (active ? 260 : 1500)) * (active ? 8 : 4);
+      const r = (active ? 50 : 44) + wobble;
+
+      ctx.clearRect(0, 0, size, size);
+
+      const grad = ctx.createRadialGradient(cx, cy, r * 0.15, cx, cy, r);
+      grad.addColorStop(0, active ? colorB : colorA);
+      grad.addColorStop(1, active ? colorA : colorB);
+      ctx.globalAlpha = active ? 0.92 : 0.7;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      const dotCount = active ? 5 : 3;
+      const speed = active ? 0.004 : 0.0012;
+      ctx.globalAlpha = active ? 0.85 : 0.45;
+      for (let i = 0; i < dotCount; i++) {
+        const angle = t * speed + (i * (Math.PI * 2)) / dotCount;
+        const orbitR = r + 14;
+        const dx = cx + Math.cos(angle) * orbitR;
+        const dy = cy + Math.sin(angle) * orbitR;
+        ctx.beginPath();
+        ctx.arc(dx, dy, active ? 3.2 : 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = i % 2 === 0 ? colorA : colorB;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    if (prefersReduced) {
+      draw(0);
+    } else {
+      let tabVisible = !document.hidden;
+      document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
+      let inView = true;
+      new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
+
+      function tick(t) {
+        requestAnimationFrame(tick);
+        if (state === 'active' && t >= activeEndsAt) state = 'idle';
+        if (!tabVisible || !inView) return;
+        draw(t);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    statusEl.textContent = idleLabel;
+
+    runBtn.addEventListener('click', () => {
+      if (state === 'active') return;
+      state = 'active';
+      const duration = phrases.length * 850;
+      activeEndsAt = performance.now() + duration;
+      runBtn.disabled = true;
+
+      let i = 0;
+      statusEl.textContent = phrases[0];
+      if (prefersReduced) draw(performance.now());
+      const phraseTimer = setInterval(() => {
+        i++;
+        if (i < phrases.length) statusEl.textContent = phrases[i];
+      }, duration / phrases.length);
+
+      setTimeout(() => {
+        clearInterval(phraseTimer);
+        state = 'idle';
+        statusEl.textContent = idleLabel;
+        runBtn.disabled = false;
+        if (prefersReduced) draw(performance.now());
+      }, duration);
+    });
+  }
+
+  /* ── Info tabs: three canned blurbs, swapped on click. ── */
+  function initTabs(tabs) {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const key = tab.dataset.panel;
+        tabs.forEach(t => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('.mimo-panel').forEach(p => {
+          p.hidden = p.id !== `mimo-panel-${key}`;
+        });
+      });
+    });
+  }
+
+  /* ── NetLogo-style micro-model: a tiny, self-contained agent-based toy —
+     a handful of colored "turtles" nudge toward same-colored neighbors over
+     a few discrete ticks. A hand-written illustration, not the NetLogo
+     engine and not real curriculum data. ── */
+  function initNetLogo(canvas, btn, note) {
+    const ctx = canvas.getContext('2d');
+    const W = 320, H = 200;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    const colors = [
+      cssVar('--series-a', '#2a78d6'),
+      cssVar('--series-b', '#008300'),
+      cssVar('--warning',  '#fab219'),
+      cssVar('--critical', '#d03b3b'),
+      cssVar('--series-c', '#8855dd')
+    ];
+    const gridColor = cssVar('--border', 'rgba(120,130,145,.35)');
+    const N = 25;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let turtles = [];
+    let running = false;
+
+    function scatter() {
+      turtles = Array.from({ length: N }, (_, i) => ({
+        x: 14 + Math.random() * (W - 28),
+        y: 14 + Math.random() * (H - 28),
+        color: colors[i % colors.length]
+      }));
+    }
+
+    function step() {
+      turtles.forEach(t => {
+        const peers = turtles.filter(o => o !== t && o.color === t.color);
+        if (peers.length) {
+          const cx = peers.reduce((s, p) => s + p.x, 0) / peers.length;
+          const cy = peers.reduce((s, p) => s + p.y, 0) / peers.length;
+          t.x += (cx - t.x) * 0.22 + (Math.random() - 0.5) * 5;
+          t.y += (cy - t.y) * 0.22 + (Math.random() - 0.5) * 5;
+        } else {
+          t.x += (Math.random() - 0.5) * 6;
+          t.y += (Math.random() - 0.5) * 6;
+        }
+        t.x = Math.max(10, Math.min(W - 10, t.x));
+        t.y = Math.max(10, Math.min(H - 10, t.y));
+      });
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = 0.5;
+      const cell = 20;
+      for (let x = cell; x < W; x += cell) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (let y = cell; y < H; y += cell) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      ctx.globalAlpha = 1;
+
+      turtles.forEach(t => {
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = t.color;
+        ctx.fill();
+      });
+    }
+
+    scatter();
+    render();
+
+    btn.addEventListener('click', () => {
+      if (running) return;
+      running = true;
+      btn.disabled = true;
+      note.hidden = true;
+      scatter();
+      render();
+
+      function finish() {
+        note.textContent = 'After a few ticks the dots settle into loose clusters — a rough analogy for how independently built curriculum models can converge on shared structure without forcing agreement or overwriting either one.';
+        note.hidden = false;
+        btn.textContent = '↻ Run again';
+        btn.disabled = false;
+        running = false;
+      }
+
+      const ticks = 7;
+      if (prefersReduced) {
+        for (let i = 0; i < ticks; i++) step();
+        render();
+        finish();
+      } else {
+        let done = 0;
+        const timer = setInterval(() => {
+          step();
+          render();
+          done++;
+          if (done >= ticks) {
+            clearInterval(timer);
+            finish();
+          }
+        }, 450);
+      }
+    });
+  }
+
+  const orbCanvas = document.getElementById('mimo-orb');
+  const statusEl  = document.getElementById('mimo-orb-status');
+  const runBtn    = document.getElementById('mimo-run-btn');
+  if (orbCanvas && statusEl && runBtn) initOrb(orbCanvas, statusEl, runBtn);
+
+  const tabs = document.querySelectorAll('.mimo-tab');
+  if (tabs.length) initTabs(tabs);
+
+  const nlCanvas = document.getElementById('mimo-netlogo');
+  const nlBtn    = document.getElementById('mimo-netlogo-btn');
+  const nlNote   = document.getElementById('mimo-netlogo-note');
+  if (nlCanvas && nlBtn && nlNote) initNetLogo(nlCanvas, nlBtn, nlNote);
 })();
 </script>
 </body>
