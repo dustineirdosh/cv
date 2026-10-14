@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Curated publication annotations and featured flags. These are merged with live ORCID data by index.html at runtime. Match publications to ORCID records via doi or putCode.",
-    "last_updated": "2026-08"
+    "last_updated": "2026-10"
   },
   "featured": [
     {
@@ -49,6 +49,10 @@
     {
       "doi": "10.17617/2.3486776",
       "note": "Chapter in a collaborative European volume on socioscientific issues — our contribution focuses on common pool resource games and agent-based models as evolution education tools."
+    },
+    {
+      "doi": "10.1177/17456916261459902",
+      "note": "Large-scale audit of who is studied in childhood research and how well the cultural context is reported, showing strong geographic and demographic skew (Perspectives on Psychological Science, online October 2026)."
     }
   ],
   "additional": [
@@ -201,6 +205,16 @@
       "journal": "Global Environmental Psychology (Author Accepted Manuscript)",
       "doi": null,
       "url": null,
+      "source": "curated"
+    },
+    {
+      "putCode": "static_016",
+      "title": "A Teacher's Guide to Evolution, Behavior, and Sustainability Science (3rd Ed.; German edition with Gachet and Hoßfeld)",
+      "type": "practitioner-guide",
+      "year": "2024",
+      "journal": "GlobalESD — open access",
+      "doi": null,
+      "url": "http://guide.openevo.net",
       "source": "curated"
     }
   ]
