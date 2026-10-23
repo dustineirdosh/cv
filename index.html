@@ -440,7 +440,6 @@
        SECTION
     ══════════════════════════════════════════════════════ */
     .section {
-      margin-bottom: 52px;
       scroll-margin-top: 64px;
     }
 
@@ -451,6 +450,54 @@
       margin-bottom: 24px;
     }
 
+    /* collapsible top-level sections (all closed on load) */
+    .section:has(> .section-details[open]) { margin-bottom: 52px; }
+    .section { margin-bottom: 12px; }
+    .section-details > .section-header {
+      cursor:        pointer;
+      list-style:    none;
+      user-select:   none;
+      margin-bottom: 0;
+      padding:       12px 16px;
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow:    var(--shadow-sm);
+      transition:    border-color var(--transition), box-shadow var(--transition);
+    }
+    .section-details > .section-header::-webkit-details-marker { display: none; }
+    .section-details > .section-header:hover { border-color: var(--steel-light); box-shadow: var(--shadow-md); }
+    .section-details > .section-header:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .section-details[open] > .section-header { margin-bottom: 24px; }
+    .section-chevron {
+      margin-left: auto;
+      color:       var(--ink-light);
+      transition:  transform var(--transition);
+    }
+    .section-details[open] > .section-header .section-chevron { transform: rotate(180deg); }
+    .section-controls {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      gap:             12px;
+      flex-wrap:       wrap;
+      font-size:       .8rem;
+      color:           var(--ink-light);
+      margin:          0 0 14px;
+    }
+    .section-controls-btn {
+      font-family:   var(--font);
+      font-size:     .78rem;
+      font-weight:   600;
+      color:         var(--teal);
+      background:    none;
+      border:        1px solid var(--teal-light);
+      border-radius: var(--radius-pill);
+      padding:       5px 14px;
+      cursor:        pointer;
+      transition:    all var(--transition);
+    }
+    .section-controls-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
     .section-icon {
       width:         34px;
       height:        34px;
@@ -1607,6 +1654,7 @@
       .nav-toggle { min-width: 44px; min-height: 44px; }
       .nav-links a { padding-top: 12px; padding-bottom: 12px; font-size: .8rem; }
       .pub-all-summary { min-height: 44px; }
+      .section-controls-btn { min-height: 44px; padding: 5px 18px; }
       .fair-credit a:has(img) { display: block; padding: 7px 0; }
       .chip, .keyword-chip, .panel-role-label, .badge-current, .section-count,
       .featured-label, .talk-type, .pub-year, .pub-type-icon,
@@ -1631,6 +1679,8 @@
         border-radius: 0;
       }
       .hero * { color: var(--text-primary) !important; }
+      .section-controls, .section-chevron { display: none !important; }
+      .section-details > .section-header { border: 0; box-shadow: none; padding: 0; cursor: auto; }
       .pub-card, .panel-card, .talk-card, .award-card,
       .featured-card, .about-card, .lab-block {
         box-shadow: none;
@@ -1726,286 +1776,328 @@
     </div>
   </header>
 
+  <!-- Section controls ─────────────────────────────────────────── -->
+  <div class="section-controls">
+    <span>Select a section to open it.</span>
+    <button type="button" class="section-controls-btn" id="toggle-all">Expand all</button>
+  </div>
+
   <!-- About ────────────────────────────────────────────────────── -->
   <section class="section" id="about">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">👤</div>
       <h2 class="section-title">About</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="about-content">
-      <div class="about-card">
-        <div class="sk-line sk-full skeleton"></div>
-        <div class="sk-line sk-long skeleton"></div>
-        <div class="sk-line sk-medium skeleton"></div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="about-content">
+        <div class="about-card">
+          <div class="sk-line sk-full skeleton"></div>
+          <div class="sk-line sk-long skeleton"></div>
+          <div class="sk-line sk-medium skeleton"></div>
+        </div>
       </div>
-    </div>
+      </div>
+    </details>
   </section>
 
   <!-- Education ────────────────────────────────────────────────── -->
   <section class="section" id="education">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">🎓</div>
       <h2 class="section-title">Education &amp; Training</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="education-content">
-      <div class="sk-line sk-medium skeleton" style="margin-bottom:10px;height:18px;"></div>
-      <div class="sk-line sk-long skeleton"   style="height:18px;"></div>
-    </div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="education-content">
+        <div class="sk-line sk-medium skeleton" style="margin-bottom:10px;height:18px;"></div>
+        <div class="sk-line sk-long skeleton"   style="height:18px;"></div>
+      </div>
+      </div>
+    </details>
   </section>
 
   <!-- Experience ───────────────────────────────────────────────── -->
   <section class="section" id="experience">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">💼</div>
       <h2 class="section-title">Professional Experience</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="experience-content">
-      <div class="sk-line sk-long   skeleton" style="margin-bottom:10px;height:18px;"></div>
-      <div class="sk-line sk-medium skeleton" style="height:18px;"></div>
-    </div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="experience-content">
+        <div class="sk-line sk-long   skeleton" style="margin-bottom:10px;height:18px;"></div>
+        <div class="sk-line sk-medium skeleton" style="height:18px;"></div>
+      </div>
+      </div>
+    </details>
   </section>
 
   <!-- Publications ─────────────────────────────────────────────── -->
   <section class="section" id="publications">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">📚</div>
       <h2 class="section-title">Publications</h2>
       <span class="section-count" id="pub-count">—</span>
-      <div class="section-rule"></div>
-    </div>
-
-    <!-- Featured -->
-    <div id="featured-publications-wrap" style="display:none;">
-      <p class="subheading">★ Featured</p>
-      <div class="featured-grid" id="featured-publications"></div>
-    </div>
-
-    <!-- All publications: collapsed until the visitor opens it -->
-    <details class="pub-all" id="pub-all">
-      <summary class="subheading pub-all-summary">
-        <span class="pub-all-chevron" aria-hidden="true">▸</span>
-        All Publications
-        <span class="section-count" id="pub-all-count">—</span>
-        <span class="pub-all-hint" data-closed="Show all" data-open="Hide"></span>
+      <span class="section-chevron" aria-hidden="true">▾</span>
       </summary>
-      <div id="publications-content" class="pub-list">
-        <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
-        <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
-        <div class="sk-line sk-long   skeleton" style="height:60px;border-radius:10px;"></div>
+      <div class="section-body">
+
+      <!-- Featured -->
+      <div id="featured-publications-wrap" style="display:none;">
+        <p class="subheading">★ Featured</p>
+        <div class="featured-grid" id="featured-publications"></div>
+      </div>
+
+      <!-- All publications: collapsed until the visitor opens it -->
+      <details class="pub-all" id="pub-all">
+        <summary class="subheading pub-all-summary">
+          <span class="pub-all-chevron" aria-hidden="true">▸</span>
+          All Publications
+          <span class="section-count" id="pub-all-count">—</span>
+          <span class="pub-all-hint" data-closed="Show all" data-open="Hide"></span>
+        </summary>
+        <div id="publications-content" class="pub-list">
+          <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+          <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+          <div class="sk-line sk-long   skeleton" style="height:60px;border-radius:10px;"></div>
+        </div>
+      </details>
       </div>
     </details>
   </section>
 
   <!-- Research Lab ─────────────────────────────────────────────── -->
   <section class="section" id="research-lab">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">🗺️</div>
       <h2 class="section-title">Computational Curriculum Studies</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="ccs-content">
-      <div class="about-card" style="margin-bottom:24px;">
-        <div class="sk-line sk-medium skeleton"></div>
-        <div class="sk-line sk-full skeleton"></div>
-        <div class="sk-line sk-long skeleton"></div>
-      </div>
-    </div>
-
-    <!-- FAIR data and FAIR theory -->
-    <div class="lab-block" id="fair">
-      <h3 class="lab-title">Committed to FAIR data and FAIR theory in curriculum studies</h3>
-      <p class="lab-text">
-        FAIR stands for findable, accessible, interoperable, and reusable. The lab applies it to two
-        kinds of material: the data of curriculum research (concepts, standards, literature records)
-        and the theory behind it (the explanatory claims that curriculum design depends on).
-      </p>
-      <div class="fair-grid">
-        <div class="fair-col">
-          <p class="fair-heading">FAIR data</p>
-          <figure class="fair-figure">
-            <img src="assets/fair-data-principles.jpg" loading="lazy"
-                 alt="The four FAIR principles: Findable (magnifying glass), Accessible (pointing hand), Interoperable (interlocking gears), Reusable (recycling arrows).">
-          </figure>
-          <div class="fair-credit">
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 license"></a>
-            <span>Graphic by SangyaPundir, <a href="https://commons.wikimedia.org/wiki/File:FAIR_data_principles.jpg" target="_blank" rel="noopener">via Wikimedia Commons</a>, licensed CC BY-SA 4.0.</span>
-          </div>
-          <ul class="lab-list">
-            <li>Every concept and vocabulary has a persistent, resolvable identifier.</li>
-            <li>Records live in open, version-controlled repositories and can be read by people and machines.</li>
-            <li>Shared standards underpin the data: SKOS, IEEE LOM, schema.org, and 1EdTech CASE.</li>
-            <li>Every repository states its license (Creative Commons for most content, MIT for code).</li>
-            <li>Literature records are checked against DOI registries.</li>
-          </ul>
-        </div>
-        <div class="fair-col">
-          <p class="fair-heading">FAIR theory</p>
-          <ol class="fair-steps">
-            <li><span><strong>Implement.</strong> Write the theory in a formal, machine-readable form.</span></li>
-            <li><span><strong>Document.</strong> Add a README and an explicit license.</span></li>
-            <li><span><strong>Version.</strong> Track every change in Git.</span></li>
-            <li><span><strong>Archive.</strong> Deposit major versions to receive a DOI.</span></li>
-            <li><span><strong>Describe.</strong> Add rich metadata so others can find it.</span></li>
-          </ol>
-          <div class="fair-credit">
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by.png" alt="Creative Commons Attribution 4.0 license"></a>
-            <span>Five-step workflow from Van Lissa et al. (2026), published under CC BY 4.0. Diagram created for this page.</span>
-          </div>
-          <ul class="lab-list">
-            <li>Theoretical claims, assumptions, and competing claims are stored as small, citable records, separate from the papers that introduced them.</li>
-            <li>Each record carries its evidence, its provenance, and a status that tracks its life: proposed, accepted, superseded, or retracted.</li>
-            <li>Interoperability is named for each use. Records already link across repositories. Linked-data (RDF) exchange with outside services is not built yet.</li>
-          </ul>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="ccs-content">
+        <div class="about-card" style="margin-bottom:24px;">
+          <div class="sk-line sk-medium skeleton"></div>
+          <div class="sk-line sk-full skeleton"></div>
+          <div class="sk-line sk-long skeleton"></div>
         </div>
       </div>
-      <p class="lab-text">
-        The lab is working toward the five-step workflow for theory proposed by
-        <a href="https://doi.org/10.1177/17456916251401850" target="_blank" rel="noopener">Van Lissa, Peikert, Ernst, van Dongen, Schönbrodt, &amp; Brandmaier (2026), <em>To Be FAIR: Theory Specification Needs an Update</em>, Perspectives on Psychological Science 21(2)</a>.
-      </p>
-      <div class="lab-links">
-        <a class="doi-link" href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">The FAIR principles ↗</a>
-        <a class="doi-link" href="https://github.com/openevo-ccs/conceptbase" target="_blank" rel="noopener">Concept vocabulary (ConceptBase) ↗</a>
-      </div>
-    </div>
 
-    <!-- Computational analysis of German Lehrplan documents -->
-    <div class="lab-block" id="curriculum-nlp">
-      <h3 class="lab-title">Using Natural Language Processing (NLP) to understand conceptual structures of knowledge</h3>
-      <p class="lab-text">
-        <a href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">A repository for the computational curriculum analysis of German Lehrplan documents</a>
-        for the forthcoming book Hanisch (in press),
-        <em>Evolutionäre Anthropologie als fächerübergreifender Biologieunterricht</em> (Springer).
-      </p>
-      <div class="lab-links">
-        <a class="doi-link" href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">View repository ↗</a>
-      </div>
-
-      <p class="subheading lab-subheading">Preview: Mensch vs. Evolution, as the analysis sees them (in 3D)</p>
-      <p class="umap-explainer">
-        Each point is one excerpt from a German state curriculum (Lehrplan) that mentions the concept
-        named above it. A language-model technique (<strong>BERTopic</strong>) groups excerpts that
-        discuss similar ideas. A second technique (<strong>UMAP</strong>) places those groups in 3D
-        space, so excerpts with related meaning sit close together. Color shows the school subject an
-        excerpt comes from. A mix of colors means the concept is spread across many subjects, and one
-        dominant color means it sits mostly in one subject. Drag to rotate.
-      </p>
-      <div class="umap-grid">
-        <div class="umap-panel">
-          <div class="umap-panel-title">Human <span>— Mensch</span></div>
-          <p class="umap-panel-caption" id="umap-caption-mensch"></p>
-          <div class="umap-stage" id="umap-stage-mensch">
-            <div class="umap-loading">Loading 3D preview…</div>
+      <!-- FAIR data and FAIR theory -->
+      <div class="lab-block" id="fair">
+        <h3 class="lab-title">Committed to FAIR data and FAIR theory in curriculum studies</h3>
+        <p class="lab-text">
+          FAIR stands for findable, accessible, interoperable, and reusable. The lab applies it to two
+          kinds of material: the data of curriculum research (concepts, standards, literature records)
+          and the theory behind it (the explanatory claims that curriculum design depends on).
+        </p>
+        <div class="fair-grid">
+          <div class="fair-col">
+            <p class="fair-heading">FAIR data</p>
+            <figure class="fair-figure">
+              <img src="assets/fair-data-principles.jpg" loading="lazy"
+                   alt="The four FAIR principles: Findable (magnifying glass), Accessible (pointing hand), Interoperable (interlocking gears), Reusable (recycling arrows).">
+            </figure>
+            <div class="fair-credit">
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 license"></a>
+              <span>Graphic by SangyaPundir, <a href="https://commons.wikimedia.org/wiki/File:FAIR_data_principles.jpg" target="_blank" rel="noopener">via Wikimedia Commons</a>, licensed CC BY-SA 4.0.</span>
+            </div>
+            <ul class="lab-list">
+              <li>Every concept and vocabulary has a persistent, resolvable identifier.</li>
+              <li>Records live in open, version-controlled repositories and can be read by people and machines.</li>
+              <li>Shared standards underpin the data: SKOS, IEEE LOM, schema.org, and 1EdTech CASE.</li>
+              <li>Every repository states its license (Creative Commons for most content, MIT for code).</li>
+              <li>Literature records are checked against DOI registries.</li>
+            </ul>
+          </div>
+          <div class="fair-col">
+            <p class="fair-heading">FAIR theory</p>
+            <ol class="fair-steps">
+              <li><span><strong>Implement.</strong> Write the theory in a formal, machine-readable form.</span></li>
+              <li><span><strong>Document.</strong> Add a README and an explicit license.</span></li>
+              <li><span><strong>Version.</strong> Track every change in Git.</span></li>
+              <li><span><strong>Archive.</strong> Deposit major versions to receive a DOI.</span></li>
+              <li><span><strong>Describe.</strong> Add rich metadata so others can find it.</span></li>
+            </ol>
+            <div class="fair-credit">
+              <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by.png" alt="Creative Commons Attribution 4.0 license"></a>
+              <span>Five-step workflow from Van Lissa et al. (2026), published under CC BY 4.0. Diagram created for this page.</span>
+            </div>
+            <ul class="lab-list">
+              <li>Theoretical claims, assumptions, and competing claims are stored as small, citable records, separate from the papers that introduced them.</li>
+              <li>Each record carries its evidence, its provenance, and a status that tracks its life: proposed, accepted, superseded, or retracted.</li>
+              <li>Interoperability is named for each use. Records already link across repositories. Linked-data (RDF) exchange with outside services is not built yet.</li>
+            </ul>
           </div>
         </div>
-        <div class="umap-panel">
-          <div class="umap-panel-title">Evolution <span>— Evolution</span></div>
-          <p class="umap-panel-caption" id="umap-caption-evolution"></p>
-          <div class="umap-stage" id="umap-stage-evolution">
-            <div class="umap-loading">Loading 3D preview…</div>
+        <p class="lab-text">
+          The lab is working toward the five-step workflow for theory proposed by
+          <a href="https://doi.org/10.1177/17456916251401850" target="_blank" rel="noopener">Van Lissa, Peikert, Ernst, van Dongen, Schönbrodt, &amp; Brandmaier (2026), <em>To Be FAIR: Theory Specification Needs an Update</em>, Perspectives on Psychological Science 21(2)</a>.
+        </p>
+        <div class="lab-links">
+          <a class="doi-link" href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">The FAIR principles ↗</a>
+          <a class="doi-link" href="https://github.com/openevo-ccs/conceptbase" target="_blank" rel="noopener">Concept vocabulary (ConceptBase) ↗</a>
+        </div>
+      </div>
+
+      <!-- Computational analysis of German Lehrplan documents -->
+      <div class="lab-block" id="curriculum-nlp">
+        <h3 class="lab-title">Using Natural Language Processing (NLP) to understand conceptual structures of knowledge</h3>
+        <p class="lab-text">
+          <a href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">A repository for the computational curriculum analysis of German Lehrplan documents</a>
+          for the forthcoming book Hanisch (in press),
+          <em>Evolutionäre Anthropologie als fächerübergreifender Biologieunterricht</em> (Springer).
+        </p>
+        <div class="lab-links">
+          <a class="doi-link" href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">View repository ↗</a>
+        </div>
+
+        <p class="subheading lab-subheading">Preview: Mensch vs. Evolution, as the analysis sees them (in 3D)</p>
+        <p class="umap-explainer">
+          Each point is one excerpt from a German state curriculum (Lehrplan) that mentions the concept
+          named above it. A language-model technique (<strong>BERTopic</strong>) groups excerpts that
+          discuss similar ideas. A second technique (<strong>UMAP</strong>) places those groups in 3D
+          space, so excerpts with related meaning sit close together. Color shows the school subject an
+          excerpt comes from. A mix of colors means the concept is spread across many subjects, and one
+          dominant color means it sits mostly in one subject. Drag to rotate.
+        </p>
+        <div class="umap-grid">
+          <div class="umap-panel">
+            <div class="umap-panel-title">Human <span>— Mensch</span></div>
+            <p class="umap-panel-caption" id="umap-caption-mensch"></p>
+            <div class="umap-stage" id="umap-stage-mensch">
+              <div class="umap-loading">Loading 3D preview…</div>
+            </div>
+          </div>
+          <div class="umap-panel">
+            <div class="umap-panel-title">Evolution <span>— Evolution</span></div>
+            <p class="umap-panel-caption" id="umap-caption-evolution"></p>
+            <div class="umap-stage" id="umap-stage-evolution">
+              <div class="umap-loading">Loading 3D preview…</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- OpenLPM -->
-    <div class="lab-block" id="openlpm">
-      <div class="lab-title-row">
-        <h3 class="lab-title">OpenLPM</h3>
-        <span class="lab-status">Limited beta</span>
+      <!-- OpenLPM -->
+      <div class="lab-block" id="openlpm">
+        <div class="lab-title-row">
+          <h3 class="lab-title">OpenLPM</h3>
+          <span class="lab-status">Limited beta</span>
+        </div>
+        <p class="lab-kicker">Collaborative Learning Progression Management</p>
+        <p class="lab-text">
+          A free, open platform for researchers, teachers, and curriculum policy makers to build learning
+          progressions together, and keep improving them as classroom experience comes in. Open source,
+          and free for schools, universities, and ministries.
+        </p>
+        <ul class="lab-list">
+          <li><strong>Researchers</strong> build learning progressions on evidence from the research literature, with every source traceable back to its original study.</li>
+          <li><strong>Educators</strong> see the thinking and classroom context behind a learning goal before bringing it into their own teaching, then suggest changes based on what they learn from using it.</li>
+          <li><strong>Curriculum policy makers</strong> see how learning goals connect across grades and subjects, and track how a curriculum improves as classroom experience comes in.</li>
+        </ul>
+        <p class="lab-text" style="margin-bottom:6px;">The platform also supports:</p>
+        <ul class="lab-list">
+          <li>Curriculum repositories organized at several geographic levels, built from open, custom, and standardized data formats.</li>
+          <li>Project spaces at several levels, for designing learning progressions across the different contexts they may be used in.</li>
+          <li>Development and analysis of synthetic learning progressions: deliberately constructed models used for controlled comparison.</li>
+        </ul>
+        <p class="lab-text">OpenLPM is currently in limited beta testing with selected partners.</p>
+        <div class="lab-links">
+          <a class="doi-link" href="https://openevo-ccs.github.io/openlpm/" target="_blank" rel="noopener">Visit OpenLPM ↗</a>
+          <a class="doi-link" href="https://github.com/openevo-ccs/openlpm" target="_blank" rel="noopener">Repository ↗</a>
+        </div>
+        <figure class="lab-figure">
+          <a href="openlpm-thuringia-concept-network.png" target="_blank" rel="noopener" aria-label="Open the concept network screenshot at full size">
+            <img src="openlpm-thuringia-concept-network.png" loading="lazy"
+                 alt="Concept network in OpenLPM: six colored top-level concepts with their sub-concepts below, and many lines linking them to learning goals at the bottom of the graph.">
+          </a>
+          <figcaption>
+            Concept network from the EvoMentor Thuringia project: the six basic concepts (Basiskonzepte) of
+            Thuringia's Gymnasium biology curriculum, their sub-concepts, and the learning goals linked to them.
+            Tap the image to view it full size.
+          </figcaption>
+        </figure>
       </div>
-      <p class="lab-kicker">Collaborative Learning Progression Management</p>
-      <p class="lab-text">
-        A free, open platform for researchers, teachers, and curriculum policy makers to build learning
-        progressions together, and keep improving them as classroom experience comes in. Open source,
-        and free for schools, universities, and ministries.
-      </p>
-      <ul class="lab-list">
-        <li><strong>Researchers</strong> build learning progressions on evidence from the research literature, with every source traceable back to its original study.</li>
-        <li><strong>Educators</strong> see the thinking and classroom context behind a learning goal before bringing it into their own teaching, then suggest changes based on what they learn from using it.</li>
-        <li><strong>Curriculum policy makers</strong> see how learning goals connect across grades and subjects, and track how a curriculum improves as classroom experience comes in.</li>
-      </ul>
-      <p class="lab-text" style="margin-bottom:6px;">The platform also supports:</p>
-      <ul class="lab-list">
-        <li>Curriculum repositories organized at several geographic levels, built from open, custom, and standardized data formats.</li>
-        <li>Project spaces at several levels, for designing learning progressions across the different contexts they may be used in.</li>
-        <li>Development and analysis of synthetic learning progressions: deliberately constructed models used for controlled comparison.</li>
-      </ul>
-      <p class="lab-text">OpenLPM is currently in limited beta testing with selected partners.</p>
-      <div class="lab-links">
-        <a class="doi-link" href="https://openevo-ccs.github.io/openlpm/" target="_blank" rel="noopener">Visit OpenLPM ↗</a>
-        <a class="doi-link" href="https://github.com/openevo-ccs/openlpm" target="_blank" rel="noopener">Repository ↗</a>
-      </div>
-      <figure class="lab-figure">
-        <a href="openlpm-thuringia-concept-network.png" target="_blank" rel="noopener" aria-label="Open the concept network screenshot at full size">
-          <img src="openlpm-thuringia-concept-network.png" loading="lazy"
-               alt="Concept network in OpenLPM: six colored top-level concepts with their sub-concepts below, and many lines linking them to learning goals at the bottom of the graph.">
-        </a>
-        <figcaption>
-          Concept network from the EvoMentor Thuringia project: the six basic concepts (Basiskonzepte) of
-          Thuringia's Gymnasium biology curriculum, their sub-concepts, and the learning goals linked to them.
-          Tap the image to view it full size.
-        </figcaption>
-      </figure>
-    </div>
 
-    <!-- NetLogo -->
-    <div class="lab-block" id="netlogo">
-      <h3 class="lab-title">NetLogo models</h3>
-      <p class="lab-text">
-        A collection of 15 agent-based simulation models for teaching evolution, cooperation, and
-        sustainability. In each model, many individual organisms or people follow simple rules, and
-        students watch what happens at the group level. Every model runs in a web browser. The
-        repository also holds a working space for building learning progression strands and extended
-        learning materials around the models.
-      </p>
-      <div class="lab-links">
-        <a class="doi-link" href="https://openevo-ccs.github.io/netlogo/" target="_blank" rel="noopener">Explore the models ↗</a>
-        <a class="doi-link" href="https://github.com/openevo-ccs/netlogo" target="_blank" rel="noopener">Repository ↗</a>
+      <!-- NetLogo -->
+      <div class="lab-block" id="netlogo">
+        <h3 class="lab-title">NetLogo models</h3>
+        <p class="lab-text">
+          A collection of 15 agent-based simulation models for teaching evolution, cooperation, and
+          sustainability. In each model, many individual organisms or people follow simple rules, and
+          students watch what happens at the group level. Every model runs in a web browser. The
+          repository also holds a working space for building learning progression strands and extended
+          learning materials around the models.
+        </p>
+        <div class="lab-links">
+          <a class="doi-link" href="https://openevo-ccs.github.io/netlogo/" target="_blank" rel="noopener">Explore the models ↗</a>
+          <a class="doi-link" href="https://github.com/openevo-ccs/netlogo" target="_blank" rel="noopener">Repository ↗</a>
+        </div>
       </div>
-    </div>
+      </div>
+    </details>
   </section>
 
   <!-- Talks ────────────────────────────────────────────────────── -->
   <section class="section" id="talks">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">🎤</div>
       <h2 class="section-title">Talks &amp; Media</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="talks-content" class="talks-list"></div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="talks-content" class="talks-list"></div>
+      </div>
+    </details>
   </section>
 
   <!-- Grants ───────────────────────────────────────────────────── -->
   <section class="section" id="grants">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">💰</div>
       <h2 class="section-title">Grants &amp; Funding</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="grants-content"></div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="grants-content"></div>
+      </div>
+    </details>
   </section>
 
   <!-- Advisory ─────────────────────────────────────────────────── -->
   <section class="section" id="advisory">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">🔬</div>
       <h2 class="section-title">Advisory &amp; Innovation Roles</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="advisory-content"></div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="advisory-content"></div>
+      </div>
+    </details>
   </section>
 
   <!-- Awards ───────────────────────────────────────────────────── -->
   <section class="section" id="awards">
-    <div class="section-header">
+    <details class="section-details">
+      <summary class="section-header">
       <div class="section-icon">🏆</div>
       <h2 class="section-title">Awards &amp; Recognition</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div id="awards-content" class="awards-grid"></div>
+      <span class="section-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="section-body">
+      <div id="awards-content" class="awards-grid"></div>
+      </div>
+    </details>
   </section>
 
   <!-- Footer ───────────────────────────────────────────────────── -->
@@ -2787,13 +2879,50 @@ function exportPDF() {
   setTimeout(() => window.print(), 200);
 }
 
-// The "All Publications" list is collapsed on screen, so open it for print
-// and PDF export, then put it back the way the visitor had it.
+// Sections and the "All Publications" list are collapsed on screen, so open
+// everything for print and PDF export, then restore what the visitor had.
 (function () {
-  const pubAll = document.getElementById('pub-all');
-  let wasOpen = false;
-  window.addEventListener('beforeprint', () => { wasOpen = pubAll.open; pubAll.open = true; });
-  window.addEventListener('afterprint',  () => { pubAll.open = wasOpen; });
+  const all = [...document.querySelectorAll('details')];
+  let before = [];
+  window.addEventListener('beforeprint', () => { before = all.map(d => d.open); all.forEach(d => { d.open = true; }); });
+  window.addEventListener('afterprint',  () => { all.forEach((d, i) => { d.open = before[i]; }); });
+})();
+
+/* ────────────────────────────────────────────────────────────────
+   COLLAPSIBLE SECTIONS
+──────────────────────────────────────────────────────────────── */
+(function () {
+  const sections  = [...document.querySelectorAll('.section-details')];
+  const toggleAll = document.getElementById('toggle-all');
+
+  const syncButton = () => {
+    toggleAll.textContent = sections.every(d => d.open) ? 'Collapse all' : 'Expand all';
+  };
+  toggleAll.addEventListener('click', () => {
+    const open = !sections.every(d => d.open);
+    sections.forEach(d => { d.open = open; });
+    syncButton();
+  });
+
+  // Opening a section gives its 3D charts a real width, so let them resize.
+  sections.forEach(d => d.addEventListener('toggle', () => {
+    syncButton();
+    if (d.open) window.dispatchEvent(new Event('resize'));
+  }));
+
+  // A link or URL hash that points into a section opens it first.
+  function openTarget(hash) {
+    const target = hash && document.getElementById(hash.slice(1));
+    if (!target) return;
+    const own = target.querySelector(':scope > .section-details');
+    if (own) own.open = true;
+    for (let d = target.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => openTarget(a.getAttribute('href')));
+  });
+  window.addEventListener('hashchange', () => openTarget(location.hash));
+  openTarget(location.hash);
 })();
 
 function exportJSON() {
