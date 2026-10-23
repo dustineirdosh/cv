@@ -749,6 +749,37 @@
     ══════════════════════════════════════════════════════ */
     .pub-list { display: flex; flex-direction: column; gap: 10px; }
 
+    /* collapsible "All Publications" list (closed by default) */
+    .pub-all { margin-top: 28px; }
+    .pub-all-summary {
+      cursor:       pointer;
+      list-style:   none;
+      user-select:  none;
+      margin-bottom: 0;
+      padding:      12px 16px;
+      background:   var(--surface);
+      border:       1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow:   var(--shadow-sm);
+      transition:   border-color var(--transition);
+    }
+    .pub-all-summary::after { display: none; }
+    .pub-all-summary:hover { border-color: var(--steel-light); }
+    .pub-all-hint { margin-left: auto; }
+    .pub-all-summary::-webkit-details-marker { display: none; }
+    .pub-all-summary:hover { color: var(--ink); }
+    .pub-all-summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+    .pub-all-chevron {
+      display:    inline-block;
+      transition: transform var(--transition);
+      font-size:  .7rem;
+    }
+    .pub-all[open] > .pub-all-summary { margin-bottom: 14px; }
+    .pub-all[open] .pub-all-chevron { transform: rotate(90deg); }
+    .pub-all-hint { font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--ink-faint); }
+    .pub-all-hint::before { content: attr(data-closed); }
+    .pub-all[open] .pub-all-hint::before { content: attr(data-open); }
+
     .pub-card {
       background:    var(--surface);
       border:        1px solid var(--border);
@@ -900,102 +931,8 @@
       vertical-align: middle;
       margin-right:  2px;
     }
-    .apps-grid {
-      display:               grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap:                   14px;
-    }
-    .app-card {
-      display:        flex;
-      gap:             14px;
-      align-items:     flex-start;
-      background:      var(--grad-accent);
-      color:           #fff;
-      border-radius:   var(--radius);
-      padding:         18px 20px;
-      text-decoration: none;
-      box-shadow:      0 4px 14px color-mix(in srgb, var(--series-b) 25%, transparent);
-      transition:      all var(--transition);
-    }
-    .app-card:hover {
-      transform:  translateY(-2px);
-      box-shadow: 0 8px 22px color-mix(in srgb, var(--series-b) 35%, transparent);
-      color:      #fff;
-    }
-    .app-card-icon {
-      width:          32px;
-      height:         32px;
-      border-radius:  50%;
-      background:     rgba(255,255,255,.2);
-      display:        flex;
-      align-items:    center;
-      justify-content: center;
-      flex-shrink:    0;
-      font-size:      .78rem;
-      overflow:       hidden;
-    }
-    .app-card-icon img { width: 20px; height: 20px; object-fit: contain; }
-    .app-card-name { font-weight: 700; font-size: .88rem; margin-bottom: 4px; }
-    .app-card-desc { font-size: .78rem; color: rgba(255,255,255,.88); line-height: 1.5; }
-
-    .repo-grid {
-      display:               grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap:                   14px;
-    }
-    .repo-card {
-      background:    var(--surface);
-      border:        1px solid var(--border);
-      border-radius: var(--radius);
-      overflow:      hidden;
-      box-shadow:    var(--shadow-sm);
-      display:       flex;
-      flex-direction: column;
-      gap:           8px;
-      transition:    all var(--transition);
-    }
-    .repo-card:hover {
-      box-shadow:   var(--shadow-md);
-      border-color: var(--steel-light);
-      transform:    translateY(-2px);
-    }
-    .repo-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-    .repo-card-thumb {
-      width:       100%;
-      height:      86px;
-      object-fit:  cover;
-      object-position: left center;
-      display:     block;
-      background:  var(--surface-soft);
-    }
-    .repo-card-head {
-      display:         flex;
-      align-items:     center;
-      justify-content: space-between;
-      gap:             8px;
-      flex-wrap:       wrap;
-    }
-    .repo-name {
-      font-weight:  600;
-      font-size:    .8rem;
-      color:        var(--navy);
-      font-family:  'Courier New', monospace;
-    }
-    .repo-blurb { font-size: .78rem; color: var(--ink-mid); line-height: 1.55; flex: 1; }
-    .repo-footer {
-      display:     flex;
-      align-items: center;
-      gap:         10px;
-      flex-wrap:   wrap;
-      font-size:   .72rem;
-      color:       var(--ink-light);
-    }
-    .repo-stat { display: inline-flex; align-items: center; gap: 3px; }
-
-    /* ══════════════════════════════════════════════════════
-       UMAP 3D PREVIEW  (eva_buch topic-space projection)
-    ══════════════════════════════════════════════════════ */
-    .umap-preview {
+    /* project blocks: NLP curriculum analysis, OpenLPM, NetLogo */
+    .lab-block {
       background:    var(--surface);
       border:        1px solid var(--border);
       border-radius: var(--radius);
@@ -1003,6 +940,150 @@
       padding:       20px 22px;
       margin-top:    28px;
     }
+    .lab-title-row {
+      display:     flex;
+      align-items: center;
+      flex-wrap:   wrap;
+      gap:         6px 12px;
+      margin-bottom: 4px;
+    }
+    .lab-title {
+      font-family: var(--font-serif);
+      font-size:   1.05rem;
+      line-height: 1.35;
+      color:       var(--navy);
+      margin-bottom: 8px;
+    }
+    .lab-title-row .lab-title { margin-bottom: 0; }
+    .lab-status {
+      font-size:     .75rem;
+      font-weight:   600;
+      color:         var(--series-b);
+      background:    var(--teal-pale);
+      border:        1px solid var(--teal-light);
+      padding:       2px 10px;
+      border-radius: var(--radius-pill);
+      white-space:   nowrap;
+    }
+    .lab-kicker {
+      font-size:      .74rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color:          var(--ink-light);
+      margin-bottom:  8px;
+    }
+    .lab-text {
+      font-size:   .86rem;
+      color:       var(--ink-mid);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .lab-text a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+    .lab-list {
+      margin:      0 0 12px 18px;
+      padding:     0;
+      font-size:   .84rem;
+      color:       var(--ink-mid);
+      line-height: 1.55;
+    }
+    .lab-list li { margin-bottom: 4px; }
+    .lab-list strong { color: var(--ink); }
+    .lab-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .lab-figure { margin: 16px 0 0; }
+    .lab-figure img {
+      display:       block;
+      width:         100%;
+      height:        auto;
+      border:        1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .lab-figure figcaption {
+      font-size:   .74rem;
+      color:       var(--ink-light);
+      line-height: 1.5;
+      margin-top:  8px;
+    }
+    .lab-subheading { margin: 18px 0 10px; }
+
+    /* FAIR data and theory block */
+    .fair-grid {
+      display:               grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:                   24px;
+      margin:                16px 0 14px;
+    }
+    .fair-col { min-width: 0; }
+    .fair-heading {
+      font-size:      .78rem;
+      font-weight:    700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color:          var(--ink-light);
+      margin-bottom:  10px;
+    }
+    .fair-figure { margin: 0 0 12px; }
+    .fair-figure img {
+      display:       block;
+      width:         100%;
+      height:        auto;
+      background:    #fff;
+      border:        1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding:       10px 14px;
+    }
+    .fair-steps {
+      list-style:  none;
+      margin:      0 0 12px;
+      padding:     0;
+      display:     flex;
+      flex-direction: column;
+      gap:         6px;
+      counter-reset: fair-step;
+    }
+    .fair-steps li {
+      counter-increment: fair-step;
+      display:       flex;
+      align-items:   baseline;
+      gap:           10px;
+      font-size:     .8rem;
+      line-height:   1.45;
+      color:         var(--ink-mid);
+      background:    var(--surface-soft);
+      border:        1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding:       7px 12px;
+    }
+    .fair-steps li::before {
+      content:     counter(fair-step);
+      flex-shrink: 0;
+      width:       20px;
+      height:      20px;
+      line-height: 20px;
+      text-align:  center;
+      font-size:   .7rem;
+      font-weight: 700;
+      color:       #fff;
+      background:  var(--series-b);
+      border-radius: 50%;
+      align-self:  center;
+    }
+    .fair-steps strong { color: var(--ink); }
+    .fair-credit {
+      display:     flex;
+      align-items: center;
+      gap:         10px;
+      font-size:   .75rem;
+      line-height: 1.45;
+      color:       var(--ink-light);
+      margin-bottom: 12px;
+    }
+    .fair-credit a { color: var(--teal); }
+    .fair-credit img { width: 88px; height: 31px; flex-shrink: 0; }
+
+    /* ══════════════════════════════════════════════════════
+       UMAP 3D PREVIEW  (topic-space projection of German Lehrplan excerpts)
+    ══════════════════════════════════════════════════════ */
     .umap-explainer {
       font-size:   .84rem;
       color:       var(--ink-mid);
@@ -1493,6 +1574,45 @@
       }
       .nav-links.open { display: flex; }
       .nav-links a { padding: 10px 6px; }
+
+      .lab-block { padding: 16px 16px; margin-top: 20px; }
+      .fair-grid { gap: 20px; }
+      .lab-figure { margin-top: 14px; }
+      .umap-grid { grid-template-columns: 1fr; }
+      .umap-stage { display: flex; flex-direction: column; }
+      .umap-stage canvas { order: 1; }
+      .umap-legend {
+        order: 0; position: static; flex-direction: row; flex-wrap: wrap;
+        gap: 4px 14px; padding: 8px 12px; border: 0; border-bottom: 1px solid var(--border);
+        border-radius: 0; background: var(--surface); backdrop-filter: none;
+      }
+      .umap-caption {
+        order: 2; position: static; max-height: 120px; padding: 8px 12px;
+        border: 0; border-top: 1px solid var(--border); border-radius: 0;
+        background: var(--surface); backdrop-filter: none;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       TOUCH SCREENS
+       44px tap targets, 11px minimum text, and vertical swipes that
+       scroll the page when a finger lands on a 3D chart.
+    ══════════════════════════════════════════════════════ */
+    @media (pointer: coarse), (max-width: 640px) {
+      .doi-link { position: relative; font-size: .76rem; padding: 4px 12px; }
+      .doi-link::before { content: ''; position: absolute; inset: -9px 0; }
+      .lab-links { gap: 10px; }
+      .hero-link { min-height: 44px; padding: 5px 14px; font-size: .8rem; }
+      .btn { min-height: 44px; }
+      .nav-toggle { min-width: 44px; min-height: 44px; }
+      .nav-links a { padding-top: 12px; padding-bottom: 12px; font-size: .8rem; }
+      .pub-all-summary { min-height: 44px; }
+      .fair-credit a:has(img) { display: block; padding: 7px 0; }
+      .chip, .keyword-chip, .panel-role-label, .badge-current, .section-count,
+      .featured-label, .talk-type, .pub-year, .pub-type-icon,
+      .umap-legend, .umap-caption .umap-caption-subject,
+      .status-pill, .sync-time, .orcid-id { font-size: .75rem; }
+      .umap-stage canvas { touch-action: pan-y; }
     }
 
     /* ══════════════════════════════════════════════════════
@@ -1512,7 +1632,7 @@
       }
       .hero * { color: var(--text-primary) !important; }
       .pub-card, .panel-card, .talk-card, .award-card,
-      .featured-card, .about-card, .repo-card, .app-card {
+      .featured-card, .about-card, .lab-block {
         box-shadow: none;
         break-inside: avoid;
         border-color: #ccc;
@@ -1576,7 +1696,7 @@
         </div>
         <div class="hero-links" id="hero-links">
           <a class="hero-link" href="http://openevo.eva.mpg.de" target="_blank">🌱 OpenEvo</a>
-          <a class="hero-link" href="https://github.com/openevo-ccs" target="_blank">🧬 OpenEvo CCS Lab</a>
+          <a class="hero-link" href="https://github.com/openevo-ccs" target="_blank">🗺️ OpenEvo CCS Lab</a>
           <a class="hero-link" href="http://www.GlobalESD.org" target="_blank">🌍 GlobalESD</a>
           <a class="hero-link" href="https://www.linkedin.com/in/dustin-eirdosh/" target="_blank">💼 LinkedIn</a>
           <a class="hero-link" href="https://www.researchgate.net/profile/Dustin-Eirdosh" target="_blank">📄 ResearchGate</a>
@@ -1661,20 +1781,28 @@
     <div id="featured-publications-wrap" style="display:none;">
       <p class="subheading">★ Featured</p>
       <div class="featured-grid" id="featured-publications"></div>
-      <p class="subheading" style="margin-top:28px;">All Publications</p>
     </div>
 
-    <div id="publications-content" class="pub-list">
-      <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
-      <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
-      <div class="sk-line sk-long   skeleton" style="height:60px;border-radius:10px;"></div>
-    </div>
+    <!-- All publications: collapsed until the visitor opens it -->
+    <details class="pub-all" id="pub-all">
+      <summary class="subheading pub-all-summary">
+        <span class="pub-all-chevron" aria-hidden="true">▸</span>
+        All Publications
+        <span class="section-count" id="pub-all-count">—</span>
+        <span class="pub-all-hint" data-closed="Show all" data-open="Hide"></span>
+      </summary>
+      <div id="publications-content" class="pub-list">
+        <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+        <div class="sk-line sk-full   skeleton" style="height:60px;border-radius:10px;margin-bottom:10px;"></div>
+        <div class="sk-line sk-long   skeleton" style="height:60px;border-radius:10px;"></div>
+      </div>
+    </details>
   </section>
 
   <!-- Research Lab ─────────────────────────────────────────────── -->
   <section class="section" id="research-lab">
     <div class="section-header">
-      <div class="section-icon">🧬</div>
+      <div class="section-icon">🗺️</div>
       <h2 class="section-title">Computational Curriculum Studies</h2>
       <div class="section-rule"></div>
     </div>
@@ -1686,16 +1814,84 @@
       </div>
     </div>
 
-    <div class="umap-preview">
-      <p class="subheading" style="margin-bottom:10px;">Preview: Mensch vs. Evolution, as eva_buch sees them (in 3D)</p>
+    <!-- FAIR data and FAIR theory -->
+    <div class="lab-block" id="fair">
+      <h3 class="lab-title">Committed to FAIR data and FAIR theory in curriculum studies</h3>
+      <p class="lab-text">
+        FAIR stands for findable, accessible, interoperable, and reusable. The lab applies it to two
+        kinds of material: the data of curriculum research (concepts, standards, literature records)
+        and the theory behind it (the explanatory claims that curriculum design depends on).
+      </p>
+      <div class="fair-grid">
+        <div class="fair-col">
+          <p class="fair-heading">FAIR data</p>
+          <figure class="fair-figure">
+            <img src="assets/fair-data-principles.jpg" loading="lazy"
+                 alt="The four FAIR principles: Findable (magnifying glass), Accessible (pointing hand), Interoperable (interlocking gears), Reusable (recycling arrows).">
+          </figure>
+          <div class="fair-credit">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 license"></a>
+            <span>Graphic by SangyaPundir, <a href="https://commons.wikimedia.org/wiki/File:FAIR_data_principles.jpg" target="_blank" rel="noopener">via Wikimedia Commons</a>, licensed CC BY-SA 4.0.</span>
+          </div>
+          <ul class="lab-list">
+            <li>Every concept and vocabulary has a persistent, resolvable identifier.</li>
+            <li>Records live in open, version-controlled repositories and can be read by people and machines.</li>
+            <li>Shared standards underpin the data: SKOS, IEEE LOM, schema.org, and 1EdTech CASE.</li>
+            <li>Every repository states its license (Creative Commons for most content, MIT for code).</li>
+            <li>Literature records are checked against DOI registries.</li>
+          </ul>
+        </div>
+        <div class="fair-col">
+          <p class="fair-heading">FAIR theory</p>
+          <ol class="fair-steps">
+            <li><span><strong>Implement.</strong> Write the theory in a formal, machine-readable form.</span></li>
+            <li><span><strong>Document.</strong> Add a README and an explicit license.</span></li>
+            <li><span><strong>Version.</strong> Track every change in Git.</span></li>
+            <li><span><strong>Archive.</strong> Deposit major versions to receive a DOI.</span></li>
+            <li><span><strong>Describe.</strong> Add rich metadata so others can find it.</span></li>
+          </ol>
+          <div class="fair-credit">
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener license"><img src="assets/cc-by.png" alt="Creative Commons Attribution 4.0 license"></a>
+            <span>Five-step workflow from Van Lissa et al. (2026), published under CC BY 4.0. Diagram created for this page.</span>
+          </div>
+          <ul class="lab-list">
+            <li>Theoretical claims, assumptions, and competing claims are stored as small, citable records, separate from the papers that introduced them.</li>
+            <li>Each record carries its evidence, its provenance, and a status that tracks its life: proposed, accepted, superseded, or retracted.</li>
+            <li>Interoperability is named for each use. Records already link across repositories. Linked-data (RDF) exchange with outside services is not built yet.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lab-text">
+        The lab is working toward the five-step workflow for theory proposed by
+        <a href="https://doi.org/10.1177/17456916251401850" target="_blank" rel="noopener">Van Lissa, Peikert, Ernst, van Dongen, Schönbrodt, &amp; Brandmaier (2026), <em>To Be FAIR: Theory Specification Needs an Update</em>, Perspectives on Psychological Science 21(2)</a>.
+      </p>
+      <div class="lab-links">
+        <a class="doi-link" href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">The FAIR principles ↗</a>
+        <a class="doi-link" href="https://github.com/openevo-ccs/conceptbase" target="_blank" rel="noopener">Concept vocabulary (ConceptBase) ↗</a>
+        <a class="doi-link" href="https://github.com/openevo-ccs/theorybase" target="_blank" rel="noopener">Theory records (TheoryBase) ↗</a>
+      </div>
+    </div>
+
+    <!-- Computational analysis of German Lehrplan documents -->
+    <div class="lab-block" id="curriculum-nlp">
+      <h3 class="lab-title">Using Natural Language Processing (NLP) to understand conceptual structures of knowledge</h3>
+      <p class="lab-text">
+        <a href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">A repository for the computational curriculum analysis of German Lehrplan documents</a>
+        for the forthcoming book Hanisch (in press),
+        <em>Evolutionäre Anthropologie als fächerübergreifender Biologieunterricht</em> (Springer).
+      </p>
+      <div class="lab-links">
+        <a class="doi-link" href="https://github.com/openevo-ccs/eva_buch" target="_blank" rel="noopener">View repository ↗</a>
+      </div>
+
+      <p class="subheading lab-subheading">Preview: Mensch vs. Evolution, as the analysis sees them (in 3D)</p>
       <p class="umap-explainer">
-        Each point below is one excerpt from a real German K–12 curriculum standard that mentions the
-        concept named above it. <strong>eva_buch</strong> uses a language model (BERTopic) to group
-        excerpts that discuss similar ideas, then a second technique (<strong>UMAP</strong>) arranges
-        those groups in 3D space so excerpts with related meaning sit near each other. Color marks which
-        school subject each excerpt comes from — how mixed the colors are is a rough visual read on how
-        interdisciplinary that concept actually is across the curriculum, versus how concentrated in one
-        subject.
+        Each point is one excerpt from a German state curriculum (Lehrplan) that mentions the concept
+        named above it. A language-model technique (<strong>BERTopic</strong>) groups excerpts that
+        discuss similar ideas. A second technique (<strong>UMAP</strong>) places those groups in 3D
+        space, so excerpts with related meaning sit close together. Color shows the school subject an
+        excerpt comes from. A mix of colors means the concept is spread across many subjects, and one
+        dominant color means it sits mostly in one subject. Drag to rotate.
       </p>
       <div class="umap-grid">
         <div class="umap-panel">
@@ -1712,6 +1908,63 @@
             <div class="umap-loading">Loading 3D preview…</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- OpenLPM -->
+    <div class="lab-block" id="openlpm">
+      <div class="lab-title-row">
+        <h3 class="lab-title">OpenLPM</h3>
+        <span class="lab-status">Limited beta</span>
+      </div>
+      <p class="lab-kicker">Collaborative Learning Progression Management</p>
+      <p class="lab-text">
+        A free, open platform for researchers, teachers, and curriculum policy makers to build learning
+        progressions together, and keep improving them as classroom experience comes in. Open source,
+        and free for schools, universities, and ministries.
+      </p>
+      <ul class="lab-list">
+        <li><strong>Researchers</strong> build learning progressions on evidence from the research literature, with every source traceable back to its original study.</li>
+        <li><strong>Educators</strong> see the thinking and classroom context behind a learning goal before bringing it into their own teaching, then suggest changes based on what they learn from using it.</li>
+        <li><strong>Curriculum policy makers</strong> see how learning goals connect across grades and subjects, and track how a curriculum improves as classroom experience comes in.</li>
+      </ul>
+      <p class="lab-text" style="margin-bottom:6px;">The platform also supports:</p>
+      <ul class="lab-list">
+        <li>Curriculum repositories organized at several geographic levels, built from open, custom, and standardized data formats.</li>
+        <li>Project spaces at several levels, for designing learning progressions across the different contexts they may be used in.</li>
+        <li>Development and analysis of synthetic learning progressions: deliberately constructed models used for controlled comparison.</li>
+      </ul>
+      <p class="lab-text">OpenLPM is currently in limited beta testing with selected partners.</p>
+      <div class="lab-links">
+        <a class="doi-link" href="https://openevo-ccs.github.io/openlpm/" target="_blank" rel="noopener">Visit OpenLPM ↗</a>
+        <a class="doi-link" href="https://github.com/openevo-ccs/openlpm" target="_blank" rel="noopener">Repository ↗</a>
+      </div>
+      <figure class="lab-figure">
+        <a href="openlpm-thuringia-concept-network.png" target="_blank" rel="noopener" aria-label="Open the concept network screenshot at full size">
+          <img src="openlpm-thuringia-concept-network.png" loading="lazy"
+               alt="Concept network in OpenLPM: six colored top-level concepts with their sub-concepts below, and many lines linking them to learning goals at the bottom of the graph.">
+        </a>
+        <figcaption>
+          Concept network from the EvoMentor Thuringia project: the six basic concepts (Basiskonzepte) of
+          Thuringia's Gymnasium biology curriculum, their sub-concepts, and the learning goals linked to them.
+          Tap the image to view it full size.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- NetLogo -->
+    <div class="lab-block" id="netlogo">
+      <h3 class="lab-title">NetLogo models</h3>
+      <p class="lab-text">
+        A collection of 15 agent-based simulation models for teaching evolution, cooperation, and
+        sustainability. In each model, many individual organisms or people follow simple rules, and
+        students watch what happens at the group level. Every model runs in a web browser. The
+        repository also holds a working space for building learning progression strands and extended
+        learning materials around the models.
+      </p>
+      <div class="lab-links">
+        <a class="doi-link" href="https://openevo-ccs.github.io/netlogo/" target="_blank" rel="noopener">Explore the models ↗</a>
+        <a class="doi-link" href="https://github.com/openevo-ccs/netlogo" target="_blank" rel="noopener">Repository ↗</a>
       </div>
     </div>
   </section>
@@ -1811,7 +2064,6 @@
 ──────────────────────────────────────────────────────────────── */
 const ORCID_ID   = '0000-0002-3836-1501';
 const ORCID_BASE = 'https://pub.orcid.org/v3.0';
-const GITHUB_ORG = 'openevo-ccs';
 
 const DATA_FILES = {
   publications: 'publications.json',
@@ -1837,8 +2089,7 @@ let CV = {
   grants:      [],
   advisory:    [],
   awards:      [],
-  ccsLab:      null,   // from data/ccs_lab.json
-  ccsRepos:    {}       // live GitHub API data, keyed by repo name
+  ccsLab:      null    // from data/ccs_lab.json
 };
 
 /* ────────────────────────────────────────────────────────────────
@@ -1935,12 +2186,11 @@ const FALLBACK = {
     tagline: 'Computational Curriculum Studies',
     eyebrow: 'Current Research Direction',
     intro: 'Our earlier work treated evolutionary and behavioral science as an interdisciplinary lens for curriculum design. The OpenEvo CCS Lab extends that instinct computationally: representing curricula as structured, comparable knowledge graphs so researchers can see where interdisciplinary concepts cohere across grade bands and subjects, and where they don\u2019t.',
-    apps: [
-      { name: 'eva_buch Explorer', description: 'Interactive topic-modelling browser for German curriculum documents.', url: 'https://openevo-ccs.github.io/eva_buch/' }
-    ],
-    featured_repos: [
-      { repo: 'conceptbase', blurb: 'Ontology, vocabularies, and schemas for the whole ecosystem — the OECB core.' },
-      { repo: 'eva_buch', blurb: 'German-language topic-modelling dataset and visualizations on evolutionary anthropology in curricula.' }
+    fair_commitment: 'The lab is committed to FAIR (findable, accessible, interoperable, reusable) data and FAIR theory in curriculum studies research: concepts, standards, and literature records carry persistent identifiers and stated licenses, and theoretical claims are specified as citable, versioned records, following Van Lissa et al. (2026).',
+    projects: [
+      { name: 'Computational curriculum analysis of German Lehrplan documents', description: 'Natural Language Processing (NLP) analysis of how concepts are distributed across German state curricula, for the forthcoming book Hanisch (in press), Evolutionäre Anthropologie als fächerübergreifender Biologieunterricht (Springer).', url: 'https://github.com/openevo-ccs/eva_buch' },
+      { name: 'OpenLPM', description: 'A free, open platform for researchers, teachers, and curriculum policy makers to build learning progressions together, and keep improving them as classroom experience comes in. Currently in limited beta testing with selected partners.', url: 'https://openevo-ccs.github.io/openlpm/' },
+      { name: 'NetLogo models', description: 'A collection of 15 agent-based simulation models for teaching evolution, cooperation, and sustainability, with a working space for learning progression strands built around them.', url: 'https://github.com/openevo-ccs/netlogo' }
     ]
   }
 };
@@ -1955,7 +2205,7 @@ async function init() {
 
   const [
     orcidResult, pubMetaResult, profileResult, talksResult,
-    advisoryResult, grantsResult, awardsResult, ccsLabResult, ghResult
+    advisoryResult, grantsResult, awardsResult, ccsLabResult
   ] = await Promise.allSettled([
     fetch(`${ORCID_BASE}/${ORCID_ID}/record`, { headers: { Accept: 'application/json' } })
       .then(r => { if (!r.ok) throw new Error(`ORCID ${r.status}`); return r.json(); }),
@@ -1965,9 +2215,7 @@ async function init() {
     fetchJSON(DATA_FILES.advisory),
     fetchJSON(DATA_FILES.grants),
     fetchJSON(DATA_FILES.awards),
-    fetchJSON(DATA_FILES.ccsLab),
-    fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100`, { headers: { Accept: 'application/vnd.github+json' } })
-      .then(r => { if (!r.ok) throw new Error(`GitHub ${r.status}`); return r.json(); })
+    fetchJSON(DATA_FILES.ccsLab)
   ]);
 
   // Publication annotations first, so they're ready when works render
@@ -2014,20 +2262,10 @@ async function init() {
   renderAbout();
   renderHeroLinks();
 
-  // Research Lab — CCS Lab framing (curated) + live GitHub repo stats
+  // Research Lab: CCS Lab framing (curated)
   CV.ccsLab = ccsLabResult.status === 'fulfilled' ? ccsLabResult.value.ccs_lab : FALLBACK.ccsLab;
   if (ccsLabResult.status !== 'fulfilled') console.warn('Could not load ccs_lab.json:', ccsLabResult.reason);
-
-  if (ghResult.status === 'fulfilled') {
-    const map = {};
-    (ghResult.value || []).forEach(r => { map[r.name] = r; });
-    CV.ccsRepos = map;
-    renderCcsLab('live');
-  } else {
-    console.warn('GitHub API fetch failed:', ghResult.reason);
-    CV.ccsRepos = {};
-    renderCcsLab('error');
-  }
+  renderCcsLab();
 }
 
 /* ────────────────────────────────────────────────────────────────
@@ -2167,7 +2405,7 @@ function parseWorks(data) {
   // always wins over ORCID's raw fields for a given DOI - ORCID pulls
   // straight from Crossref/journal metadata and can carry known errors
   // (e.g. a print-issue year where the citable date is online-first) that
-  // only get fixed here, not upstream. ORCID is only used to fill in
+  // only get fixed here. Upstream stays as it is. ORCID only fills in
   // works that aren't in the curated set at all.
   (CV.pubMeta.additional || []).forEach(pub => {
     const d = pub.doi ? pub.doi.toLowerCase() : null;
@@ -2208,6 +2446,7 @@ function parseWorks(data) {
   CV.works = works;
 
   document.getElementById('pub-count').textContent = works.length;
+  document.getElementById('pub-all-count').textContent = works.length;
   renderPublications(works);
 }
 
@@ -2266,7 +2505,7 @@ function renderHeroLinks() {
   if (!profile) return;
 
   const order = ['OpenEvo Project', 'OpenEvo CCS Lab', 'GlobalESD', 'LinkedIn', 'ResearchGate'];
-  const icons = { 'OpenEvo Project':'🌱', 'OpenEvo CCS Lab':'🧬', 'GlobalESD':'🌍', 'LinkedIn':'💼', 'ResearchGate':'📄' };
+  const icons = { 'OpenEvo Project':'🌱', 'OpenEvo CCS Lab':'🗺️', 'GlobalESD':'🌍', 'LinkedIn':'💼', 'ResearchGate':'📄' };
   const presence = profile.online_presence || [];
   const found = order.map(name => presence.find(p => p.platform === name)).filter(Boolean);
 
@@ -2396,83 +2635,27 @@ function renderPublications(works) {
   }).join('');
 }
 
-/* Research Lab: OpenEvo CCS Lab / OpenEvo ConceptBase (OECB) */
-function ccsStatusMarkup(state) {
-  if (state === 'live') {
-    return `<span class="status-pill status-live on-light"><span class="pulse-dot"></span> Live from GitHub</span>`;
-  }
-  return `<span class="status-pill status-error on-light">⚠ Cached repo list</span>`;
-}
-
-function renderCcsLab(status) {
+/* Research Lab: OpenEvo CCS Lab intro card. The project blocks below it
+   (curriculum NLP, OpenLPM, NetLogo) are static HTML in #research-lab. */
+function renderCcsLab() {
   const meta = CV.ccsLab;
   const wrap = document.getElementById('ccs-content');
 
   if (!meta) {
-    wrap.innerHTML = '<div class="error-box">Research lab data is temporarily unavailable — visit the <a href="https://github.com/openevo-ccs" target="_blank">OpenEvo CCS Lab on GitHub</a> directly.</div>';
+    wrap.innerHTML = '<div class="error-box">Research lab data is temporarily unavailable. Visit the <a href="https://github.com/openevo-ccs" target="_blank">OpenEvo CCS Lab on GitHub</a> directly.</div>';
     return;
   }
 
-  const repoMap = CV.ccsRepos || {};
-
   const orgAvatar = `https://github.com/${meta.org}.png?size=80`;
-
-  const appsHtml = (meta.apps || []).map(a => `
-    <a class="app-card" href="${a.url}" target="_blank" rel="noopener">
-      <div class="app-card-icon"><img src="${orgAvatar}" alt="" loading="lazy" /></div>
-      <div>
-        <div class="app-card-name">${a.name}</div>
-        <div class="app-card-desc">${a.description}</div>
-      </div>
-    </a>`).join('');
-
-  const repoCardsHtml = (meta.featured_repos || []).map(fr => {
-    const live    = repoMap[fr.repo] || {};
-    const stars   = typeof live.stargazers_count === 'number' ? live.stargazers_count : null;
-    const lang    = live.language || '';
-    const updated = live.updated_at
-      ? new Date(live.updated_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })
-      : '';
-    const url = live.html_url || `${meta.org_url}/${fr.repo}`;
-    const thumb = `https://opengraph.githubassets.com/1/${meta.org}/${fr.repo}`;
-
-    return `
-      <div class="repo-card">
-        <img class="repo-card-thumb" src="${thumb}" alt="" loading="lazy" onerror="this.remove()" />
-        <div class="repo-card-body">
-          <div class="repo-card-head">
-            <span class="repo-name">📦 ${fr.repo}</span>
-            ${lang ? `<span class="chip chip-type">${lang}</span>` : ''}
-          </div>
-          <div class="repo-blurb">${fr.blurb}</div>
-          <div class="repo-footer">
-            ${stars !== null ? `<span class="repo-stat">★ ${stars}</span>` : ''}
-            ${updated ? `<span class="repo-stat">Updated ${updated}</span>` : ''}
-            <a class="doi-link" href="${url}" target="_blank">View repo ↗</a>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
 
   wrap.innerHTML = `
     ${meta.eyebrow ? `<p class="subheading" style="margin-bottom:18px;">${meta.eyebrow}</p>` : ''}
-    <div class="about-card" style="margin-bottom:28px;">
+    <div class="about-card" style="margin-bottom:0;">
       <div class="panel-org" style="margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
         <img class="ccs-org-avatar" src="${orgAvatar}" alt="" loading="lazy" onerror="this.remove()" />
         <a href="${meta.org_url}" target="_blank" style="color:inherit">${meta.name} ↗</a>
-        ${ccsStatusMarkup(status)}
       </div>
       <p class="about-text" style="font-size:.92rem;">${meta.intro}</p>
-    </div>
-
-    <p class="subheading">Try it live</p>
-    <div class="apps-grid">${appsHtml}</div>
-
-    <p class="subheading" style="margin-top:28px;">Ecosystem repositories</p>
-    <div class="repo-grid">${repoCardsHtml}</div>
-
-    <div style="text-align:center;margin-top:20px;">
-      <a class="btn btn-outline" href="${meta.org_url}" target="_blank">View all repositories on GitHub ↗</a>
     </div>
   `;
 }
@@ -2572,6 +2755,7 @@ function loadFallback() {
 
   CV.works = fallbackWorks;
   document.getElementById('pub-count').textContent = fallbackWorks.length;
+  document.getElementById('pub-all-count').textContent = fallbackWorks.length;
   renderPublications(fallbackWorks);
 }
 
@@ -2604,6 +2788,15 @@ function exportPDF() {
   setTimeout(() => window.print(), 200);
 }
 
+// The "All Publications" list is collapsed on screen, so open it for print
+// and PDF export, then put it back the way the visitor had it.
+(function () {
+  const pubAll = document.getElementById('pub-all');
+  let wasOpen = false;
+  window.addEventListener('beforeprint', () => { wasOpen = pubAll.open; pubAll.open = true; });
+  window.addEventListener('afterprint',  () => { pubAll.open = wasOpen; });
+})();
+
 function exportJSON() {
   closeExportModal();
   const payload = {
@@ -2624,7 +2817,7 @@ function exportJSON() {
     grants:        CV.grants,
     advisory:      CV.advisory,
     awards:        CV.awards,
-    research_lab:  { ...CV.ccsLab, live_repo_stats: CV.ccsRepos }
+    research_lab:  CV.ccsLab
   };
   downloadBlob(
     new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }),
@@ -2700,12 +2893,12 @@ function exportMarkdown() {
     L.push(`## Computational Curriculum Studies — OpenEvo CCS Lab`);
     L.push(CV.ccsLab.intro || '');
     L.push(``);
-    (CV.ccsLab.featured_repos || []).forEach(fr => {
-      L.push(`- **${fr.repo}** — ${fr.blurb} ([GitHub](${CV.ccsLab.org_url}/${fr.repo}))`);
-    });
-    L.push(``);
-    (CV.ccsLab.apps || []).forEach(a => {
-      L.push(`- [${a.name}](${a.url}) — ${a.description}`);
+    if (CV.ccsLab.fair_commitment) {
+      L.push(CV.ccsLab.fair_commitment);
+      L.push(``);
+    }
+    (CV.ccsLab.projects || []).forEach(pr => {
+      L.push(`- [${pr.name}](${pr.url}) — ${pr.description}`);
     });
     L.push(``);
   }
@@ -2811,7 +3004,7 @@ init();
   const camera = new THREE.PerspectiveCamera(35, 1, 1, 1000);
   camera.position.set(0, 0, 300);
 
-  // Deterministic pseudo-random layout (seeded, not Math.random) so the
+  // Deterministic pseudo-random layout (seeded; Math.random is avoided) so the
   // graph looks organic but is stable across reloads.
   let seed = 1337;
   const rand = () => {
@@ -2935,7 +3128,7 @@ init();
       group.rotation.y = idleY + driftY;
     }
 
-    // subtle per-node twinkle so the graph reads as "alive", not just spinning
+    // subtle per-node twinkle so the graph reads as alive
     nodeMeshes.forEach((mesh, i) => {
       if (i === hubIdx) return;
       const s = 1 + Math.sin(t * 1.4 + i * 1.7) * 0.12;
@@ -2947,13 +3140,14 @@ init();
 })();
 </script>
 
-<!-- eva_buch 3D UMAP preview: real (trimmed + Mensch-sampled) exports of
-     eva_buch's own BERTopic + UMAP output for two contrasting concepts (see
-     scripts/build_eva_buch_preview.py and eva_buch_preview.json), each
-     rendered as its own draggable, idle-auto-rotating three.js point
-     cloud. Independent of the hero script above and of ccs_lab.json's
-     fetch - always attempts to load, fails each panel independently to a
-     plain message if the data or the three.js CDN aren't reachable. -->
+<!-- 3D UMAP preview of German Lehrplan excerpts: trimmed (and, for Mensch,
+     sampled) exports of the eva_buch repository's BERTopic + UMAP output for
+     two contrasting concepts (see scripts/build_eva_buch_preview.py and
+     eva_buch_preview.json). Each concept renders as its own draggable,
+     idle-auto-rotating three.js point cloud. Independent of the hero script
+     above and of ccs_lab.json's fetch. Always attempts to load, and each
+     panel falls back to a plain message if the data or the three.js CDN
+     can't be reached. -->
 <script type="module">
 (async () => {
   const panels = [
@@ -2975,11 +3169,11 @@ init();
       fetch('eva_buch_preview.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     ]);
   } catch {
-    failAll('Preview unavailable right now — see the live eva_buch Explorer above.');
+    failAll('Preview unavailable right now. Try reloading the page.');
     return;
   }
   if (!data.concepts || !data.concepts.length) {
-    failAll('Preview unavailable right now — see the live eva_buch Explorer above.');
+    failAll('Preview unavailable right now. Try reloading the page.');
     return;
   }
 
@@ -3004,21 +3198,19 @@ init();
   ];
   const colorObjs = PALETTE.map(hex => new THREE.Color(hex));
 
-  // Hand-written per-concept framing, but the percentages inside are
-  // interpolated from the data file's own real distribution_pct at render
-  // time - if the export script is ever rerun against updated eva_buch
-  // source data, this text can't drift out of sync with what's plotted.
+  // Hand-written per-concept framing. The percentages inside come from the
+  // data file's distribution_pct at render time, so if the export script is
+  // rerun against updated eva_buch data, this text stays in sync with what
+  // is plotted.
   const pct = (dist, subject) => Math.round(dist[subject] ?? 0);
   const CAPTIONS = {
     Mensch: (dist) =>
-      `Genuinely interdisciplinary: excerpts mentioning humanity are actually philosophy-led,
-       not biology-led — Ethics/Philosophy ${pct(dist,'Ethik, Philo')}%, Biology
-       ${pct(dist,'Bio')}%, History ${pct(dist,'Geschichte')}%, and Social Studies
-       ${pct(dist,'Sozialkunde')}% all carry a real share.`,
+      `Spread across subjects. Excerpts that mention humanity come most often from
+       Ethics/Philosophy (${pct(dist,'Ethik, Philo')}%), then Biology (${pct(dist,'Bio')}%),
+       History (${pct(dist,'Geschichte')}%), and Social Studies (${pct(dist,'Sozialkunde')}%).`,
     Evolution: (dist) =>
-      `By contrast, biology-anchored: ${pct(dist,'Bio')}% of excerpts come from Biology
-       standards, with only occasional crossover into Ethics/Philosophy, History, or
-       Psychology.`
+      `Anchored in biology: ${pct(dist,'Bio')}% of excerpts come from Biology standards,
+       with occasional crossover into Ethics/Philosophy, History, or Psychology.`
   };
 
   panels.forEach(({ id, topic }) => {
@@ -3028,7 +3220,7 @@ init();
     const captionEl = document.getElementById(`umap-caption-${id}`);
 
     if (!stage || !concept || !concept.points?.length) {
-      if (loading) loading.textContent = 'Preview unavailable right now — see the live eva_buch Explorer above.';
+      if (loading) loading.textContent = 'Preview unavailable right now. Try reloading the page.';
       return;
     }
     if (captionEl && CAPTIONS[topic]) captionEl.textContent = CAPTIONS[topic](concept.distribution_pct || {}).replace(/\s+/g, ' ').trim();
